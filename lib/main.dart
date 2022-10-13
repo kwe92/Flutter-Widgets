@@ -8,6 +8,8 @@ import 'package:flutter_widgets/Widgets/MaterialApp/material_app_widget_no_scaff
 import 'package:flutter_widgets/Widgets/builder_widget.dart';
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
+import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/counter_app.dart';
+import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/review/counter_app2.dart';
 import 'package:flutter_widgets/Widgets/show_search_widget.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
@@ -17,15 +19,19 @@ import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart
 // WorkingWithFittedBoxWidget() MA
 // WorkingWithShowSearchWidget() MA
 // MaterialAppNoScaffold() MA
-// CustomMaterialAppNav()MA
+// CustomMaterialAppNav() MA
 // WorkingWithDotAdaptive()
 // WorkingWithHero()
 // WorkingWithStreamBuilder()
 // WorkingWithRiverpod()
+// Counter()
 
 int main() {
-  runApp(const MaterialApp(
-    home: null,
-  ));
+  runApp(
+    MaterialApp(
+      theme: ThemeData(brightness: Brightness.dark),
+      home: const CounterApp(),
+    ),
+  );
   return 0;
 }
