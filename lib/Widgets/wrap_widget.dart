@@ -1,4 +1,4 @@
-// Wrap Widget
+// Wrap Widget (Layout Widget)
 //  - Make sure to put the first element under the first line
 //  - Display children in multiple horizontal and vertical runs
 //
@@ -16,7 +16,7 @@ class WorkingWithWrap extends StatelessWidget {
   WorkingWithWrap({super.key});
 
   final Widget image = Padding(
-    padding: const EdgeInsets.all(0.0),
+    padding: const EdgeInsets.all(8.0),
     child: Image.asset(
       height: 100,
       width: 100,
@@ -25,7 +25,7 @@ class WorkingWithWrap extends StatelessWidget {
     ),
   );
 
-  List<Widget> get _imageList => [for (var i = 0; i < 4; i++) image];
+  List<Widget> get _imageList => [for (var i = 0; i < 12; i++) image];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,8 @@ class WorkingWithWrap extends StatelessWidget {
           title: const Text('Working With Wrap Widget'),
         ),
         body: Center(
-            child: Row(
+            child: Wrap(
+          //spacing: 5,
           children: _imageList,
         )),
       ),
