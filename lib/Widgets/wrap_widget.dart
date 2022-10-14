@@ -1,0 +1,44 @@
+// Wrap Widget
+//  - Make sure to put the first element under the first line
+//  - Display children in multiple horizontal and vertical runs
+//
+//
+// nl
+
+// TODO: Finish working on this
+
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/widgets.dart';
+
+class WorkingWithWrap extends StatelessWidget {
+  WorkingWithWrap({super.key});
+
+  final Widget image = Padding(
+    padding: const EdgeInsets.all(0.0),
+    child: Image.asset(
+      height: 100,
+      width: 100,
+      fit: BoxFit.cover,
+      'assets/sololvl.jpeg',
+    ),
+  );
+
+  List<Widget> get _imageList => [for (var i = 0; i < 4; i++) image];
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Working With Wrap Widget'),
+        ),
+        body: Center(
+            child: Row(
+          children: _imageList,
+        )),
+      ),
+    );
+  }
+}
