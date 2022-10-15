@@ -9,6 +9,7 @@ class CustomMaterialAppNav extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(brightness: Brightness.dark, primaryColor: Colors.orange),
+      initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) {
           return SafeArea(
@@ -50,7 +51,7 @@ class CustomMaterialAppNav extends StatelessWidget {
               title: const Text('About Screen'),
             ),
           );
-        }
+        },
       },
     );
   }
