@@ -21,9 +21,9 @@ class GenreScreen extends StatelessWidget {
           ),
         )),
         body: GenreCard(
-            //genre: genreEntity.genre,
-            image: genreEntity.image,
-            description: genreEntity.description),
+          image: genreEntity.image,
+          description: genreEntity.description,
+        ),
       ),
     );
   }
