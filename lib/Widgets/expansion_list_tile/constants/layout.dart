@@ -32,4 +32,5 @@ class Fonts {
 
 class BackgroundColors {
   static const main = Color.fromRGBO(121, 172, 179, 1);
+  static const secondary = Color.fromRGBO(88, 82, 123, 1);
 }
