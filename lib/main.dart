@@ -36,25 +36,23 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // WorkingWithWrap()
 // WorkingWithExpansionListTile()
 // nl
-
-final List<GenreModel> genreList = GenreModel.fromList(genreJSON);
-final genreEntity =
-    genreList.firstWhere((genre) => genre.genre.toLowerCase() == 'isekai');
-int main() {
-  runApp(
-    MaterialApp(
-      theme: ThemeData(brightness: Brightness.light),
-      home: SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Designing Genre Card'),
-            ),
-            body: GenreCard(
-                genre: genreEntity.genre,
-                image: genreEntity.image,
-                description: genreEntity.description)),
-      ),
-    ),
-  );
-  return 0;
+void main() {
+  runApp(WorkingWithExpansionListTile());
 }
+
+//  runApp(
+    // MaterialApp(
+    //   theme: ThemeData(brightness: Brightness.dark),
+    //   home: SafeArea(
+    //     child: Scaffold(
+    //       // appBar: AppBar(
+    //       //   title: const Text('Designing Genre Card'),
+    //       // ),
+          // body: GenreCard(
+          //     genre: genreEntity.genre,
+          //     image: genreEntity.image,
+          //     description: genreEntity.description),
+    //     ),
+    //   ),
+    // ),
+//   );
