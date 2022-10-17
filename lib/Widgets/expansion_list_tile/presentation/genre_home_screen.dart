@@ -10,6 +10,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_widgets/Widgets/container_widget.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/constants/layout.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/data/genre_data.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/domain/genre.dart';
@@ -30,7 +31,7 @@ class WorkingWithExpansionListTile extends StatelessWidget {
         '/': (BuildContext context) {
           return SafeArea(
             child: Scaffold(
-              body: Column(
+              body: ListView(
                 children: [
                   ExpansionTile(
                     collapsedBackgroundColor: BackgroundColors.secondary,
@@ -65,12 +66,13 @@ class WorkingWithExpansionListTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Expanded(
-                    child: Image.asset(
-                      fit: BoxFit.fitHeight,
-                      'assets/seinen.webp',
-                    ),
-                  ),
+                  buildWidetColumn()
+                  // Expanded(
+                  //   child: Image.asset(
+                  //     fit: BoxFit.fitHeight,
+                  //     'assets/seinen.webp',
+                  //   ),
+                  // ),
                 ],
               ),
             ),
