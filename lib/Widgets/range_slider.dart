@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+//Range Slider Widget
+//    - Add a slider widget
+//    = min start: 0
+//    - max end: 1
+//    - Data types needed RangeValues, RangeLabels, RangeSlider
+
 class WorknigWithRangeSlider extends StatefulWidget {
   const WorknigWithRangeSlider({super.key});
 
