@@ -6,18 +6,15 @@ Widget _buildDecoratedImage({required String image}) => Expanded(
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            width: 10,
-            color: Colors.black38,
+            width: 3,
+            color: Colors.grey,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         margin: const EdgeInsets.all(4),
         child: SizedBox(
-          height: 300,
-          child: AspectRatio(
-            aspectRatio: 4 / 3,
-            child: Image.asset(image, fit: BoxFit.fill),
-          ),
+          height: 200,
+          child: Image.asset(image, fit: BoxFit.fill),
         ),
         //Image.asset(image),
       ),
