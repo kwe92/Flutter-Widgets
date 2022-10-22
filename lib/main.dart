@@ -15,9 +15,10 @@ import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
 import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
+import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
-import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/counter_app.dart';
-import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/review/counter_app2.dart';
+import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/counter_app_original.dart';
+import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/review/counter_app/counter_app2.dart';
 import 'package:flutter_widgets/Widgets/show_date_picker.dart';
 import 'package:flutter_widgets/Widgets/show_search_widget.dart';
 import 'package:flutter_widgets/Widgets/show_time_picker.dart';
@@ -37,7 +38,7 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // WorkingWithStreamBuilder()
 // WorkingWithRiverpod()
 // Counter()
-// CounterApp()
+// CounterApp() Provider Scope
 // WorkingWithSliverAppBar()
 // WorkingWithWrap()
 // WorkingWithExpansionListTile() MA
@@ -47,17 +48,17 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // WorkingWithPopUpMenuButton()
 // LayoutExample1() MA
 // WorknigWithRangeSlider()
-//
+// WorkingWithCunsumerExample1(title: 'Working With Cunsumer') ProviderScope
 //
 //
 //
 //
 // nl
 void main() {
-  runApp(WorkingWithExpansionListTile());
-  // runApp(
-  //   const MaterialApp(
-  //     home: null,
-  //   ),
-  // );
+  // runApp(WorkingWithExpansionListTile());
+  runApp(
+    const ProviderScope(
+      child: MaterialApp(home: CounterApp()),
+    ),
+  );
 }
