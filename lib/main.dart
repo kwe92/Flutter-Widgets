@@ -15,6 +15,7 @@ import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
 import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
+import 'package:flutter_widgets/Widgets/range_slider.dart';
 import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/counter_app.dart';
 import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/review/counter_app2.dart';
 import 'package:flutter_widgets/Widgets/show_date_picker.dart';
@@ -53,10 +54,10 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 //
 // nl
 void main() {
-  runApp(LayoutExample1());
-  // runApp(
-  //   const MaterialApp(
-  //     home: null,
-  //   ),
-  // );
+  // runApp();
+  runApp(
+    const MaterialApp(
+      home: WorknigWithRangeSlider(),
+    ),
+  );
 }
