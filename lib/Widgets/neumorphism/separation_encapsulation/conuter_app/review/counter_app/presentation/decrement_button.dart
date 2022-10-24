@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../constants/layout.dart';
-import 'eleveated_button.dart';
+import 'neumorphic_button.dart';
 import 'providers/count_provider.dart';
 
 class CounterDecrementor extends StatelessWidget {

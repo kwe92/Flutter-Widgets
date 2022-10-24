@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/Riverpod/working_with_riverpod.dart';
 import 'package:flutter_widgets/Widgets/choice_chip.dart';
@@ -14,11 +15,12 @@ import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCa
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
 import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/first_neumorphic_app.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
 import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
-import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/counter_app_original.dart';
-import 'package:flutter_widgets/Widgets/separation_encapsulation/conuter_app/review/counter_app/counter_app2.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/separation_encapsulation/old_counter/counter_app_original.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/separation_encapsulation/conuter_app/review/counter_app/counter_app2.dart';
 import 'package:flutter_widgets/Widgets/show_date_picker.dart';
 import 'package:flutter_widgets/Widgets/show_search_widget.dart';
 import 'package:flutter_widgets/Widgets/show_time_picker.dart';
@@ -55,10 +57,31 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 //
 // nl
 void main() {
-  // runApp(WorkingWithExpansionListTile());
+  //runApp(MyApp());
+  // runApp(
+  //   const ProviderScope(
+  //     child: MaterialApp(home: CounterApp()),
+  //   ),
+  // );
+
   runApp(
     const ProviderScope(
-      child: MaterialApp(home: CounterApp()),
+      child: NeumorphicApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        themeMode: ThemeMode.dark,
+        theme: NeumorphicThemeData(
+          baseColor: Color(0xFFFFFFFF),
+          lightSource: LightSource.topLeft,
+          depth: 10,
+        ),
+        darkTheme: NeumorphicThemeData(
+          baseColor: Color(0xFF3E3E3E),
+          lightSource: LightSource.topLeft,
+          depth: 6,
+        ),
+        home: CounterApp(),
+      ),
     ),
   );
 }
