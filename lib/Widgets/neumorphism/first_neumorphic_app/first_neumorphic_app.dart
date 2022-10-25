@@ -1,7 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FirstNeumorphicApp extends StatelessWidget {
+  const FirstNeumorphicApp({super.key});
 
   // This widget is the root of your application.
   @override
