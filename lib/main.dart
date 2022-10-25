@@ -15,7 +15,9 @@ import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCa
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
 import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/test_neumorphic_button.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/first_neumorphic_app.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
 import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
@@ -40,7 +42,7 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // WorkingWithStreamBuilder()
 // WorkingWithRiverpod()
 // Counter()
-// CounterApp() Provider Scope
+// CounterApp() Provider Scope / Neumorphic
 // WorkingWithSliverAppBar()
 // WorkingWithWrap()
 // WorkingWithExpansionListTile() MA
@@ -51,37 +53,42 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // LayoutExample1() MA
 // WorknigWithRangeSlider()
 // WorkingWithCunsumerExample1(title: 'Working With Cunsumer') ProviderScope
-//
-//
+// TestNeumorphic() Neumorphic
+// FirstNeumorphicApp() Neumorphic
 //
 //
 // nl
 void main() {
-  //runApp(MyApp());
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: NeumorphicPractice1(),
+    ),
+  );
   // runApp(
   //   const ProviderScope(
   //     child: MaterialApp(home: CounterApp()),
   //   ),
   // );
 
-  runApp(
-    const ProviderScope(
-      child: NeumorphicApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        themeMode: ThemeMode.dark,
-        theme: NeumorphicThemeData(
-          baseColor: Color(0xFFFFFFFF),
-          lightSource: LightSource.topLeft,
-          depth: 10,
-        ),
-        darkTheme: NeumorphicThemeData(
-          baseColor: Color(0xFF3E3E3E),
-          lightSource: LightSource.topLeft,
-          depth: 6,
-        ),
-        home: CounterApp(),
-      ),
-    ),
-  );
+  // runApp(
+  //   const ProviderScope(
+  //     child: NeumorphicApp(
+  //       debugShowCheckedModeBanner: false,
+  //       title: 'Flutter Demo',
+  //       themeMode: ThemeMode.dark,
+  //       theme: NeumorphicThemeData(
+  //         baseColor: Color(0xFFFFFFFF),
+  //         lightSource: LightSource.topLeft,
+  //         depth: 10,
+  //       ),
+  //       darkTheme: NeumorphicThemeData(
+  //         baseColor: Color(0xFF3E3E3E),
+  //         lightSource: LightSource.topLeft,
+  //         depth: 6,
+  //       ),
+  //       home: TestNeumorphic(),
+  //     ),
+  //   ),
+  // );
 }
