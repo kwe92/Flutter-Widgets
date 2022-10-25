@@ -3,7 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'constants/layout.dart';
 import 'presentation/decrement_button.dart';
-import 'presentation/eleveated_button.dart';
+import 'presentation/custom_neumorphic_button.dart';
 import 'presentation/providers/count_provider.dart';
 
 //TODO: Wrap the BottomNavigationBar Widget with a Theme
