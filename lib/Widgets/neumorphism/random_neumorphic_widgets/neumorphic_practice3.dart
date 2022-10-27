@@ -40,7 +40,7 @@ class _MyButtonState extends State<MyButton> {
           setState(() {
             isPressed = !isPressed;
           });
-          await Future.delayed(const Duration(milliseconds: 500));
+          await Future.delayed(const Duration(milliseconds: 50));
           setState(() {
             isPressed = !isPressed;
           });
