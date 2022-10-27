@@ -18,6 +18,8 @@ import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.da
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/test_neumorphic_button.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/first_neumorphic_app.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice2.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice3.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
 import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
@@ -55,14 +57,16 @@ import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 // WorkingWithCunsumerExample1(title: 'Working With Cunsumer') ProviderScope
 // TestNeumorphic() Neumorphic
 // FirstNeumorphicApp() Neumorphic
-//
-//
+// NeumorphicPractice1 () Custom Neumorphic
+// NeumorphicPractice2()
 // nl
 void main() {
   runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: NeumorphicPractice1(),
+    const ProviderScope(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: NeumorphicPractice3(),
+      ),
     ),
   );
   // runApp(
