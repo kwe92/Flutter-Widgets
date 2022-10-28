@@ -5,7 +5,8 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/providers.dart';
 
-// A neumorphic button that updates UI after the button is pressed and not before
+// A neumorphic button that updates UI on press
+//        - after the button is pressed, but works both ways
 
 class MyButton extends StatefulWidget {
   const MyButton(
@@ -31,8 +32,8 @@ class _MyButtonState extends State<MyButton> {
   @override
   Widget build(BuildContext context) {
     //final Color backgroundColor = Colors.grey[100]!;
-    final Offset distance = isPressed ? const Offset(5, 5) : const Offset(8, 8);
-    final double blur = isPressed ? 5 : 15.0;
+    final Offset distance = isPressed ? const Offset(4, 4) : const Offset(6, 6);
+    final double blur = isPressed ? 1 : 15.0;
 
     return GestureDetector(
       onTap: () async {
@@ -133,7 +134,7 @@ class _NeumorphicPractice3State extends ConsumerState<NeumorphicPractice3> {
   }
 }
 
-// Note: Button With a provider for global state management 
+// Note: Button With a provider for global state management
 
 // class MyButton extends ConsumerWidget {
 //   const MyButton(
