@@ -34,6 +34,7 @@ import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 
+import 'Widgets/bottom_navigaton.dart';
 import 'Widgets/visiblity_widget.dart';
 
 // WorkWithBuilderWidget() MA
@@ -64,22 +65,24 @@ import 'Widgets/visiblity_widget.dart';
 // NeumorphicPractice2() Custom Neumorphic
 // NeumorphicPractice3() Custom Neumorphic
 // WorkingWithVisibility()
-//
+// WorkingWithBottomNavBar()
 //
 // nl
 void main() {
-  // runApp(const MaterialApp(
-  //   home: WorkingWithVisibility(),
-  // ));
-
   runApp(
-    const ProviderScope(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: NeumorphicPractice4(),
-      ),
+    MaterialApp(
+      home: null,
     ),
   );
+
+  // runApp(
+  //   const ProviderScope(
+  //     child: MaterialApp(
+  //       debugShowCheckedModeBanner: false,
+  //       home: NeumorphicPractice4(),
+  //     ),
+  //   ),
+  // );
 
   // runApp(
   //   const ProviderScope(
