@@ -71,7 +71,18 @@ import 'Widgets/visiblity_widget.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: null,
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('New App'),
+          ),
+          body: Center(
+              child: Text(
+            'Hello Elliot',
+            style: TextStyle(fontSize: 60),
+          )),
+        ),
+      ),
     ),
   );
 
