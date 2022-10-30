@@ -35,6 +35,7 @@ import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 
 import 'Widgets/bottom_navigaton.dart';
+import 'Widgets/bottom_sheet_modal.dart';
 import 'Widgets/page_view.dart';
 import 'Widgets/visiblity_widget.dart';
 
@@ -70,12 +71,12 @@ import 'Widgets/visiblity_widget.dart';
 // PageViewApp() MA
 // nl
 void main() {
-  runApp(PageViewApp());
-  // runApp(
-  //   MaterialApp(
-  //     home: PageViewApp(),
-  //   ),
-  // );
+  // runApp();
+  runApp(
+    const MaterialApp(
+      home: BottomModalApp(),
+    ),
+  );
 
   // runApp(
   //   const ProviderScope(
