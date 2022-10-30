@@ -35,6 +35,7 @@ import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 
 import 'Widgets/bottom_navigaton.dart';
+import 'Widgets/page_view.dart';
 import 'Widgets/visiblity_widget.dart';
 
 // WorkWithBuilderWidget() MA
@@ -65,26 +66,16 @@ import 'Widgets/visiblity_widget.dart';
 // NeumorphicPractice2() Custom Neumorphic
 // NeumorphicPractice3() Custom Neumorphic
 // WorkingWithVisibility()
-// WorkingWithBottomNavBar()
-//
+// WorkingWithBottomNavBar() MA??
+// PageViewApp() MA
 // nl
 void main() {
-  runApp(
-    MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('New App'),
-          ),
-          body: Center(
-              child: Text(
-            'Hello Elliot',
-            style: TextStyle(fontSize: 60),
-          )),
-        ),
-      ),
-    ),
-  );
+  runApp(PageViewApp());
+  // runApp(
+  //   MaterialApp(
+  //     home: PageViewApp(),
+  //   ),
+  // );
 
   // runApp(
   //   const ProviderScope(
