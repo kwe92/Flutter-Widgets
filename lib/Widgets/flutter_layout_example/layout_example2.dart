@@ -11,7 +11,8 @@ class Product {
   final String name;
 }
 
-// ??
+// Used to store state higher in the Widget hierarchy
+// causing state to presist for longer periods of time
 typedef CartChangedCallBack = Function(Product product, bool inCart);
 
 // Presentation Class: ShoppingListItem
@@ -68,24 +69,68 @@ class ShoppingListItem extends StatelessWidget {
   }
 }
 
-class ShoppingListApp extends StatelessWidget {
-  const ShoppingListApp({super.key});
-  static const _title = 'Shopping List App';
+class ShoppingListApp extends StatefulWidget {
+  const ShoppingListApp({required this.products, super.key});
+  final List<Product> products;
+  @override
+  State<ShoppingListApp> createState() => _ShoppingListAppState();
+}
+
+class _ShoppingListAppState extends State<ShoppingListApp> {
+  final _shoppingCart = <Product>{};
+  static const String _title = 'Shopping List App';
+
+  void _handleCartChanged(Product product, bool inCart) {
+    setState(() {
+      if (!inCart) {
+        _shoppingCart.add(product);
+      } else {
+        _shoppingCart.remove(product);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SafeArea(
         child: Scaffold(
-          appBar: AppBar(title: const Text(_title)),
-          body: Center(
-            child: ShoppingListItem(
-              product: const Product(name: 'Glasses'),
-              inCart: true,
-              onCartChanged: (product, inCart) {},
-            ),
+          appBar: AppBar(
+            title: const Text(_title),
+          ),
+          body: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            children: widget.products.map((product) {
+              return ShoppingListItem(
+                  product: product,
+                  inCart: _shoppingCart.contains(product),
+                  onCartChanged: _handleCartChanged);
+            }).toList(),
           ),
         ),
       ),
     );
   }
 }
+
+// class ShoppingListApp extends StatelessWidget {
+//   const ShoppingListApp({super.key});
+//   static const _title = 'Shopping List App';
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: SafeArea(
+//         child: Scaffold(
+//           appBar: AppBar(title: const Text(_title)),
+//           body: Center(
+//             child: ShoppingListItem(
+//               product: const Product(name: 'Glasses'),
+//               inCart: true,
+//               onCartChanged: (product, inCart) {},
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
