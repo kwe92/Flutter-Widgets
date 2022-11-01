@@ -34,8 +34,10 @@ import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
 
+import 'Widgets/animated_cross_fade.dart';
 import 'Widgets/bottom_navigaton.dart';
 import 'Widgets/bottom_sheet_modal.dart';
+import 'Widgets/flutter_layout_example/layout_example2.dart';
 import 'Widgets/page_view.dart';
 import 'Widgets/visiblity_widget.dart';
 
@@ -69,14 +71,23 @@ import 'Widgets/visiblity_widget.dart';
 // WorkingWithVisibility()
 // WorkingWithBottomNavBar() MA??
 // PageViewApp() MA
+// BottomModalApp()
+// AnimatedCrossFadeApp()
+//
+//
+//
+//
+//
+//
 // nl
 void main() {
-  // runApp();
-  runApp(
-    const MaterialApp(
-      home: BottomModalApp(),
-    ),
-  );
+  runApp(const ShoppingListApp());
+
+  // runApp(
+  //   const MaterialApp(
+  //     home: null,
+  //   ),
+  // );
 
   // runApp(
   //   const ProviderScope(
