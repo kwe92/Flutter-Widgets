@@ -12,7 +12,7 @@ class Product {
 }
 
 // ??
-typedef CartChangedCallBack = Function({Product product, bool inCart});
+typedef CartChangedCallBack = Function(Product product, bool inCart);
 
 // Presentation Class: ShoppingListItem
 // Stateless Widget
@@ -34,18 +34,58 @@ class ShoppingListItem extends StatelessWidget {
   final bool inCart;
   final CartChangedCallBack onCartChanged;
 
-  _getColor(BuildContext context) {
+  Color _getColor(BuildContext context) {
     // The theme depends on the BuildContext
     // because different part of the tree can have different themes.
     // The BuildContext indicates where the build is
     // taking place in your tree and therefore which theme to use
     // at the specified location
 
-    inCart ? Colors.black54 : Theme.of(context).primaryColor;
+    return inCart ? Colors.black54 : Theme.of(context).primaryColor;
+  }
+
+  TextStyle? _getTextStyle(BuildContext context) {
+    if (!inCart) return null;
+    return const TextStyle(
+        color: Colors.black54, decoration: TextDecoration.lineThrough);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListTile(
+      onTap: () {
+        onCartChanged(product, inCart);
+      },
+      leading: CircleAvatar(
+        backgroundColor: _getColor(context),
+        child: Text(product.name[0]),
+      ),
+      title: Text(
+        product.name,
+        style: _getTextStyle(context),
+      ),
+    );
+  }
+}
+
+class ShoppingListApp extends StatelessWidget {
+  const ShoppingListApp({super.key});
+  static const _title = 'Shopping List App';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(title: const Text(_title)),
+          body: Center(
+            child: ShoppingListItem(
+              product: const Product(name: 'Glasses'),
+              inCart: true,
+              onCartChanged: (product, inCart) {},
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
