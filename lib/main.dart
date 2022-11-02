@@ -14,7 +14,7 @@ import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genre_h
 import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCard.dart';
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
-import 'package:flutter_widgets/Widgets/flutter_layout_example/layout_example.dart';
+import 'package:flutter_widgets/Widgets/flutter_layout_example/lake_review_app.dart/LocationReviewApp.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/test_neumorphic_button.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/first_neumorphic_app.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice.dart';
@@ -33,7 +33,6 @@ import 'package:flutter_widgets/Widgets/sliver_app_bar.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
-
 import 'Widgets/animated_cross_fade.dart';
 import 'Widgets/bottom_navigaton.dart';
 import 'Widgets/bottom_sheet_modal.dart';
@@ -61,7 +60,7 @@ import 'Widgets/visiblity_widget.dart';
 // WorkingWithTimePicker()
 // WorkingWithDatePicker()
 // WorkingWithPopUpMenuButton()
-// LayoutExample1() MA
+// LocationApp() MA
 // WorknigWithRangeSlider()
 // WorkingWithCunsumerExample1(title: 'Working With Cunsumer') ProviderScope
 // TestNeumorphic() Neumorphic
@@ -74,7 +73,7 @@ import 'Widgets/visiblity_widget.dart';
 // PageViewApp() MA
 // BottomModalApp()
 // AnimatedCrossFadeApp()
-//
+// const ShoppingListApp(products: productList,) MA with a named arguement
 //
 //
 //
@@ -82,9 +81,7 @@ import 'Widgets/visiblity_widget.dart';
 //
 // nl
 void main() {
-  runApp(const ShoppingListApp(
-    products: productList,
-  ));
+  runApp(const LocationApp());
 
   // runApp(
   //   const MaterialApp(
