@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_widgets/Widgets/StateManagement/parent_state_management_example.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/Riverpod/working_with_riverpod.dart';
 import 'package:flutter_widgets/Widgets/choice_chip.dart';
 import 'package:flutter_widgets/Widgets/container/container_widget.dart';
@@ -14,7 +15,7 @@ import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genre_h
 import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCard.dart';
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
-import 'package:flutter_widgets/Widgets/flutter_layout_example/lake_review_app.dart/LocationReviewApp.dart';
+import 'package:flutter_widgets/Widgets/flutter_layout_example/lake_review_app.dart/location_review_app.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/test_neumorphic_button.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/first_neumorphic_app/first_neumorphic_app.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice.dart';
@@ -33,6 +34,8 @@ import 'package:flutter_widgets/Widgets/sliver_app_bar.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
+import 'Widgets/StateManagement/internal_state_management_example.dart';
+import 'Widgets/StateManagement/mix_and_match_state_management.dart';
 import 'Widgets/animated_cross_fade.dart';
 import 'Widgets/bottom_navigaton.dart';
 import 'Widgets/bottom_sheet_modal.dart';
@@ -60,7 +63,7 @@ import 'Widgets/visiblity_widget.dart';
 // WorkingWithTimePicker()
 // WorkingWithDatePicker()
 // WorkingWithPopUpMenuButton()
-// LocationApp() MA
+// const LocationApp() MA
 // WorknigWithRangeSlider()
 // WorkingWithCunsumerExample1(title: 'Working With Cunsumer') ProviderScope
 // TestNeumorphic() Neumorphic
@@ -74,14 +77,14 @@ import 'Widgets/visiblity_widget.dart';
 // BottomModalApp()
 // AnimatedCrossFadeApp()
 // const ShoppingListApp(products: productList,) MA with a named arguement
-//
-//
-//
+// const InternalStateManagementExample() MA
+// const ParentWidget() MA | Example of parent Stateful Widget Managing a Stateless Widgets state
+// const ParentWidget2() MA | Example of a Mix and Match approach to state management, where part of a childs state is handled internally and the rest by the parent
 //
 //
 // nl
 void main() {
-  runApp(const LocationApp());
+  runApp(const ParentWidget2());
 
   // runApp(
   //   const MaterialApp(
