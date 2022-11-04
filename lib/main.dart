@@ -34,6 +34,8 @@ import 'package:flutter_widgets/Widgets/sliver_app_bar.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
+import 'ResponsiveDesignExamples/responsive_app.dart';
+import 'ResponsiveDesignExamples/working_with_media_query_basic_example.dart';
 import 'Widgets/StateManagement/internal_state_management_example.dart';
 import 'Widgets/StateManagement/mix_and_match_state_management.dart';
 import 'Widgets/animated_cross_fade.dart';
@@ -80,15 +82,26 @@ import 'Widgets/visiblity_widget.dart';
 // const InternalStateManagementExample() MA
 // const ParentWidget() MA | Example of parent Stateful Widget Managing a Stateless Widgets state
 // const ParentWidget2() MA | Example of a Mix and Match approach to state management, where part of a childs state is handled internally and the rest by the parent
+// WorkingWithMediaQuery()
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 // nl
 void main() {
-  runApp(const ParentWidget2());
+  runApp(
+    const ResponsiveApp(),
+  );
 
   // runApp(
   //   const MaterialApp(
-  //     home: null,
+  //     home: WorkingWithMediaQuery(),
   //   ),
   // );
 
