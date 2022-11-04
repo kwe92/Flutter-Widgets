@@ -76,6 +76,8 @@ class TapBoxC extends StatefulWidget {
 
 class _TapBoxCState extends State<TapBoxC> {
   static const _textStyle = TextStyle(fontSize: 32.0, color: Colors.white);
+  // Since the state change is aesthetic the StatefulWidget manages its own state
+  // The state change managed internally is the animation of the border around the container given certain tap events
   bool _hightLight = false;
   void _handleTap() {
     widget.onChanged(!widget.active);
