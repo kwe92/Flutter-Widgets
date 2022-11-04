@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Responsive/responsie_home_page.dart';
-import 'home_page.dart';
+import 'Responsive/responsive_home_page.dart';
+import 'MediaQuery/home_page.dart';
 
 // HomePage() | Media Query Practice
 class ResponsiveApp extends StatelessWidget {

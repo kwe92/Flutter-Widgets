@@ -34,7 +34,7 @@ import 'package:flutter_widgets/Widgets/sliver_app_bar.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
-import 'ResponsiveDesignExamples/MediaQuery/responsive_app.dart';
+import 'ResponsiveDesignExamples/responsive_app.dart';
 import 'Widgets/StateManagement/internal_state_management_example.dart';
 import 'Widgets/StateManagement/mix_and_match_state_management.dart';
 import 'Widgets/animated_cross_fade.dart';
