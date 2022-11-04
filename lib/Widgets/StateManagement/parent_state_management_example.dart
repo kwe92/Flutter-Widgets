@@ -18,6 +18,7 @@
 import 'package:flutter/material.dart';
 
 // A Parent StatefulWidget that manages the state of its child, which is a Stateless Widget
+// Parents are best at managing user data
 class ParentWidget extends StatefulWidget {
   // A const default constructor with no arguments, classes should be const whenever possible
   const ParentWidget({super.key});
