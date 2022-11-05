@@ -8,9 +8,10 @@ class ResponsiveApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       debugShowCheckedModeBanner: false,
-      home: ResponsiveHomePage(),
+      home: const ResponsiveHomePage(),
     );
   }
 }
