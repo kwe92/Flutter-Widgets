@@ -4,8 +4,7 @@ import 'package:flutter_widgets/ResponsiveDesignExamples/Responsive/mobile_body.
 
 import 'responsive_layout.dart';
 
-//TODO: After creating the inital Scaffolds and displaying them for Mobile & Desktop Pass the ResponsiveLayout widget to the Scaffold with the appropriate widget passed in
-
+//TODO: Add Comments
 class ResponsiveHomePage extends StatefulWidget {
   const ResponsiveHomePage({super.key});
 
