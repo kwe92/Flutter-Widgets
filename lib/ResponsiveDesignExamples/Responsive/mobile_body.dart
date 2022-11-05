@@ -1,5 +1,3 @@
-//TODO: Create a mobile body Scaffold background color deepPurple 300
-
 import 'package:flutter/material.dart';
 
 class MyMobileBody extends StatelessWidget {
