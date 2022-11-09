@@ -22,6 +22,7 @@ import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/ne
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice2.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice3.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice4.dart';
+import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/neumorphic_practice5.dart';
 import 'package:flutter_widgets/Widgets/popup_menu_button.dart';
 import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
@@ -34,6 +35,7 @@ import 'package:flutter_widgets/Widgets/sliver_app_bar.dart';
 import 'package:flutter_widgets/Widgets/stepper_widget.dart';
 import 'package:flutter_widgets/Widgets/WorkingWithAsyncData/stream_builder.dart';
 import 'package:flutter_widgets/Widgets/wrap_widget.dart';
+import 'ResponsiveDesignExamples/MediaQuery/working_with_media_query_basic_example.dart';
 import 'ResponsiveDesignExamples/responsive_app.dart';
 import 'Widgets/StateManagement/internal_state_management_example.dart';
 import 'Widgets/StateManagement/mix_and_match_state_management.dart';
@@ -82,8 +84,8 @@ import 'Widgets/visiblity_widget.dart';
 // const ParentWidget() MA | Example of parent Stateful Widget Managing a Stateless Widgets state
 // const ParentWidget2() MA | Example of a Mix and Match approach to state management, where part of a childs state is handled internally and the rest by the parent
 // WorkingWithMediaQuery()
-//
-//
+// ResponsiveApp()
+// WorkingWithMediaQuery()
 //
 //
 //
@@ -95,7 +97,7 @@ import 'Widgets/visiblity_widget.dart';
 // nl
 void main() {
   runApp(
-    const ResponsiveApp(),
+    const MaterialApp(home: NeumorphicPractice5()),
   );
 
   // runApp(
