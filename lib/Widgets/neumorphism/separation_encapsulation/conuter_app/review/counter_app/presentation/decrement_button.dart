@@ -13,7 +13,7 @@ class CounterDecrementor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, ref, child) {
+      builder: (context, ref, _) {
         final count = ref.read(countProvider.state).state;
         final returnedWidget = count > 0
             ? CustomNeumorphicButton(

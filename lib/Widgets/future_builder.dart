@@ -8,8 +8,6 @@ class WorkingWithFutureBuilder extends StatefulWidget {
       _WorkingWithFutureBuilderState();
 }
 
-const _style = TextStyle(fontSize: 22.0);
-
 Future<String> getData() async {
   await Future.delayed(const Duration(seconds: 2));
   //throw 'Error';
@@ -18,6 +16,10 @@ Future<String> getData() async {
 
 class _WorkingWithFutureBuilderState extends State<WorkingWithFutureBuilder> {
   bool darkMode = true;
+
+  void setMode() => setState(() {
+        darkMode = !darkMode;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +30,7 @@ class _WorkingWithFutureBuilderState extends State<WorkingWithFutureBuilder> {
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: FittedBox(
-              child: Text(
-                darkMode
-                    ? 'Future Builder Example: Dark Mode'
-                    : 'Future Builder Example: Light Mode',
-                style: _style,
-              ),
-            ),
+            title: FittedBox(child: customText(darkMode)),
           ),
           body: FutureBuilder(
             future: getData(),
@@ -57,31 +52,11 @@ class _WorkingWithFutureBuilderState extends State<WorkingWithFutureBuilder> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    const Text(
-                      'Coding is hard but fun!',
-                      style: _style,
-                    ),
+                    codingText,
                     const SizedBox(
-                      height: 8.0,
+                      height: 16.0,
                     ),
-                    SizedBox(
-                      height: 38.0,
-                      width: 270,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: darkMode ? Colors.orange : null),
-                        onPressed: () {
-                          setState(
-                            () {
-                              darkMode = !darkMode;
-                            },
-                          );
-                        },
-                        child: const FittedBox(
-                          child: Text('Refresh'),
-                        ),
-                      ),
-                    )
+                    refreshButton({"darkMode": darkMode, "setMode": setMode})
                   ],
                 ),
               );
@@ -92,3 +67,32 @@ class _WorkingWithFutureBuilderState extends State<WorkingWithFutureBuilder> {
     );
   }
 }
+
+const _style = TextStyle(fontSize: 22.0);
+
+Widget customText(bool darkMode) => Text(
+      darkMode
+          ? 'Future Builder Example: Dark Mode'
+          : 'Future Builder Example: Light Mode',
+      style: _style,
+    );
+
+Widget refreshButton(Map props) {
+  return SizedBox(
+    height: 38.0,
+    width: 270,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: props["darkMode"] ? Colors.orange : null),
+      onPressed: props["setMode"],
+      child: const FittedBox(
+        child: Text('Refresh'),
+      ),
+    ),
+  );
+}
+
+const codingText = Text(
+  'Coding is hard but fun!',
+  style: _style,
+);
