@@ -14,7 +14,7 @@ class WorkingWithDatePicker extends StatefulWidget {
 }
 
 class _WorkingWithDatePickerState extends State<WorkingWithDatePicker> {
-  DateTime? dateTime = DateTime(2100);
+  DateTime? dateTime = DateTime(2023);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,7 +39,7 @@ class _WorkingWithDatePickerState extends State<WorkingWithDatePicker> {
                   DateTime? newDate = await showDatePicker(
                     context: context,
                     initialDate: dateTime!,
-                    firstDate: DateTime(1800),
+                    firstDate: DateTime(2023),
                     lastDate: DateTime(3000),
                   );
                   if (newDate != null) {
