@@ -20,12 +20,9 @@ class _WorkingWithDatePickerInputState
   void initState() {
     DateTime dateTime = _initDateTime();
 
-    dateController.text =
-        '${dateTime.day.toString()}-${dateTime.month.toString()}-${dateTime.year.toString()}';
+    dateController.text = _dateTimeToString(dateTime);
     super.initState();
   }
-
-  DateTime _initDateTime() => DateTime(2023);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +50,7 @@ class _WorkingWithDatePickerInputState
                       );
                       if (newDate != null) {
                         setState(() {
-                          dateController.text = newDate.toString();
+                          dateController.text = _dateTimeToString(newDate);
                         });
                       }
                     }),
@@ -68,6 +65,11 @@ class _WorkingWithDatePickerInputState
     );
   }
 }
+
+DateTime _initDateTime() => DateTime(2023);
+
+String _dateTimeToString(DateTime date) =>
+    '${date.month.toString()}-${date.day.toString()}-${date.year.toString()}';
 
 typedef VoidCallback = Function();
 
