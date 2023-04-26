@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,10 +11,12 @@ import 'package:flutter_widgets/Widgets/dot_adaptive.dart';
 import 'package:flutter_widgets/Widgets/MaterialApp/material_app_nav.dart';
 import 'package:flutter_widgets/Widgets/MaterialApp/material_app_widget_no_scaffold.dart';
 import 'package:flutter_widgets/Widgets/builder_widget.dart';
+import 'package:flutter_widgets/Widgets/drop_down_menu.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/data/genre_data.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/domain/genre.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genre_home_screen.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCard.dart';
+import 'package:flutter_widgets/Widgets/firebase_auth_ui/auth_ui_example.dart';
 import 'package:flutter_widgets/Widgets/fitted_box_widget.dart';
 import 'package:flutter_widgets/Widgets/Hero_Widget/screen_one.dart';
 import 'package:flutter_widgets/Widgets/flutter_layout_example/lake_review_app.dart/location_review_app.dart';
@@ -93,18 +96,17 @@ import 'Widgets/visiblity_widget.dart';
 // WorkingWithMediaQuery()
 // WorkingWithFutureBuilder() MA
 // WorkingWithConstraints
-//
-//
+// WorkingWithDatePickerInput
+// CustomDropDownMenu()
 //
 //
 //
 //
 // nl
-void main() {
-  // runApp(const WorkingWithFutureBuilder());
-  runApp(
-    const MaterialApp(home: WorkingWithDatePickerInput()),
-  );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(SignInExample());
 
   // runApp(
   //   const MaterialApp(
