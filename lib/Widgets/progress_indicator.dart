@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ProgressIndicatorApp extends StatelessWidget {
-  const ProgressIndicatorApp({super.key});
+class CountDownTimer extends StatelessWidget {
+  const CountDownTimer({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
