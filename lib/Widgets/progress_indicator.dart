@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const ProgressIndicatorApp());
-
 class ProgressIndicatorApp extends StatelessWidget {
   const ProgressIndicatorApp({super.key});
 
@@ -42,6 +40,7 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
       });
     // controller.repeat(reverse: true);
     controller.reverse(from: 1);
+
     super.initState();
   }
 
@@ -57,43 +56,54 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
     const double indicatorCircleSideLength = sideLength / 2 - 15;
 
     return Scaffold(
-        backgroundColor: Colors.grey[400],
-        body: Center(
-          child: Stack(
-            children: <Widget>[
-              Center(
-                child: SizedBox(
-                  width: indicatorCircleSideLength,
-                  height: indicatorCircleSideLength,
-                  child: CircularProgressIndicator(
-                    color: Colors.blue,
-                    strokeWidth: indicatorCircleSideLength,
-                    value: controller.value,
-                    semanticsLabel: 'Circular progress indicator',
-                  ),
+      backgroundColor: Colors.grey[400],
+      body: Center(
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: SizedBox(
+                width: indicatorCircleSideLength,
+                height: indicatorCircleSideLength,
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                  strokeWidth: indicatorCircleSideLength,
+                  value: controller.value,
+                  semanticsLabel: 'Circular progress indicator',
                 ),
               ),
-              Center(
-                child: Container(
-                  height: sideLength,
-                  width: sideLength,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF0E3311).withOpacity(0.0),
-                    border: Border.all(color: Colors.white),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(sideLength / 2),
+            ),
+            Center(
+              child: Container(
+                height: sideLength,
+                width: sideLength,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0E3311).withOpacity(
+                    0.0,
+                  ),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2.25,
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(
+                      sideLength / 2,
                     ),
                   ),
                 ),
               ),
-              Center(
-                child: Text(
-                  (controller.value * 20).toStringAsFixed(0),
-                  style: const TextStyle(fontSize: 52, color: Colors.white),
+            ),
+            Center(
+              child: Text(
+                (controller.value * 20).toStringAsFixed(0),
+                style: const TextStyle(
+                  fontSize: 52,
+                  color: Colors.white,
                 ),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
