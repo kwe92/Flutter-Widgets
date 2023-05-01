@@ -35,7 +35,7 @@ class TransparentContainer extends StatelessWidget {
           Radius.circular(sideLength / 2),
         ),
       ),
-      child: const ProgressIndicatorApp(),
+      child: const CountDownTimer(),
     );
   }
 }
