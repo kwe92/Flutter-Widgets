@@ -112,7 +112,7 @@ Future<void> main() async {
   // runApp(SignInExample());
 
   runApp(
-    const CountDownTimer(),
+    const CountDownTimerApp(),
   );
 
   // runApp(
