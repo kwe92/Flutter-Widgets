@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-class CountDownTimer extends StatelessWidget {
-  final int duration;
-  final double size;
-  const CountDownTimer({
-    this.duration = 2,
-    this.size = 305,
+class CountDownTimerApp extends StatelessWidget {
+  const CountDownTimerApp({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    const int duration = 42;
+    const double size = 300;
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: const Color(0xff6750a4),
       ),
-      home: ProgressIndicatorExample(duration: duration, size: size),
+      home: const _CountDownTimer(
+        duration: duration,
+        size: size,
+      ),
     );
   }
 }
 
-class ProgressIndicatorExample extends StatefulWidget {
+class _CountDownTimer extends StatefulWidget {
   final int duration;
   final double size;
-  const ProgressIndicatorExample({
+  const _CountDownTimer({
     required this.duration,
     required this.size,
     super.key,
   });
 
   @override
-  State<ProgressIndicatorExample> createState() =>
-      _ProgressIndicatorExampleState();
+  State<_CountDownTimer> createState() => _CountDownTimerState();
 }
 
-class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
+class _CountDownTimerState extends State<_CountDownTimer>
     with TickerProviderStateMixin {
   late AnimationController controller;
   bool determinate = false;
@@ -43,8 +44,6 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
   @override
   void initState() {
     controller = AnimationController(
-      /// [AnimationController]s can be created with `vsync: this` because of
-      /// [TickerProviderStateMixin].
       vsync: this,
       duration: Duration(seconds: widget.duration),
     )..addListener(() {
@@ -66,7 +65,8 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
   @override
   Widget build(BuildContext context) {
     final double sideLength = widget.size;
-    final double indicatorCircleSideLength = sideLength / 2 - 15;
+    final double indicatorCircleSideLength =
+        sideLength > 150 ? sideLength / 2 - 15 : sideLength / 2 - 10;
 
     return SafeArea(
       child: Scaffold(
@@ -120,8 +120,11 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
               Center(
                 child: Text(
                   (controller.value * widget.duration).toStringAsFixed(0),
-                  style: const TextStyle(
-                    fontSize: 52,
+                  style: TextStyle(
+                    fontSize: widget.size > 150
+                        ? (sqrt(widget.size) * 6.250).ceil().toDouble()
+                        : (sqrt(widget.size) * 4.250).ceil().toDouble(),
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
                 ),
