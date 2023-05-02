@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CountDownTimer extends StatelessWidget {
+  final int duration;
+  final double size;
   const CountDownTimer({
+    this.duration = 2,
+    this.size = 305,
     super.key,
   });
 
@@ -12,13 +16,19 @@ class CountDownTimer extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: const Color(0xff6750a4),
       ),
-      home: const ProgressIndicatorExample(),
+      home: ProgressIndicatorExample(duration: duration, size: size),
     );
   }
 }
 
 class ProgressIndicatorExample extends StatefulWidget {
-  const ProgressIndicatorExample({super.key});
+  final int duration;
+  final double size;
+  const ProgressIndicatorExample({
+    required this.duration,
+    required this.size,
+    super.key,
+  });
 
   @override
   State<ProgressIndicatorExample> createState() =>
@@ -36,13 +46,14 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
       /// [AnimationController]s can be created with `vsync: this` because of
       /// [TickerProviderStateMixin].
       vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: Duration(seconds: widget.duration),
     )..addListener(() {
         setState(() {});
       });
+
     // controller.repeat(reverse: true);
     controller.reverse(from: 1);
-
+    // controller.forward();
     super.initState();
   }
 
@@ -54,8 +65,8 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
 
   @override
   Widget build(BuildContext context) {
-    const double sideLength = 275;
-    const double indicatorCircleSideLength = sideLength / 2 - 15;
+    final double sideLength = widget.size;
+    final double indicatorCircleSideLength = sideLength / 2 - 15;
 
     return SafeArea(
       child: Scaffold(
@@ -67,7 +78,8 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://30dayfitness.app/static/eb7d2c345fbc0b90ae9d17f1444e67f7/shutterstock_1517608859.jpg'),
+                      'https://30dayfitness.app/static/eb7d2c345fbc0b90ae9d17f1444e67f7/shutterstock_1517608859.jpg',
+                    ),
                     //  AssetImage('assets/high_knees.jpeg'),
                     fit: BoxFit.fitHeight,
                   ),
@@ -97,7 +109,7 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
                       color: Colors.white,
                       width: 2.25,
                     ),
-                    borderRadius: const BorderRadius.all(
+                    borderRadius: BorderRadius.all(
                       Radius.circular(
                         sideLength / 2,
                       ),
@@ -107,7 +119,7 @@ class _ProgressIndicatorExampleState extends State<ProgressIndicatorExample>
               ),
               Center(
                 child: Text(
-                  (controller.value * 20).toStringAsFixed(0),
+                  (controller.value * widget.duration).toStringAsFixed(0),
                   style: const TextStyle(
                     fontSize: 52,
                     color: Colors.white,
