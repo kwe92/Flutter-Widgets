@@ -8,8 +8,8 @@ class CountDownTimerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const int duration = 42;
-    const double size = 300;
+    const int duration = 30;
+    const double size = 275;
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
@@ -36,8 +36,7 @@ class _CountDownTimer extends StatefulWidget {
   State<_CountDownTimer> createState() => _CountDownTimerState();
 }
 
-class _CountDownTimerState extends State<_CountDownTimer>
-    with TickerProviderStateMixin {
+class _CountDownTimerState extends State<_CountDownTimer> with TickerProviderStateMixin {
   late AnimationController controller;
   bool determinate = false;
 
@@ -65,8 +64,7 @@ class _CountDownTimerState extends State<_CountDownTimer>
   @override
   Widget build(BuildContext context) {
     final double sideLength = widget.size;
-    final double indicatorCircleSideLength =
-        sideLength > 150 ? sideLength / 2 - 15 : sideLength / 2 - 10;
+    final double indicatorCircleSideLength = sideLength > 150 ? sideLength / 2 - 15 : sideLength / 2 - 10;
 
     return SafeArea(
       child: Scaffold(
@@ -90,7 +88,7 @@ class _CountDownTimerState extends State<_CountDownTimer>
                   width: indicatorCircleSideLength,
                   height: indicatorCircleSideLength,
                   child: CircularProgressIndicator(
-                    color: Colors.blue,
+                    color: const Color.fromRGBO(32, 140, 255, 1),
                     strokeWidth: indicatorCircleSideLength,
                     value: controller.value,
                     semanticsLabel: 'Circular progress indicator',
@@ -107,7 +105,7 @@ class _CountDownTimerState extends State<_CountDownTimer>
                     ),
                     border: Border.all(
                       color: Colors.white,
-                      width: 2.25,
+                      width: 3.25,
                     ),
                     borderRadius: BorderRadius.all(
                       Radius.circular(
@@ -121,9 +119,8 @@ class _CountDownTimerState extends State<_CountDownTimer>
                 child: Text(
                   (controller.value * widget.duration).toStringAsFixed(0),
                   style: TextStyle(
-                    fontSize: widget.size > 150
-                        ? (sqrt(widget.size) * 6.250).ceil().toDouble()
-                        : (sqrt(widget.size) * 4.250).ceil().toDouble(),
+                    fontSize:
+                        widget.size > 150 ? (sqrt(widget.size) * 6.250).ceil().toDouble() : (sqrt(widget.size) * 4.250).ceil().toDouble(),
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
