@@ -9,7 +9,7 @@ class CountDownTimerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const int duration = 30;
-    const double size = 275;
+    const double size = 191;
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
@@ -84,28 +84,13 @@ class _CountDownTimerState extends State<_CountDownTimer> with TickerProviderSta
                 ),
               ),
               Center(
-                child: SizedBox(
-                  width: indicatorCircleSideLength,
-                  height: indicatorCircleSideLength,
-                  child: CircularProgressIndicator(
-                    color: const Color.fromRGBO(32, 140, 255, 1),
-                    strokeWidth: indicatorCircleSideLength,
-                    value: controller.value,
-                    semanticsLabel: 'Circular progress indicator',
-                  ),
-                ),
-              ),
-              Center(
                 child: Container(
                   height: sideLength,
                   width: sideLength,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0E3311).withOpacity(
-                      0.0,
-                    ),
                     border: Border.all(
                       color: Colors.white,
-                      width: 3.25,
+                      width: 2,
                     ),
                     borderRadius: BorderRadius.all(
                       Radius.circular(
@@ -116,12 +101,28 @@ class _CountDownTimerState extends State<_CountDownTimer> with TickerProviderSta
                 ),
               ),
               Center(
+                child: SizedBox(
+                  width: indicatorCircleSideLength,
+                  height: indicatorCircleSideLength,
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationY(pi),
+                    child: CircularProgressIndicator(
+                      color: const Color.fromRGBO(32, 140, 255, 1),
+                      strokeWidth: indicatorCircleSideLength,
+                      value: controller.value,
+                      semanticsLabel: 'Circular progress indicator',
+                    ),
+                  ),
+                ),
+              ),
+              Center(
                 child: Text(
                   (controller.value * widget.duration).toStringAsFixed(0),
                   style: TextStyle(
                     fontSize:
                         widget.size > 150 ? (sqrt(widget.size) * 6.250).ceil().toDouble() : (sqrt(widget.size) * 4.250).ceil().toDouble(),
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
