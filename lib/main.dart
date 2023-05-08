@@ -33,6 +33,7 @@ import 'package:flutter_widgets/Widgets/providers/provider_consumer_review.dart'
 import 'package:flutter_widgets/Widgets/range_slider.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/separation_encapsulation/old_counter/counter_app_original.dart';
 import 'package:flutter_widgets/Widgets/neumorphism/separation_encapsulation/conuter_app/review/counter_app/counter_app2.dart';
+import 'package:flutter_widgets/Widgets/rep_counter.dart';
 import 'package:flutter_widgets/Widgets/show_date_picker.dart';
 import 'package:flutter_widgets/Widgets/show_date_picker_input.dart';
 import 'package:flutter_widgets/Widgets/show_search_widget.dart';
@@ -103,7 +104,7 @@ import 'Widgets/visiblity_widget.dart';
 // CustomDropDownMenu()
 // SignInExample()
 // ValueNotifierCounter()
-//
+// CountDownTimerApp
 //
 // nl
 Future<void> main() async {
@@ -111,9 +112,17 @@ Future<void> main() async {
   // await Firebase.initializeApp();
   // runApp(SignInExample());
 
-  runApp(
-    const CountDownTimerApp(),
-  );
+  runApp(MaterialApp(
+    home: Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: const Text('Rep Counter'),
+      ),
+      body: const Center(
+        child: RepCounter(value: 1, totalValue: 5, fontSize: 100),
+      ),
+    ),
+  ));
 
   // runApp(
   //   const MaterialApp(
