@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter_widgets/Widgets/rep_counter.dart';
+
 class CountDownTimerApp extends StatelessWidget {
   const CountDownTimerApp({
     super.key,
@@ -127,6 +129,11 @@ class _CountDownTimerState extends State<_CountDownTimer> with TickerProviderSta
                   ),
                 ),
               ),
+              const RepCounter(
+                value: 1,
+                totalValue: 5,
+                fontSize: 100,
+              )
             ],
           ),
         ),
