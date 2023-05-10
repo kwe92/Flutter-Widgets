@@ -108,21 +108,24 @@ import 'Widgets/visiblity_widget.dart';
 //
 // nl
 Future<void> main() async {
+  runApp(
+    const CountDownTimerApp(),
+  );
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // runApp(SignInExample());
 
-  runApp(MaterialApp(
-    home: Scaffold(
-      backgroundColor: Colors.grey,
-      appBar: AppBar(
-        title: const Text('Rep Counter'),
-      ),
-      body: const Center(
-        child: RepCounter(value: 1, totalValue: 5, fontSize: 100),
-      ),
-    ),
-  ));
+  // runApp(MaterialApp(
+  //   home: Scaffold(
+  //     backgroundColor: Colors.grey,
+  //     appBar: AppBar(
+  //       title: const Text('Rep Counter'),
+  //     ),
+  //     body: const Center(
+  //       child: RepCounter(value: 1, totalValue: 5, fontSize: 100),
+  //     ),
+  //   ),
+  // ));
 
   // runApp(
   //   const MaterialApp(

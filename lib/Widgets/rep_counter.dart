@@ -10,13 +10,15 @@ class RepCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = TextStyle(fontSize: fontSize, fontWeight: FontWeight.w700, color: Colors.white);
-    return Positioned(
-      top: MediaQuery.of(context).padding.top + 16,
-      left: 16,
-      child: Column(children: <Widget>[
-        Text(
-          value.toString(),
-          style: textStyle,
+    return Padding(
+      padding: const EdgeInsets.all(42.0),
+      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: Text(
+            value.toString(),
+            style: textStyle,
+          ),
         ),
         Container(
           height: 5,
