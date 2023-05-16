@@ -85,7 +85,7 @@ class RepCounter extends StatelessWidget {
     ];
 
     return Column(
-      children: isVertical == true ? vertical : horizontal,
+      children: isVertical ? vertical : horizontal,
     );
   }
 }
