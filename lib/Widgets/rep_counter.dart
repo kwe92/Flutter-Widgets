@@ -41,7 +41,9 @@ class _HorizontalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textstyle = _CustomTextStyle(size: fontSize);
+    final TextStyle textstyle = _CustomTextStyle(
+      size: fontSize,
+    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -118,4 +120,13 @@ class _CustomTextStyle extends TextStyle {
 
   @override
   double get fontSize => size;
+
+  @override
+  List<Shadow> get shadows => <Shadow>[
+        const Shadow(
+          offset: Offset(0, 4.0),
+          blurRadius: 4.0,
+          color: Color.fromRGBO(0, 0, 0, 0.25),
+        ),
+      ];
 }
