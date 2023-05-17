@@ -4,105 +4,118 @@ class RepCounter extends StatelessWidget {
   final int value;
   final int totalValue;
   final double fontSize;
-  final double lineLength;
-  final double lineWidth;
-  final double slope;
-  final bool isVertical;
+  final bool isTimerBased;
 
   const RepCounter({
     required this.value,
     required this.totalValue,
     required this.fontSize,
-    required this.lineLength,
-    this.lineWidth = 5,
-    this.slope = 12,
-    this.isVertical = true,
+    required this.isTimerBased,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => !isTimerBased
+      ? _VerticalView(
+          value: value,
+          totalValue: totalValue,
+          fontSize: fontSize,
+        )
+      : _HorizontalView(
+          value: value,
+          totalValue: totalValue,
+          fontSize: fontSize,
+        );
+}
+
+class _HorizontalView extends StatelessWidget {
+  final int value;
+  final int totalValue;
+  final double fontSize;
+  const _HorizontalView({
+    required this.value,
+    required this.totalValue,
+    required this.fontSize,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    const FontWeight fontWeight = FontWeight.w700;
-    const Color white = Colors.white;
-    const SizedBox gapw6 = SizedBox(width: 6);
-    final TextStyle textStyle = TextStyle(
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      color: white,
-    );
-
-    final Widget numerator = Text(
-      value.toString(),
-      style: textStyle,
-    );
-
-    final Widget denominator = Text(
-      totalValue.toString(),
-      style: textStyle,
-    );
-
-    const Widget repsText = Text(
-      'REPS',
-      style: TextStyle(
-        fontSize: 32,
-        fontWeight: fontWeight,
-        color: white,
-      ),
-    );
-
-    final Widget customPaint = CustomPaint(
-      painter: _LinePainter(
-        width: lineWidth,
-      ),
-    );
-
-    final horizontal = <Widget>[
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          numerator,
-          gapw6,
-          SizedBox(
-            height: lineLength,
-            width: slope,
-            child: customPaint,
-          ),
-          gapw6,
-          denominator,
-        ],
-      ),
-      repsText
-    ];
-
-    final vertical = <Widget>[
-      numerator,
-      SizedBox(
-        width: lineLength,
-        child: customPaint,
-      ),
-      denominator,
-      repsText
-    ];
-
-    return Column(
-      children: isVertical ? vertical : horizontal,
+    final TextStyle textstyle = _CustomTextStyle(size: fontSize);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          value.toString(),
+          style: textstyle,
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Text(
+          '/',
+          style: textstyle,
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+        Text(
+          totalValue.toString(),
+          style: textstyle,
+        ),
+      ],
     );
   }
 }
 
-class _LinePainter extends CustomPainter {
-  final double width;
-  const _LinePainter({required this.width});
-  @override
-  void paint(Canvas canvas, Size size) {
-    final p1 = Offset(size.width, 0);
-    final p2 = Offset(0, size.height);
-    final paint = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 5;
-    canvas.drawLine(p1, p2, paint);
-  }
+class _VerticalView extends StatelessWidget {
+  final int value;
+  final int totalValue;
+  final double fontSize;
+  const _VerticalView({
+    required this.value,
+    required this.totalValue,
+    required this.fontSize,
+    super.key,
+  });
 
   @override
-  bool shouldRepaint(_LinePainter oldDelegate) => false;
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text(
+            value.toString(),
+            style: _CustomTextStyle(
+              size: fontSize,
+            ),
+          ),
+          const Divider(
+            height: 0,
+            color: Colors.white,
+            thickness: 5,
+            indent: 156.5,
+            endIndent: 156.5,
+          ),
+          Text(
+            totalValue.toString(),
+            style: _CustomTextStyle(
+              size: fontSize,
+            ),
+          ),
+        ],
+      );
+}
+
+class _CustomTextStyle extends TextStyle {
+  final double size;
+  const _CustomTextStyle({required this.size});
+
+  @override
+  FontWeight get fontWeight => FontWeight.w700;
+
+  @override
+  Color get color => Colors.white;
+
+  @override
+  double get fontSize => size;
 }
