@@ -17,18 +17,41 @@ class RepCounter extends StatelessWidget {
       ? Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
-              value.toString(),
-              style: _textStyle.copyWith(fontSize: 100),
+            Container(
+              width: 120,
+              alignment: Alignment.center,
+              transform: Transform.translate(
+                offset: const Offset(0, 10.0),
+              ).transform,
+              child: Text(
+                value.toString(),
+                style: _textStyle.copyWith(fontSize: 100),
+              ),
             ),
             Container(
               height: 5,
               width: 77,
-              color: Colors.white,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    offset: Offset(0, 4.0),
+                    blurRadius: 4.0,
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                  )
+                ],
+              ),
             ),
-            Text(
-              totalValue.toString(),
-              style: _textStyle.copyWith(fontSize: 100),
+            Container(
+              width: 120,
+              alignment: Alignment.center,
+              transform: Transform.translate(
+                offset: const Offset(0, -10),
+              ).transform,
+              child: Text(
+                totalValue.toString(),
+                style: _textStyle.copyWith(fontSize: 100),
+              ),
             ),
           ],
         )
