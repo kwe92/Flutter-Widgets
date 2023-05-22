@@ -67,6 +67,7 @@ class RepCounter extends StatelessWidget {
 const TextStyle _textStyle = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w700,
+  fontFamily: 'Open Sans',
   shadows: <Shadow>[
     Shadow(
       offset: Offset(0, 4.0),
