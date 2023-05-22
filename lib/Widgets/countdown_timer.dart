@@ -132,7 +132,6 @@ class _CountDownTimerState extends State<_CountDownTimer> with TickerProviderSta
               const RepCounter(
                 value: 2,
                 totalValue: 5,
-                fontSize: 48,
                 isTimerBased: true,
               )
             ],
