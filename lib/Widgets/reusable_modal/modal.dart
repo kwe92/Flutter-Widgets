@@ -58,6 +58,7 @@ class Modal {
             // width is determaned by device width && will always be 310
             final double dialogContentCardPadding = (mediaWidth - 310) / 2;
             return SimpleDialog(
+              // surfaceTintColor: Colors.purple,
               // TODO: Add titlePadding: const EdgeInsets.only(top: 10, left: 10, right: 10) && insetPadding: EdgeInsets.symmetric(horizontal: dialogContentCardPadding, vertical: 0.0),
               titlePadding: const EdgeInsets.only(top: 10, left: 5, right: 5),
               contentPadding: const EdgeInsets.only(top: 12, left: 0, right: 0, bottom: 20),
