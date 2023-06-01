@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_widgets/Widgets/neumorphism/random_neumorphic_widgets/providers.dart';
 
 // A neumorphic button that updates UI on press
 //        - after the button is pressed, but works both ways

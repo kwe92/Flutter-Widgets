@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class NeumorphicPractice1 extends StatelessWidget {
   const NeumorphicPractice1({super.key});

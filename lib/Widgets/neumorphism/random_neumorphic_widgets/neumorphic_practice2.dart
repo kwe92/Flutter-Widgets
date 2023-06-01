@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 class NeumorphicPractice2 extends StatefulWidget {
