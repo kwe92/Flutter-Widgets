@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/constants/layout.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/domain/genre.dart';
 import 'package:flutter_widgets/Widgets/expansion_list_tile/presentation/genreCard.dart';
