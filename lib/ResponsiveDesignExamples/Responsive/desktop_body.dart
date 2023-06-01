@@ -6,10 +6,10 @@ const _leading = Padding(
 );
 
 final _actions = [
-  Padding(
-    padding: const EdgeInsets.only(right: 24.0),
+  const Padding(
+    padding: EdgeInsets.only(right: 24.0),
     child: Row(
-      children: const [
+      children: [
         Icon(Icons.search),
         SizedBox(
           width: 6,
