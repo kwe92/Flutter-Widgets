@@ -31,7 +31,6 @@ class _CountDownTimer extends StatefulWidget {
   const _CountDownTimer({
     required this.duration,
     required this.size,
-    super.key,
   });
 
   @override

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 // .adaptive
 //    - Creates an adaptive Widget that changes its UI based on the target platform
