@@ -8,20 +8,20 @@ OutlinedButtonThemeData primaryOutlinedButtonTheme = OutlinedButtonThemeData(sty
 
 ButtonStyle basicOutlinedButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.resolveWith((states) => const Color.fromRGBO(235, 236, 225, 1)),
-  shape: MaterialStateProperty.resolveWith((states) => const StadiumBorder()),
-  side: MaterialStateProperty.resolveWith((states) => BorderSide.none),
-  padding: MaterialStateProperty.resolveWith((states) => const EdgeInsets.all(12)),
+  shape: MaterialStateProperty.resolveWith((Set<MaterialState> states) => const StadiumBorder()),
+  side: MaterialStateProperty.resolveWith((Set<MaterialState> states) => BorderSide.none),
+  padding: MaterialStateProperty.resolveWith((Set<MaterialState> states) => const EdgeInsets.all(12)),
   textStyle: MaterialStateProperty.resolveWith(
     (states) => smallButtonText.copyWith(
         // TODO: Add foreground: Paint()..color = Colors.orange,
-        foreground: Paint()..color = const Color.fromRGBO(36, 36, 36, 0.6),
+        foreground: Paint()..color = states.contains(MaterialState.pressed) ? Colors.purple : const Color.fromRGBO(36, 36, 36, 0.6),
         fontSize: 14),
   ),
 );
 
 ButtonStyle unselectedButtonStyle = ButtonStyle(
   shape: MaterialStateProperty.resolveWith((states) => const StadiumBorder()),
-  foregroundColor: MaterialStateProperty.resolveWith((states) => const Color(0xFF1B1B1F).withOpacity(0.38)),
+  foregroundColor: MaterialStateProperty.resolveWith((states) => (const Color(0xFF1B1B1F).withOpacity(0.38))),
   backgroundColor: MaterialStateProperty.resolveWith((states) => const Color(0xFF242A3D).withOpacity(0.12)),
   textStyle: MaterialStateProperty.resolveWith(
       (states) => smallButtonText.copyWith(color: const Color(0xFF1B1B1F).withOpacity(0.38), fontSize: 16)),
@@ -114,7 +114,8 @@ class Modal {
                                               },
                                               mainButtonTheme: basicOutlinedButtonTheme,
                                             ),
-                                            const Gap(8)
+                                            // TODO: Gap(8) -> Gap(12)
+                                            const Gap(12)
                                           ],
                                         )
                                       : Flexible(
@@ -147,7 +148,8 @@ class Modal {
                                               },
                                               mainButtonTheme: basicOutlinedButtonTheme,
                                             ),
-                                            const Gap(8)
+                                            // TODO: Gap(8) -> Gap(12)
+                                            const Gap(12)
                                           ],
                                         )
                                       : SelectableButton(
@@ -220,7 +222,7 @@ class SelectableButton extends StatelessWidget {
             : ((mainButtonTheme != null) ? mainButtonTheme : primaryOutlinedButtonTheme),
       ),
       child:
-          // TODO: Add SizedBox && width
+          // TODO: Add SizedBox, width, height: 40
           SizedBox(
         width: width,
         height: 40,
@@ -228,6 +230,7 @@ class SelectableButton extends StatelessWidget {
           onPressed: onTap != null ? () => onTap!() : null,
           child: Text(
             label,
+            // TODO: Changed text alignment
             textAlign: TextAlign.center,
             // TODO: Add TextStyle(fontWeight: fontWeight)
             style: TextStyle(fontWeight: fontWeight),
