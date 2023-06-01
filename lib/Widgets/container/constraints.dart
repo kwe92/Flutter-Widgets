@@ -8,8 +8,8 @@ class WorkingWithConstraints extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Working With Constraints'),
         ),
-        body: Column(
-          children: const <Widget>[
+        body: const Column(
+          children: <Widget>[
             InvoiceScreen(),
           ],
         ),
@@ -93,10 +93,10 @@ Widget _invoiceListTile() {
   );
 }
 
-Widget _listTileLeftSide() => Column(
+Widget _listTileLeftSide() => const Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const <Widget>[
+      children: <Widget>[
         Text('#RT3080'),
         Text('Due 19 Aug 2021'),
         Text('\$1,800.90'),
