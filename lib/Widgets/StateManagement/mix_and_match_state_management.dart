@@ -41,7 +41,6 @@ class _ParentWidget2State extends State<ParentWidget2> {
     setState(() {
       _active = newValue;
     });
-    ;
   }
 
   @override
