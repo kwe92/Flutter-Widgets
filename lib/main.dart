@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/material_state/material_state_example.dart';
-import 'package:flutter_widgets/Widgets/material_state/material_state_example_02.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
 import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 
@@ -61,9 +59,10 @@ import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 // nl
 Future<void> main() async {
   runApp(const MaterialApp(
-    // theme: ThemeData(useMaterial3: true),
-    home: WorkingWithMaterialState2(),
-  ));
+      // theme: ThemeData(useMaterial3: true),
+      home: ModalWidget()
+      // home: WorkingWithMaterialState2(),
+      ));
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // runApp(SignInExample());
