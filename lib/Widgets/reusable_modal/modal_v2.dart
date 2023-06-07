@@ -3,16 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 // ?? Removed Padding Widgets and paddingH24
-// ??
-// ??
-// ??
-// ??
-// ??
-// ??
-// ??
-// ??
-// ??
-// ??
 
 class ModalV2 {
   static Future<T> careNavigationPopupRefact<T>(
@@ -29,8 +19,11 @@ class ModalV2 {
             return SimpleDialog(
               // ?? modify insetPadding to control width | titlePadding && contentPadding to match figma
               insetPadding: EdgeInsets.symmetric(horizontal: dialogPadding),
+              // ! when changing to EdgeInsets.all(10) there is an issue wtih spacing and the text extends to an additional line
               titlePadding: const EdgeInsets.only(top: 10, left: 5, right: 5),
               contentPadding: const EdgeInsets.only(top: 12, left: 0, right: 0, bottom: 20),
+              // ?? Added shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               title: Header.blue(
                 parameters.title,
                 // ?? Added textAlign: TextAlign.center
@@ -43,27 +36,35 @@ class ModalV2 {
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
-                const Gap(24),
+                // ?? GAP(8) -> Gap(12)
+                const Gap(12),
                 parameters.options.keys.length <= 2 && !column
                     ? Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        // ?? MainAxisAlignment.end -> MainAxisAlignment.center
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: parameters.options.entries.mapIndexed((index, element) {
                           return index < parameters.options.keys.length - 1
                               ? Row(
                                   children: [
                                     SelectableButton(
                                       label: element.key,
+                                      // ?? Added Padding
+                                      padding: const EdgeInsets.symmetric(horizontal: 13),
                                       onTap: () {
                                         Navigator.of(context).pop(element.value);
                                       },
-                                      mainButtonTheme: basicOutlinedButtonTheme,
+                                      // ?? basicOutlinedButtonTheme -> greyOutlinedButtonTheme
+                                      mainButtonTheme: greyOutlinedButtonTheme,
                                     ),
-                                    const Gap(8)
+                                    // ?? GAP(8) -> Gap(12)
+                                    const Gap(12)
                                   ],
                                 )
                               : Flexible(
                                   child: SelectableButton(
                                     label: element.key,
+                                    // ?? Added Padding
+                                    padding: const EdgeInsets.symmetric(horizontal: 12),
                                     onTap: () {
                                       Navigator.of(context).pop(element.value);
                                     },
@@ -80,16 +81,21 @@ class ModalV2 {
                                   children: [
                                     SelectableButton(
                                       label: element.key,
+                                      padding: const EdgeInsets.symmetric(horizontal: 13),
                                       onTap: () {
                                         Navigator.of(context).pop(element.value);
                                       },
-                                      mainButtonTheme: basicOutlinedButtonTheme,
+
+                                      // ?? Added padding |  basicOutlinedButtonTheme -> greyOutlinedButtonTheme
+                                      mainButtonTheme: greyOutlinedButtonTheme,
                                     ),
-                                    const Gap(8)
+                                    // ?? GAP(8) -> Gap(12)
+                                    const Gap(12)
                                   ],
                                 )
                               : SelectableButton(
                                   label: element.key,
+                                  padding: const EdgeInsets.symmetric(horizontal: 12),
                                   onTap: () {
                                     Navigator.of(context).pop(element.value);
                                   },
@@ -264,13 +270,25 @@ class CareNavigationColors {
 
 class SelectableButton extends StatelessWidget {
   const SelectableButton(
-      {Key? key, required this.label, required this.onTap, this.selected, this.icon, this.mainButtonTheme, this.unselectedButtonTheme})
+      {Key? key,
+      required this.label,
+      required this.onTap,
+
+      //?? Added padding
+      this.padding = const EdgeInsets.all(0),
+      this.selected,
+      this.icon,
+      this.mainButtonTheme,
+      this.unselectedButtonTheme})
       : super(key: key);
 
   final String label;
   final Function? onTap;
   final bool? selected;
   final Widget? icon;
+
+  //?? Added padding
+  final EdgeInsets padding;
   final OutlinedButtonThemeData? mainButtonTheme;
   final OutlinedButtonThemeData? unselectedButtonTheme;
 
@@ -282,9 +300,19 @@ class SelectableButton extends StatelessWidget {
             ? ((unselectedButtonTheme != null) ? unselectedButtonTheme : unselectedOutlinedButtonTheme)
             : ((mainButtonTheme != null) ? mainButtonTheme : primaryOutlinedButtonTheme),
       ),
-      child: OutlinedButton(
-        onPressed: onTap != null ? () => onTap!() : null,
-        child: Text(label, textAlign: TextAlign.center),
+      child:
+          // ?? Added Sized Box
+          SizedBox(
+        height: 40,
+        child: OutlinedButton(
+          onPressed: onTap != null ? () => onTap!() : null,
+          child:
+              //?? Added padding
+              Padding(
+            padding: padding,
+            child: Text(label, textAlign: TextAlign.center),
+          ),
+        ),
       ),
     );
   }
@@ -294,6 +322,9 @@ OutlinedButtonThemeData primaryOutlinedButtonTheme = OutlinedButtonThemeData(sty
 OutlinedButtonThemeData greenOutlinedButtonTheme = OutlinedButtonThemeData(style: greenButtonStyle);
 OutlinedButtonThemeData unselectedOutlinedButtonTheme = OutlinedButtonThemeData(style: unselectedButtonStyle);
 OutlinedButtonThemeData basicOutlinedButtonTheme = OutlinedButtonThemeData(style: basicOutlinedButtonStyle);
+
+// ?? Added greyBasicOutlinedButtonTheme
+OutlinedButtonThemeData greyOutlinedButtonTheme = OutlinedButtonThemeData(style: greyOutlinedButtonStyle);
 
 TextStyle smallButtonText = const TextStyle(
   fontFamily: fontFamily,
@@ -315,11 +346,29 @@ ButtonStyle basicOutlinedButtonStyle = ButtonStyle(
   textStyle: MaterialStateProperty.resolveWith((states) => smallButtonText.copyWith(color: CareNavigationColors.blue2, fontSize: 16)),
 );
 
+// ?? Added greyOutlinedButtonStyle
+ButtonStyle greyOutlinedButtonStyle = basicOutlinedButtonStyle.copyWith(
+  side: MaterialStateProperty.resolveWith((states) => BorderSide.none),
+  backgroundColor: MaterialStateProperty.resolveWith((states) => const Color.fromRGBO(235, 236, 225, 1)),
+  textStyle: MaterialStateProperty.resolveWith(
+    (states) => smallButtonText.copyWith(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      foreground: Paint()..color = const Color.fromRGBO(36, 36, 36, 0.6),
+    ),
+  ),
+);
+
+// ?? Changed fontSize: 16 -> fontSize: 14, added fontWeight: FontWeight.w700
 ButtonStyle blueButtonStyle = ButtonStyle(
   shape: MaterialStateProperty.resolveWith((states) => const StadiumBorder()),
   foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.white),
   backgroundColor: MaterialStateProperty.resolveWith((states) => CareNavigationColors.blue2),
-  textStyle: MaterialStateProperty.resolveWith((states) => smallButtonText.copyWith(color: Colors.white, fontSize: 16)),
+  textStyle: MaterialStateProperty.resolveWith((states) => smallButtonText.copyWith(
+        color: Colors.white,
+        fontSize: 14,
+        fontWeight: FontWeight.w700,
+      )),
   padding: MaterialStateProperty.resolveWith((states) => const EdgeInsets.all(12)),
 );
 
