@@ -179,18 +179,18 @@
 //   }
 // }
 
-// // class CareNavigationPopupParameters<T> {
-// //   String title;
-// //   String subtitle;
-// //   T defaultReturn;
-// //   Map<String, T> options;
-// //   CareNavigationPopupParameters({
-// //     required this.title,
-// //     required this.subtitle,
-// //     required this.defaultReturn,
-// //     required this.options,
-// //   });
-// // }
+// class CareNavigationPopupParameters<T> {
+//   String title;
+//   String subtitle;
+//   T defaultReturn;
+//   Map<String, T> options;
+//   CareNavigationPopupParameters({
+//     required this.title,
+//     required this.subtitle,
+//     required this.defaultReturn,
+//     required this.options,
+//   });
+// }
 
 // class SelectableButton extends StatelessWidget {
 //   final String label;

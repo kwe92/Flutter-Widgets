@@ -2,7 +2,17 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-EdgeInsets paddingH24 = const EdgeInsets.symmetric(horizontal: 24);
+// ?? Removed Padding Widgets and paddingH24
+// ??
+// ??
+// ??
+// ??
+// ??
+// ??
+// ??
+// ??
+// ??
+// ??
 
 class ModalV2 {
   static Future<T> careNavigationPopupRefact<T>(
@@ -17,76 +27,75 @@ class ModalV2 {
             final currentDeviceWidth = MediaQuery.of(context).size.width;
             final dialogPadding = (currentDeviceWidth - 310) / 2;
             return SimpleDialog(
-              // ?? modify insetPadding to control width
+              // ?? modify insetPadding to control width | titlePadding && contentPadding to match figma
               insetPadding: EdgeInsets.symmetric(horizontal: dialogPadding),
-              // TODO: Modify the title padding to match figma design
-              titlePadding: const EdgeInsets.all(0),
+              titlePadding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+              contentPadding: const EdgeInsets.only(top: 12, left: 0, right: 0, bottom: 20),
               title: Header.blue(
                 parameters.title,
                 // ?? Added textAlign: TextAlign.center
                 textAlign: TextAlign.center,
               ),
               children: [
-                Padding(
-                  padding: paddingH24,
-                  child: Text(parameters.subtitle),
+                Text(
+                  parameters.subtitle,
+                  // ?? Added textAlign: TextAlign.center && styling to match figma
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16, color: Colors.black),
                 ),
                 const Gap(24),
-                Padding(
-                  padding: paddingH24,
-                  child: parameters.options.keys.length <= 2 && !column
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: parameters.options.entries.mapIndexed((index, element) {
-                            return index < parameters.options.keys.length - 1
-                                ? Row(
-                                    children: [
-                                      SelectableButton(
-                                        label: element.key,
-                                        onTap: () {
-                                          Navigator.of(context).pop(element.value);
-                                        },
-                                        mainButtonTheme: basicOutlinedButtonTheme,
-                                      ),
-                                      const Gap(8)
-                                    ],
-                                  )
-                                : Flexible(
-                                    child: SelectableButton(
+                parameters.options.keys.length <= 2 && !column
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: parameters.options.entries.mapIndexed((index, element) {
+                          return index < parameters.options.keys.length - 1
+                              ? Row(
+                                  children: [
+                                    SelectableButton(
                                       label: element.key,
                                       onTap: () {
                                         Navigator.of(context).pop(element.value);
                                       },
+                                      mainButtonTheme: basicOutlinedButtonTheme,
                                     ),
-                                  );
-                          }).toList(),
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: parameters.options.entries.mapIndexed((index, element) {
-                            return index < parameters.options.keys.length - 1
-                                ? Column(
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children: [
-                                      SelectableButton(
-                                        label: element.key,
-                                        onTap: () {
-                                          Navigator.of(context).pop(element.value);
-                                        },
-                                        mainButtonTheme: basicOutlinedButtonTheme,
-                                      ),
-                                      const Gap(8)
-                                    ],
-                                  )
-                                : SelectableButton(
+                                    const Gap(8)
+                                  ],
+                                )
+                              : Flexible(
+                                  child: SelectableButton(
                                     label: element.key,
                                     onTap: () {
                                       Navigator.of(context).pop(element.value);
                                     },
-                                  );
-                          }).toList(),
-                        ),
-                ),
+                                  ),
+                                );
+                        }).toList(),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: parameters.options.entries.mapIndexed((index, element) {
+                          return index < parameters.options.keys.length - 1
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    SelectableButton(
+                                      label: element.key,
+                                      onTap: () {
+                                        Navigator.of(context).pop(element.value);
+                                      },
+                                      mainButtonTheme: basicOutlinedButtonTheme,
+                                    ),
+                                    const Gap(8)
+                                  ],
+                                )
+                              : SelectableButton(
+                                  label: element.key,
+                                  onTap: () {
+                                    Navigator.of(context).pop(element.value);
+                                  },
+                                );
+                        }).toList(),
+                      ),
               ],
             );
           },

@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_widgets/Widgets/reusable_modal/modal.dart";
 import "package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart";
 
 class ModalWidget extends StatelessWidget {
@@ -13,6 +14,19 @@ class ModalWidget extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
+            // await Modal.careNavigationPopup<bool>(
+            //   context,
+            //   parameters: CareNavigationPopupParameters(
+            //     title: 'Are you sure you want to quit?',
+            //     subtitle: 'Your progress will be lost.',
+            //     defaultReturn: false,
+            //     options: {
+            //       'Cancel': false,
+            //       'Yes, Exit': true,
+            //     },
+            //   ),
+            // );
+
             await ModalV2.careNavigationPopupRefact<bool>(
               context,
               parameters: CareNavigationPopupParameters(
