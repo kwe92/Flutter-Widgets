@@ -58,11 +58,12 @@ import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 //
 // nl
 Future<void> main() async {
-  runApp(const MaterialApp(
-      // theme: ThemeData(useMaterial3: true),
-      home: ModalWidget()
+  runApp(
+    MaterialApp(
+      theme: ThemeData(useMaterial3: false), home: const ModalWidget(),
       // home: WorkingWithMaterialState2(),
-      ));
+    ),
+  );
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // runApp(SignInExample());
