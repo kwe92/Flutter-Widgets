@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
-import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
+// import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 
 // WorkWithBuilderWidget() MA
 // WorkingWIthStepperWidget() MA
@@ -57,13 +58,30 @@ import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 //
 //
 // nl
-Future<void> main() async {
+
+void main() {
   runApp(
     MaterialApp(
-      theme: ThemeData(useMaterial3: false), home: const ModalWidget(),
-      // home: WorkingWithMaterialState2(),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: const ColorScheme.dark(
+          brightness: Brightness.dark,
+        ),
+      ),
+      home: const WorkingWithColoredBox(),
     ),
   );
+}
+
+
+
+// Future<void> main() async {
+//   runApp(
+//     MaterialApp(
+//       theme: ThemeData(useMaterial3: false), home: const ModalWidget(),
+//       home: WorkingWithMaterialState2(),
+//     ),
+//   );
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // runApp(SignInExample());
@@ -121,4 +139,4 @@ Future<void> main() async {
   //     ),
   //   ),
   // );
-}
+// }
