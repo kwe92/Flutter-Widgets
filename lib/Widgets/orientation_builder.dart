@@ -8,17 +8,29 @@ class WorkingWithOrientationBuilder extends StatelessWidget {
   const WorkingWithOrientationBuilder({super.key});
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    final List generatedWidgets = List.generate(
+      10,
+      generateColoredBox,
+    );
+
+    return GridView.count(
+      crossAxisCount: 2,
+      children: <Widget>[
+        ...generatedWidgets,
+      ],
+    );
   }
 }
 
-typedef WidgetGeneratorCallback = Widget Function(int index);
+typedef WidgetGeneratorCallback = Widget Function(
+  int index,
+);
 
 final WidgetGeneratorCallback generateColoredBox = (int index) => SizedBox(
       child: ColoredBox(
         color: Colors.purple,
-        child: Text('box index: $index'),
+        child: Text(
+          'box index: $index',
+        ),
       ),
     );
-
-final List generatedWidgets = List.generate(10, generateColoredBox);
