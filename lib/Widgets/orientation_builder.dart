@@ -28,14 +28,16 @@ class _CustomGridView extends StatelessWidget {
       10,
       generateColoredBox,
     );
-    return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      children: <Widget>[
-        ...generatedWidgets,
-      ],
-    );
+    return OrientationBuilder(builder: (BuildContext context, Orientation orientation) {
+      return GridView.count(
+        crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        children: <Widget>[
+          ...generatedWidgets,
+        ],
+      );
+    });
   }
 }
 
