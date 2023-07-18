@@ -11,7 +11,7 @@ class WorkingWithOrientationBuilder extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Wsorking With Orientation Builder'),
+          title: const Text('Working With Orientation Builder'),
         ),
         body: const _CustomGridView(),
       ),
@@ -30,6 +30,8 @@ class _CustomGridView extends StatelessWidget {
     );
     return GridView.count(
       crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
       children: <Widget>[
         ...generatedWidgets,
       ],
@@ -47,7 +49,8 @@ final WidgetGeneratorCallback generateColoredBox = (int index) {
     child: Container(
       height: size,
       width: size,
-      child: _CoustomColoredBox(
+      decoration: const _CustomDecoration(size: size),
+      child: _CustomFittedBox(
         index: index,
       ),
     ),
@@ -59,19 +62,18 @@ class _CustomDecoration extends BoxDecoration {
   const _CustomDecoration({required this.size});
 
   @override
-  // TODO: implement borderRadius
   BorderRadiusGeometry? get borderRadius => BorderRadius.circular(size / 2);
-}
-
-class _CoustomColoredBox extends StatelessWidget {
-  final int index;
-  const _CoustomColoredBox({required this.index, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: const Color.fromRGBO(188, 47, 230, 1),
-      child: Center(
+  Color? get color => const Color.fromRGBO(188, 47, 230, 1);
+}
+
+class _CustomFittedBox extends StatelessWidget {
+  final int index;
+  const _CustomFittedBox({required this.index, super.key});
+
+  @override
+  Widget build(BuildContext context) => Center(
         child: FittedBox(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -81,9 +83,7 @@ class _CoustomColoredBox extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 const TextStyle customTextStyle = TextStyle(
