@@ -46,10 +46,19 @@ final WidgetGeneratorCallback generateColoredBox = (int index) => Center(
         height: 100,
         width: 100,
         child: ColoredBox(
-          color: const Color.fromRGBO(89, 222, 255, 1),
-          child: Text(
-            'box index: $index',
+          color: const Color.fromRGBO(31, 195, 223, 1),
+          child: Center(
+            child: Text(
+              'box index: $index',
+              style: customTextStyle,
+            ),
           ),
         ),
       ),
     );
+
+const TextStyle customTextStyle = TextStyle(
+  fontSize: 21,
+  color: Colors.black,
+  fontWeight: FontWeight.w600,
+);
