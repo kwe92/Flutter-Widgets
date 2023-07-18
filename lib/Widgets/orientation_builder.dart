@@ -11,7 +11,7 @@ class WorkingWithOrientationBuilder extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Working With Orientation Builder'),
+          title: const FittedBox(child: Text('Working With Orientation Builder')),
         ),
         body: const _CustomGridView(),
       ),
@@ -65,7 +65,14 @@ class _CustomDecoration extends BoxDecoration {
   BorderRadiusGeometry? get borderRadius => BorderRadius.circular(size / 2);
 
   @override
-  Color? get color => const Color.fromRGBO(188, 47, 230, 1);
+  Color? get color => const Color.fromRGBO(243, 201, 214, 1);
+
+  @override
+  BoxBorder? get border => Border.all(
+        width: 12,
+        color: const Color.fromRGBO(158, 80, 143, 1),
+      );
+  // Color? get color => const Color.fromRGBO(188, 47, 230, 1); // darker purple
 }
 
 class _CustomFittedBox extends StatelessWidget {
