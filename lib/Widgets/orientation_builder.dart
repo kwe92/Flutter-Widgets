@@ -42,15 +42,20 @@ typedef WidgetGeneratorCallback = Widget Function(
 );
 
 final WidgetGeneratorCallback generateColoredBox = (int index) => Center(
-      child: SizedBox(
-        height: 100,
-        width: 100,
+      child: Container(
+        height: 185,
+        width: 185,
         child: ColoredBox(
-          color: const Color.fromRGBO(31, 195, 223, 1),
+          color: const Color.fromRGBO(188, 47, 230, 1),
           child: Center(
-            child: Text(
-              'box index: $index',
-              style: customTextStyle,
+            child: FittedBox(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Text(
+                  'box index: $index',
+                  style: customTextStyle,
+                ),
+              ),
             ),
           ),
         ),
