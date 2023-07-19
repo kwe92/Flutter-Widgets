@@ -29,6 +29,8 @@ class _CustomGridView extends StatelessWidget {
       generateColoredBox,
     );
     return OrientationBuilder(builder: (BuildContext context, Orientation orientation) {
+      final mediaQueryDataOrientation = MediaQuery.of(context).orientation;
+      print('DEVICE ORIENTATION: ${mediaQueryDataOrientation}');
       return GridView.count(
         crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
         crossAxisSpacing: 12,
