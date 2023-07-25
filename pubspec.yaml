@@ -45,6 +45,7 @@ dependencies:
   provider: ^6.0.5
   gap: ^3.0.0
   collection: ^1.17.1
+  native_device_orientation: ^1.1.4
 
 dev_dependencies:
   flutter_test:

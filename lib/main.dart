@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
+import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
+import 'package:flutter_widgets/Widgets/orientation_builder.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
 // import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
@@ -55,26 +58,33 @@ import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 // ModalWidget()
 // WorkingWithMaterialState()
 // WorkingWithColoredBox()
+// WorkingWithGridView()
+// WorkingWithOrientationBuilder
+//
+//
 //
 //
 //
 // nl
 
 void main() {
-  runApp(
-    MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: const ColorScheme.dark(
-          brightness: Brightness.dark,
-        ),
-      ),
-      home: const WorkingWithGridView(),
-    ),
-  );
+  runApp(const WorkingWithNativeDeviceOrientation());
+
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+//   runApp(
+//     MaterialApp(
+//       theme: ThemeData(
+//         useMaterial3: true,
+//         colorScheme: const ColorScheme.dark(
+//           brightness: Brightness.dark,
+//         ),
+//       ),
+//       home: const WorkingWithOrientationBuilder(),
+//     ),
+//   );
 }
-
-
 
 // Future<void> main() async {
 //   runApp(
@@ -83,61 +93,61 @@ void main() {
 //       home: WorkingWithMaterialState2(),
 //     ),
 //   );
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // runApp(SignInExample());
+// WidgetsFlutterBinding.ensureInitialized();
+// await Firebase.initializeApp();
+// runApp(SignInExample());
 
-  // runApp(MaterialApp(
-  //   home: Scaffold(
-  //     backgroundColor: Colors.grey,
-  //     appBar: AppBar(
-  //       title: const Text('Rep Counter'),
-  //     ),
-  //     body: const Center(
-  //       child: RepCounter(value: 1, totalValue: 5, fontSize: 100),
-  //     ),
-  //   ),
-  // ));
+// runApp(MaterialApp(
+//   home: Scaffold(
+//     backgroundColor: Colors.grey,
+//     appBar: AppBar(
+//       title: const Text('Rep Counter'),
+//     ),
+//     body: const Center(
+//       child: RepCounter(value: 1, totalValue: 5, fontSize: 100),
+//     ),
+//   ),
+// ));
 
-  // runApp(
-  //   const MaterialApp(
-  //     home: TimerWidget(),
-  //   ),
-  // );
+// runApp(
+//   const MaterialApp(
+//     home: TimerWidget(),
+//   ),
+// );
 
-  // runApp(
-  //   const ProviderScope(
-  //     child: MaterialApp(
-  //       debugShowCheckedModeBanner: false,
-  //       home: NeumorphicPractice4(),
-  //     ),
-  //   ),
-  // );
+// runApp(
+//   const ProviderScope(
+//     child: MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: NeumorphicPractice4(),
+//     ),
+//   ),
+// );
 
-  // runApp(
-  //   const ProviderScope(
-  //     child: MaterialApp(home: CounterApp()),
-  //   ),
-  // );
+// runApp(
+//   const ProviderScope(
+//     child: MaterialApp(home: CounterApp()),
+//   ),
+// );
 
-  // runApp(
-  //   const ProviderScope(
-  //     child: NeumorphicApp(
-  //       debugShowCheckedModeBanner: false,
-  //       title: 'Flutter Demo',
-  //       themeMode: ThemeMode.dark,
-  //       theme: NeumorphicThemeData(
-  //         baseColor: Color(0xFFFFFFFF),
-  //         lightSource: LightSource.topLeft,
-  //         depth: 10,
-  //       ),
-  //       darkTheme: NeumorphicThemeData(
-  //         baseColor: Color(0xFF3E3E3E),
-  //         lightSource: LightSource.topLeft,
-  //         depth: 6,
-  //       ),
-  //       home: TestNeumorphic(),
-  //     ),
-  //   ),
-  // );
+// runApp(
+//   const ProviderScope(
+//     child: NeumorphicApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Flutter Demo',
+//       themeMode: ThemeMode.dark,
+//       theme: NeumorphicThemeData(
+//         baseColor: Color(0xFFFFFFFF),
+//         lightSource: LightSource.topLeft,
+//         depth: 10,
+//       ),
+//       darkTheme: NeumorphicThemeData(
+//         baseColor: Color(0xFF3E3E3E),
+//         lightSource: LightSource.topLeft,
+//         depth: 6,
+//       ),
+//       home: TestNeumorphic(),
+//     ),
+//   ),
+// );
 // }
