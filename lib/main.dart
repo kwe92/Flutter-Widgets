@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_function_declarations_over_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
@@ -162,10 +164,12 @@ void main() {
 // );
 // }
 
+typedef NotifierCallback = ChangeNotifier Function(BuildContext context);
+
 final List<ChangeNotifierProvider> providers = [
   ChangeNotifierProvider(
-    create: _cameraPreviewNotifierCallback,
+    create: cameraPreviewNotifierCallback,
   ),
 ];
 
-WorkingWithCameraPreviewModel _cameraPreviewNotifierCallback(BuildContext context) => WorkingWithCameraPreviewModel();
+final NotifierCallback cameraPreviewNotifierCallback = (BuildContext context) => WorkingWithCameraPreviewModel();
