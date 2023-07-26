@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
+import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
 import 'package:flutter_widgets/Widgets/orientation_builder.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
 // import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
@@ -60,7 +63,7 @@ import 'package:flutter_widgets/Widgets/orientation_builder.dart';
 // WorkingWithColoredBox()
 // WorkingWithGridView()
 // WorkingWithOrientationBuilder
-//
+// WorkingWithNativeDeviceOrientation
 //
 //
 //
@@ -68,7 +71,14 @@ import 'package:flutter_widgets/Widgets/orientation_builder.dart';
 // nl
 
 void main() {
-  runApp(const WorkingWithNativeDeviceOrientation());
+  runApp(
+    MultiProvider(
+      providers: <ChangeNotifierProvider>[...providers],
+      child: const WorkingWithCameraPreview(),
+    ),
+  );
+
+  // runApp(const WorkingWithNativeDeviceOrientation());
 
   // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -151,3 +161,11 @@ void main() {
 //   ),
 // );
 // }
+
+final List<ChangeNotifierProvider> providers = [
+  ChangeNotifierProvider(
+    create: _cameraPreviewNotifierCallback,
+  ),
+];
+
+WorkingWithCameraPreviewModel _cameraPreviewNotifierCallback(BuildContext context) => WorkingWithCameraPreviewModel();
