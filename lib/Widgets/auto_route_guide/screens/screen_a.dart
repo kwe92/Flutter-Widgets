@@ -20,9 +20,7 @@ class ScreenA extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: ElevatedButton(
-                  onPressed: () {
-                    _handlePushScreenB(context);
-                  },
+                  onPressed: () => _handlePushScreenB(context),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 24.0),
                     child: Text('Push to Screen B'),

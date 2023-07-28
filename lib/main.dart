@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_function_declarations_over_variables
+// ignore_for_file: prefer_function_declarations_over_variables, unused_import
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
@@ -66,19 +68,53 @@ import 'package:provider/provider.dart';
 // WorkingWithGridView()
 // WorkingWithOrientationBuilder
 // WorkingWithNativeDeviceOrientation
-//
+// WorkingWithCameraPreview
 //
 //
 //
 // nl
 
+// ? working with auto_route
 void main() {
   runApp(
-    MultiProvider(
-      providers: <ChangeNotifierProvider>[...providers],
-      child: const WorkingWithCameraPreview(),
-    ),
+    const _AutoRouteApp(),
   );
+}
+
+class _AutoRouteApp extends StatelessWidget {
+  const _AutoRouteApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    AppRouter appRouter = AppRouter();
+    return MaterialApp.router(
+      routerConfig: appRouter.config(),
+    );
+  }
+}
+
+typedef NotifierCallback = ChangeNotifier Function(BuildContext context);
+
+final List<ChangeNotifierProvider> providers = [
+  ChangeNotifierProvider(
+    create: cameraPreviewNotifierCallback,
+  ),
+];
+
+final NotifierCallback cameraPreviewNotifierCallback = (BuildContext context) => WorkingWithCameraPreviewModel();
+
+// void main() {
+  // TODO: need to look into why the providers are not working | maybe create a new main function for this section
+  // runApp(
+  //   MultiProvider(
+  //     providers: <ChangeNotifierProvider>[
+  //       ChangeNotifierProvider(
+  //         create: (BuildContext context) => WorkingWithCameraPreviewModel(),
+  //       ),
+  //     ],
+  //     child: const MaterialApp(home: WorkingWithCameraPreview()),
+  //   ),
+  // );
 
   // runApp(const WorkingWithNativeDeviceOrientation());
 
@@ -96,7 +132,9 @@ void main() {
 //       home: const WorkingWithOrientationBuilder(),
 //     ),
 //   );
-}
+// }
+
+// ? main with future
 
 // Future<void> main() async {
 //   runApp(
@@ -164,12 +202,4 @@ void main() {
 // );
 // }
 
-typedef NotifierCallback = ChangeNotifier Function(BuildContext context);
 
-final List<ChangeNotifierProvider> providers = [
-  ChangeNotifierProvider(
-    create: cameraPreviewNotifierCallback,
-  ),
-];
-
-final NotifierCallback cameraPreviewNotifierCallback = (BuildContext context) => WorkingWithCameraPreviewModel();
