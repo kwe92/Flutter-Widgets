@@ -12,7 +12,9 @@ class ScreenB extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Screen B'),
           ),
-          body: Container(),
+          body: Column(
+            
+          ),
         ),
       );
 }

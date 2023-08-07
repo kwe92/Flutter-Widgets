@@ -9,6 +9,7 @@ import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
 import 'package:flutter_widgets/Widgets/orientation_builder.dart';
+import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
@@ -74,34 +75,49 @@ import 'package:provider/provider.dart';
 //
 // nl
 
-// ? working with auto_route
 void main() {
   runApp(
-    const _AutoRouteApp(),
+    MaterialApp(
+      home: const SetsRepsWidget(),
+      theme: ThemeData.light(),
+    ),
   );
 }
 
-class _AutoRouteApp extends StatelessWidget {
-  const _AutoRouteApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    AppRouter appRouter = AppRouter();
-    return MaterialApp.router(
-      routerConfig: appRouter.config(),
-    );
-  }
-}
 
-typedef NotifierCallback = ChangeNotifier Function(BuildContext context);
+// ! ------continue REVIEW BELOW !!!!!
 
-final List<ChangeNotifierProvider> providers = [
-  ChangeNotifierProvider(
-    create: cameraPreviewNotifierCallback,
-  ),
-];
+// ? working with auto_route
+// void main() {
+//   runApp(
+//     const _AutoRouteApp(),
+//   );
+// }
 
-final NotifierCallback cameraPreviewNotifierCallback = (BuildContext context) => WorkingWithCameraPreviewModel();
+// class _AutoRouteApp extends StatelessWidget {
+//   const _AutoRouteApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     AppRouter appRouter = AppRouter();
+//     return MaterialApp.router(
+//       routerConfig: appRouter.config(),
+//     );
+//   }
+// }
+
+// typedef NotifierCallback = ChangeNotifier Function(BuildContext context);
+
+// final List<ChangeNotifierProvider> providers = [
+//   ChangeNotifierProvider(
+//     create: cameraPreviewNotifierCallback,
+//   ),
+// ];
+
+// final NotifierCallback cameraPreviewNotifierCallback = (BuildContext context) => WorkingWithCameraPreviewModel();
+
+// ! end continue
 
 // void main() {
   // TODO: need to look into why the providers are not working | maybe create a new main function for this section
