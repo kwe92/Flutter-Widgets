@@ -36,7 +36,11 @@ class _SetsRepsComponent extends StatelessWidget {
   Widget build(BuildContext conetxt) {
     // TODO: replace with Gap
     const SizedBox gapw5 = SizedBox(width: 5);
-    const double width = 337;
+
+    final hasHoldTime = !(holdTime == null);
+
+    final double width = hasHoldTime ? 337 : 177;
+
     return Center(
       child: Container(
         width: width,
@@ -65,18 +69,31 @@ class _SetsRepsComponent extends StatelessWidget {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  _NewSingleSummary(label: 'sets', value: sets),
+                  _NewSingleSummary(
+                    label: 'sets',
+                    value: sets,
+                    hasHoldTime: hasHoldTime,
+                  ),
                   gapw5,
-                  _NewSingleSummary(label: 'reps', value: reps),
-                  gapw5,
-                  _NewSingleSummary(label: 'hold time', value: '$holdTime sec'),
+                  _NewSingleSummary(
+                    label: 'reps',
+                    value: reps,
+                    hasHoldTime: hasHoldTime,
+                  ),
+                  if (hasHoldTime) gapw5,
+                  if (hasHoldTime)
+                    _NewSingleSummary(
+                      label: 'hold time',
+                      value: '$holdTime sec',
+                      hasHoldTime: hasHoldTime,
+                    ),
                   gapw5,
                 ],
               ),
-              const Positioned(
+              Positioned(
                 // TODO: Check proper distance
                 left: width - 32.5,
-                child: _InformationIcon(),
+                child: const _InformationIcon(),
               )
             ],
           ),
@@ -89,10 +106,12 @@ class _SetsRepsComponent extends StatelessWidget {
 class _NewSingleSummary extends StatelessWidget {
   final String label;
   final String value;
+  final bool hasHoldTime;
 
   const _NewSingleSummary({
     required this.label,
     required this.value,
+    required this.hasHoldTime,
     super.key,
   });
 
@@ -103,7 +122,7 @@ class _NewSingleSummary extends StatelessWidget {
         ColoredBox(
       color: const Color.fromRGBO(156, 39, 176, 0),
       child: SizedBox(
-        width: 93.67,
+        width: hasHoldTime ? 93.67 : 70,
         height: 58,
         child: Column(
           children: <Widget>[
