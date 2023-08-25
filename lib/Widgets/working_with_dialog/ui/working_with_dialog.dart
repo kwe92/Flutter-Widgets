@@ -7,8 +7,6 @@ class WorkingWithDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final isChecked = context.watch<CheckBoxModel>().isChecked;
-    final isChecked = Provider.of<CheckBoxModel>(context).isChecked;
     return SafeArea(
       child: Scaffold(
         // backgroundColor: Colors.purple,
@@ -94,7 +92,6 @@ class WorkingWithDialog extends StatelessWidget {
                                                   value: model.isChecked,
                                                   onChanged: (value) {
                                                     model.onChecked();
-                                                    print(isChecked);
                                                   }),
                                             ),
                                           ),
