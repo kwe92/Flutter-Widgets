@@ -7,6 +7,8 @@ class WorkingWithDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final isChecked = context.watch<CheckBoxModel>().isChecked;
+    final isChecked = Provider.of<CheckBoxModel>(context).isChecked;
     return SafeArea(
       child: Scaffold(
         // backgroundColor: Colors.purple,
@@ -92,6 +94,7 @@ class WorkingWithDialog extends StatelessWidget {
                                                   value: model.isChecked,
                                                   onChanged: (value) {
                                                     model.onChecked();
+                                                    print(isChecked);
                                                   }),
                                             ),
                                           ),
@@ -117,9 +120,25 @@ class WorkingWithDialog extends StatelessWidget {
                                 ),
                                 SizedBox(
                                   width: double.maxFinite,
-                                  child: OutlinedButton(
-                                    onPressed: () {},
-                                    child: const Text("Im A Button"),
+                                  child: Consumer(
+                                    builder: (context, CheckBoxModel model, child) => OutlinedButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                          backgroundColor: MaterialStateProperty.resolveWith(
+                                            (states) => model.isChecked ? const Color(0xFF0052B1) : const Color(0xFFEBECE1),
+                                          ),
+                                          side: MaterialStateProperty.resolveWith(
+                                            (states) => BorderSide.none,
+                                          )),
+                                      child: Text(
+                                        "Next",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: model.isChecked ? Colors.white : const Color(0xFF242424),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
