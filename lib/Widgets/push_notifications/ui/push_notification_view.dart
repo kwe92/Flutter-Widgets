@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart';
+import 'package:gap/gap.dart';
 
 class WorkingWithPushNotifications extends StatelessWidget {
   const WorkingWithPushNotifications({super.key});
@@ -6,14 +9,39 @@ class WorkingWithPushNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(),
-          Text(""),
-        ],
+      backgroundColor: const Color(0xFFFFd580),
+      body: Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height / 10,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const _Image(),
+            const Gap(46),
+            Header(
+              "Local\nNotiications",
+              type: 4,
+            )
+          ],
+        ),
       ),
     );
   }
+}
+
+class _Image extends StatelessWidget {
+  const _Image({super.key});
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: double.maxFinite,
+        height: MediaQuery.of(context).size.height / 6,
+        child: SvgPicture.asset(
+          "assets/flutter-logo.svg",
+          fit: BoxFit.contain,
+        ),
+      );
 }
 
 final List<CustomIconButton> _buttonList = [];
@@ -30,11 +58,19 @@ class CustomIconButton extends StatelessWidget {
     super.key,
   });
 
+  @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       width: double.maxFinite,
+      height: 60,
       child: Row(
-        children: [],
+        children: [
+          Icon(iconData),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
