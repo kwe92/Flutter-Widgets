@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_widgets/Widgets/animations/animated_cross_fade.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
@@ -78,16 +79,24 @@ import 'package:provider/provider.dart';
 // nl
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => CheckBoxModel(),
-    child: MaterialApp(
-      theme: ThemeData.light(
-        useMaterial3: true,
-      ),
-      home: const WorkingWithDialog(),
+  runApp(
+    const MaterialApp(
+      home: AnimatedCrossFadeApp(),
     ),
-  ));
+  );
 }
+
+// void main() {
+//   runApp(ChangeNotifierProvider(
+//     create: (context) => CheckBoxModel(),
+//     child: MaterialApp(
+//       theme: ThemeData.light(
+//         useMaterial3: true,
+//       ),
+//       home: const WorkingWithDialog(),
+//     ),
+//   ));
+// }
 
 // void main() {
 //   runApp(
