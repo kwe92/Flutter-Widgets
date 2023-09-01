@@ -130,6 +130,13 @@ const List<BoxShadow> defaultTextShadow = [
 ];
 
 class Header extends StatelessWidget {
+  final String text;
+  final TextAlign? textAlign;
+  final TextOverflow? textOverflow;
+  final int? maxLines;
+  final Color? color;
+  final int type;
+  final bool shadow;
   Header(
     this.text, {
     Key? key,
@@ -162,14 +169,6 @@ class Header extends StatelessWidget {
     this.type = 2,
     this.shadow = false,
   }) : super(key: key);
-
-  final String text;
-  final TextAlign? textAlign;
-  final TextOverflow? textOverflow;
-  final int? maxLines;
-  final Color? color;
-  final int type;
-  final bool shadow;
 
   final Map<int, TextStyle> styles = {
     1: textStyleHeader1,
