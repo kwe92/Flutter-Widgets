@@ -5,11 +5,15 @@ class CustomIconButton extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final IconData iconData;
+  final Color? buttonColor;
+  final Color? highlightColor;
 
   const CustomIconButton({
     required this.onTap,
     required this.text,
     required this.iconData,
+    this.buttonColor,
+    this.highlightColor,
     super.key,
   });
 
@@ -19,7 +23,7 @@ class CustomIconButton extends StatelessWidget {
       width: double.maxFinite,
       height: 70,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: buttonColor ?? Colors.white,
         borderRadius: const BorderRadius.all(
           Radius.circular(50),
         ),
@@ -37,9 +41,9 @@ class CustomIconButton extends StatelessWidget {
           Radius.circular(50),
         ),
 
-        // highlightColor: Colors.purple,
+        highlightColor: highlightColor ?? Theme.of(context).highlightColor,
 
-        // required to show highlight animation
+        // Note: onTap required to show highlight animation
         onTap: onTap,
         child: Stack(
           alignment: AlignmentDirectional.centerStart,
@@ -47,7 +51,7 @@ class CustomIconButton extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 28.0),
+                  padding: const EdgeInsets.only(left: 24.0),
                   child: Icon(
                     iconData,
                     size: 36,
