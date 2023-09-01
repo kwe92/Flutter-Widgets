@@ -10,6 +10,7 @@ import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
 import 'package:flutter_widgets/Widgets/orientation_builder.dart';
+import 'package:flutter_widgets/Widgets/push_notifications/ui/push_notification_view.dart';
 import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
@@ -79,9 +80,10 @@ import 'package:provider/provider.dart';
 // nl
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MaterialApp(
-      home: AnimatedCrossFadeApp(),
+      home: WorkingWithPushNotifications(),
     ),
   );
 }
