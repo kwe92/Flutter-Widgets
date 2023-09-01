@@ -7,6 +7,7 @@ class CustomIconButton extends StatelessWidget {
   final IconData iconData;
   final Color? buttonColor;
   final Color? highlightColor;
+  final bool isWhite;
 
   const CustomIconButton({
     required this.onTap,
@@ -14,6 +15,7 @@ class CustomIconButton extends StatelessWidget {
     required this.iconData,
     this.buttonColor,
     this.highlightColor,
+    this.isWhite = false,
     super.key,
   });
 
@@ -55,6 +57,7 @@ class CustomIconButton extends StatelessWidget {
                   child: Icon(
                     iconData,
                     size: 36,
+                    color: isWhite ? Colors.white : Colors.black,
                   ),
                 ),
               ],
@@ -64,9 +67,10 @@ class CustomIconButton extends StatelessWidget {
               child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
+                  color: isWhite ? Colors.white : Colors.black,
                 ),
               ),
             ),
