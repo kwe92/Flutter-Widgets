@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_widgets/Widgets/push_notifications/colors.dart';
+import 'package:flutter_widgets/Widgets/push_notifications/services/notification_service.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/ui/widgets/custom_icon_button.dart';
 import 'package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart';
 import 'package:gap/gap.dart';
@@ -11,7 +13,7 @@ class WorkingWithPushNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     const double paddingH = 24;
     return Scaffold(
-      backgroundColor: const Color(0xFFFFd580),
+      backgroundColor: PushNotificationAppColors.backgroundColor,
       body: Padding(
         padding: EdgeInsets.only(
           left: paddingH,
@@ -24,24 +26,43 @@ class WorkingWithPushNotifications extends StatelessWidget {
             const _Image(),
             const Gap(52),
             Text(
-              "Local\nNotiications",
-              style: textStyleHeader4.copyWith(fontSize: 52),
+              "Local\nNotifications",
+              style: textStyleHeader4.copyWith(
+                color: PushNotificationAppColors.primary,
+                fontSize: 52,
+              ),
             ),
             const Gap(52),
+            // TODO: change button colors
             CustomIconButton(
-              onTap: () {},
+              onTap: () {
+                NotificationService.showNotification(
+                  title: "First Notification!",
+                  body: "Congratulations king, you wrote your first notification!",
+                  payload: "kwe.aps",
+                );
+              },
+              isWhite: true,
+              buttonColor: PushNotificationAppColors.primary,
+              highlightColor: PushNotificationAppColors.secondary,
               text: "Sample Notification",
               iconData: Icons.notifications,
             ),
             const Gap(32),
             CustomIconButton(
               onTap: () {},
+              isWhite: true,
+              buttonColor: PushNotificationAppColors.primary,
+              highlightColor: PushNotificationAppColors.secondary,
               text: "Schedule Notification",
               iconData: Icons.notifications_active,
             ),
             const Gap(32),
             CustomIconButton(
               onTap: () {},
+              isWhite: true,
+              buttonColor: PushNotificationAppColors.primary,
+              highlightColor: PushNotificationAppColors.secondary,
               text: "Remove Notifications",
               iconData: Icons.delete_forever,
             ),
