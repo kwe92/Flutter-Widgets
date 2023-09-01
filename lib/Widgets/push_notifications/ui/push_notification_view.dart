@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_widgets/Widgets/push_notifications/ui/widgets/custom_icon_button.dart';
 import 'package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart';
 import 'package:gap/gap.dart';
 
@@ -63,62 +64,4 @@ class _Image extends StatelessWidget {
           fit: BoxFit.contain,
         ),
       );
-}
-
-class CustomIconButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final String text;
-  final IconData iconData;
-
-  const CustomIconButton({
-    required this.onTap,
-    required this.text,
-    required this.iconData,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.maxFinite,
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(50),
-        ),
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 2),
-            color: Colors.black.withOpacity(0.15),
-            spreadRadius: 5,
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.centerStart,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 28.0),
-                child: Icon(
-                  iconData,
-                  size: 36,
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
