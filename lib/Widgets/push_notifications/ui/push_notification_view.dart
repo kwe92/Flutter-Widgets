@@ -4,6 +4,7 @@ import 'package:flutter_widgets/Widgets/push_notifications/colors.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/services/notification_service.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/ui/widgets/custom_icon_button.dart';
 import 'package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart';
+import 'package:flutter_widgets/main.dart';
 import 'package:gap/gap.dart';
 
 class WorkingWithPushNotifications extends StatelessWidget {
@@ -36,11 +37,17 @@ class WorkingWithPushNotifications extends StatelessWidget {
             // TODO: change button colors
             CustomIconButton(
               onTap: () {
-                NotificationService.showNotification(
-                  title: "First Notification!",
-                  body: "Congratulations king, you wrote your first notification!",
-                  payload: "kwe.aps",
+                print("pressed!`");
+                NofiService.showNotification(
+                  title: "title",
+                  body: "body",
+                  fln: flutterLocalNotificationsPlugin,
                 );
+                // NotificationService.showNotification(
+                //   title: "First Notification!",
+                //   body: "Congratulations king, you wrote your first notification!",
+                //   payload: "kwe.aps",
+                // );
               },
               isWhite: true,
               buttonColor: PushNotificationAppColors.primary,

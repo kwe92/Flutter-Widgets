@@ -2,6 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+// TODO: Clean this Widget
+
 //! ?? Removed Padding Widgets and paddingH24
 
 class ModalV2 {
@@ -111,6 +113,8 @@ class ModalV2 {
     return val;
   }
 }
+
+// TODO: Move to app theme example
 
 class CareNavigationPopupParameters<T> {
   String title;

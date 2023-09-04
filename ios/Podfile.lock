@@ -622,14 +622,14 @@ PODS:
   - Firebase/Firestore (10.9.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.9.0)
-  - firebase_auth (4.4.0):
+  - firebase_auth (4.6.1):
     - Firebase/Auth (= 10.9.0)
     - firebase_core
     - Flutter
   - firebase_core (2.13.0):
     - Firebase/CoreOnly (= 10.9.0)
     - Flutter
-  - firebase_dynamic_links (5.1.0):
+  - firebase_dynamic_links (5.3.1):
     - Firebase/DynamicLinks (= 10.9.0)
     - firebase_core
     - Flutter
@@ -662,6 +662,8 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - GoogleUtilities/AppDelegateSwizzler (7.11.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -753,6 +755,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_dynamic_links (from `.symlinks/plugins/firebase_dynamic_links/ios`)
   - Flutter (from `Flutter`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
 
 SPEC REPOS:
@@ -790,6 +793,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_dynamic_links/ios"
   Flutter:
     :path: Flutter
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   native_device_orientation:
     :path: ".symlinks/plugins/native_device_orientation/ios"
 
@@ -800,9 +805,9 @@ SPEC CHECKSUMS:
   cloud_firestore: ec0aaa17f7f3f205c3f128c8c203d1afcbcb020f
   desktop_webview_auth: d645139460ef203d50bd0cdb33356785dd939cce
   Firebase: bd152f0f3d278c4060c5c71359db08ebcfd5a3e2
-  firebase_auth: 785778cdebb592626216222577a545abba1e09fe
+  firebase_auth: 202fb0b14e267d2a91d83b75d0ce064ef2063383
   firebase_core: fc68c0f9eec4e800b9418deff14a7e0a504016f3
-  firebase_dynamic_links: e71e5d77fd04501de6328c6a4b0fad4bd0889ac5
+  firebase_dynamic_links: cf9f52378c722d7aa4563437feedee9160d5257c
   FirebaseAppCheckInterop: 7d3521f56872cf74a01792c0a095a30e054ff6ae
   FirebaseAuth: 21d5e902fcea44d0d961540fc4742966ae6118cc
   FirebaseCore: b68d3616526ec02e4d155166bbafb8eca64af557
@@ -810,6 +815,7 @@ SPEC CHECKSUMS:
   FirebaseDynamicLinks: 8cb66c4f403aa6ddf86ff3bc3c383a652f344ce9
   FirebaseFirestore: 584d0e1b0f7f1666c516c5157ff06e785bd8836f
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b

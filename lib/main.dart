@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_widgets/Widgets/animations/animated_cross_fade.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
 import 'package:flutter_widgets/Widgets/orientation_builder.dart';
+import 'package:flutter_widgets/Widgets/push_notifications/services/notification_service.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/ui/push_notification_view.dart';
 import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
@@ -79,13 +81,36 @@ import 'package:provider/provider.dart';
 //
 // nl
 
+final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const MaterialApp(
-      home: WorkingWithPushNotifications(),
-    ),
+    const MyApp(),
   );
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    NofiService.initialize(flutterLocalNotificationsPlugin);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: WorkingWithPushNotifications(),
+    );
+  }
 }
 
 // void main() {
