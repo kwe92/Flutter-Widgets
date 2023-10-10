@@ -11,9 +11,12 @@ import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
 import 'package:flutter_widgets/Widgets/grid_view_list_generator.dart';
 import 'package:flutter_widgets/Widgets/native_device_orientation_example.dart';
 import 'package:flutter_widgets/Widgets/orientation_builder.dart';
+import 'package:flutter_widgets/Widgets/plaid_example/ui/plaid_example_view.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/services/notification_service.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/ui/push_notification_view.dart';
+import 'package:flutter_widgets/Widgets/range_slider.dart';
 import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
+import 'package:flutter_widgets/Widgets/sliders/slider_view.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:provider/provider.dart';
@@ -84,34 +87,76 @@ import 'package:provider/provider.dart';
 final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    const MyApp(),
+    const MaterialApp(
+      home: SliderView(),
+    ),
   );
 }
 
-class MyApp extends StatefulWidget {
+// ??---------------Working With Sliders---------------??
+
+class MyApp extends StatelessWidget {
+  static const String title = "Sliders";
+
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-
-    NofiService.initialize(flutterLocalNotificationsPlugin);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WorkingWithPushNotifications(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: title,
+      theme: ThemeData(
+        colorScheme: const ColorScheme.light(
+          primary: Colors.purple,
+        ),
+      ),
+      home: const SliderView(),
     );
   }
 }
+
+// ??---------------Working With Plaid-------------------------------------------------------------
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const PlaidExampleView();
+//   }
+// }
+
+
+//!----------------------Working With Notifications--------------------------------------
+
+// Prefixes runApp
+
+// WidgetsFlutterBinding.ensureInitialized();
+
+
+// class MyApp extends StatefulWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     NofiService.initialize(flutterLocalNotificationsPlugin);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       home: WorkingWithPushNotifications(),
+//     );
+//   }
+// }
 
 // void main() {
 //   runApp(ChangeNotifierProvider(
@@ -134,6 +179,7 @@ class _MyAppState extends State<MyApp> {
 //   );
 // }
 
+//------------------------------------------------------------
 
 
 // ! ------continue REVIEW BELOW !!!!!
