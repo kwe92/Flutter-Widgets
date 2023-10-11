@@ -27,6 +27,8 @@ class _SliderColorWidgetState extends State<SliderColorWidget> {
         thumbColor: SliderColors.tan0,
         activeTrackColor: SliderColors.tan0,
         inactiveTrackColor: SliderColors.tan0.withOpacity(0.50),
+        activeTickMarkColor: Colors.transparent,
+        inactiveTickMarkColor: Colors.transparent,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +37,7 @@ class _SliderColorWidgetState extends State<SliderColorWidget> {
             value: value,
             min: widget.min,
             max: widget.max,
-            divisions: widget.max.toInt(),
+            divisions: 10,
             label: value.round().toString(),
             onChanged: (value) => setState(() => this.value = value),
           ),
