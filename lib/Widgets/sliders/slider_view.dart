@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_widget.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_label_widget.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_size_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/tabbar_widget.dart';
 
 class SliderView extends StatelessWidget {
@@ -13,9 +15,21 @@ class SliderView extends StatelessWidget {
         Tab(
           icon: Icon(Icons.color_lens),
           text: "Colors",
-        )
+        ),
+        Tab(
+          icon: Icon(Icons.photo_size_select_large),
+          text: "Size",
+        ),
+        Tab(
+          icon: Icon(Icons.text_fields),
+          text: "Labels",
+        ),
       ],
-      children: [SliderColorWidget()],
+      children: [
+        SliderColorWidget(),
+        SliderSizeWidget(),
+        SliderLabelWidget(),
+      ],
     );
   }
 }
