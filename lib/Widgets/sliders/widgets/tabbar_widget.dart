@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/Widgets/sliders/colors/slider_colors.dart';
 
 // TODO: Comment your code!
 
@@ -26,8 +27,8 @@ class TabBarWidget extends StatelessWidget {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xffeae5c8),
-                  Color(0xff73c3cd),
+                  SliderColors.tan0,
+                  SliderColors.aqua0,
                 ],
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,
