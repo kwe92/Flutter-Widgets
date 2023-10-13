@@ -17,6 +17,7 @@ import 'package:flutter_widgets/Widgets/push_notifications/ui/push_notification_
 import 'package:flutter_widgets/Widgets/range_slider.dart';
 import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/slider_view.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_gradient_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:provider/provider.dart';
@@ -88,9 +89,7 @@ final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: SliderView(),
-    ),
+    const MyApp(),
   );
 }
 
@@ -103,15 +102,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          primary: Colors.purple,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => SliderColorGradientModel(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: title,
+        theme: ThemeData(
+          colorScheme: const ColorScheme.light(
+            primary: Colors.lightBlue,
+          ),
         ),
+        home: const SliderView(),
       ),
-      home: const SliderView(),
     );
   }
 }
