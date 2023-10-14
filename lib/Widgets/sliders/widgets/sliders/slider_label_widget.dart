@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/sliders/colors/slider_colors.dart';
-import 'package:flutter_widgets/Widgets/sliders/utils.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_top.dart';
 
 // TODO: review and add comments
-// TODO: break apart into diffrent components
 
 class SliderLabelWidget extends StatefulWidget {
   const SliderLabelWidget({super.key});
@@ -21,86 +20,55 @@ class _SliderLabelWidgetState extends State<SliderLabelWidget> {
 
   final double max = 100;
 
+  final labels = const <String>['0', '18', '30', '50', '+'];
+
   @override
-  Widget build(BuildContext context) => SliderTheme(
-        data: SliderThemeData(
-          activeTickMarkColor: Colors.transparent,
-          inactiveTickMarkColor: Colors.transparent,
-          trackHeight: 16,
-          thumbShape: const RoundSliderThumbShape(
-            enabledThumbRadius: 16,
-          ),
-          activeTrackColor: SliderColors.aqua0,
-          inactiveTrackColor: SliderColors.aqua0.withOpacity(0.50),
-          thumbColor: SliderColors.aqua0,
-          valueIndicatorColor: SliderColors.aqua0,
+  Widget build(BuildContext context) {
+    return SliderTheme(
+      data: SliderThemeData(
+        activeTickMarkColor: Colors.transparent,
+        inactiveTickMarkColor: Colors.transparent,
+        trackHeight: 16,
+        thumbShape: const RoundSliderThumbShape(
+          enabledThumbRadius: 16,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  buildSideLabel(min),
-                  Expanded(
-                    child: Slider(
-                      value: value,
-                      min: min,
-                      max: max,
-                      divisions: 20,
-                      label: value.round().toString(),
-                      onChanged: (value) => setState(
-                        () => this.value = value,
-                      ),
-                    ),
-                  ),
-                  buildSideLabel(max),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            buildSliderTopLabel(),
-          ],
-        ),
-      );
-
-  Widget buildSliderTopLabel() {
-    final labels = <String>['0', '18', '30', '50', '+'];
-
-    const double min = 0;
-
-    final double max = labels.length - 1;
-
-    final divisions = labels.length - 1;
-
-    return Builder(
-      builder: (context) => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        activeTrackColor: SliderColors.aqua0,
+        inactiveTrackColor: SliderColors.aqua0.withOpacity(0.50),
+        thumbColor: SliderColors.aqua0,
+        valueIndicatorColor: SliderColors.aqua0,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: Utils.modelBuilder(labels, (index, label) {
-                const selectedColor = Colors.black;
-                final unselectedColor = Colors.black.withOpacity(0.3);
-                final isSelected = index <= indexTop;
-                final color = isSelected ? selectedColor : unselectedColor;
-
-                return buildLabel(label: label, color: color, width: 30);
-              }),
+              children: [
+                SideLabelWidget(value: min),
+                Expanded(
+                  child: Slider(
+                    value: value,
+                    min: min,
+                    max: max,
+                    divisions: 20,
+                    label: value.round().toString(),
+                    onChanged: (value) => setState(
+                      () => this.value = value,
+                    ),
+                  ),
+                ),
+                SideLabelWidget(value: max),
+              ],
             ),
           ),
-          Slider(
-            value: indexTop.toDouble(),
+          const SizedBox(height: 24),
+          SliderTop(
+            labels: labels,
+            indexTop: indexTop,
             min: min,
-            max: max,
-            divisions: divisions,
-            // label: labels[indexTop.toInt()],
-            onChanged: (value) => setState(
-              () => indexTop = value,
-            ),
+            max: labels.length - 1,
+            divisions: labels.length - 1,
+            onChanged: (val) => setState(() => indexTop = val),
           ),
         ],
       ),
@@ -108,26 +76,16 @@ class _SliderLabelWidgetState extends State<SliderLabelWidget> {
   }
 }
 
-Widget buildLabel({
-  required String label,
-  required double width,
-  required Color color,
-}) =>
-    SizedBox(
-      width: width,
-      child: Text(
-        label,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ).copyWith(color: color),
-      ),
-    );
-
 /// buildSideLabel: builds a side label for a slider
-Widget buildSideLabel(double value) => Builder(
-      builder: (context) => SizedBox(
+class SideLabelWidget extends StatelessWidget {
+  final double value;
+  const SideLabelWidget({
+    required this.value,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
         // set text fixed size
         width: 42,
         child: Text(
@@ -137,8 +95,9 @@ Widget buildSideLabel(double value) => Builder(
             fontWeight: FontWeight.w600,
           ),
         ),
-      ),
-    );
+      );
+}
+
 
 // Prefix and Sufix Slider Labels
 
