@@ -35,7 +35,8 @@ class SliderView extends StatelessWidget {
         SliderSizeWidget(),
         SliderLabelWidget(),
         SliderColorGradient(
-          swap: true,
+          swap: false,
+          showTopLabel: true,
         ),
       ],
     );
