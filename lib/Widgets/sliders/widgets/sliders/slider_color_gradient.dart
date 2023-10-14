@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/Widgets/sliders/utils.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/gradient_track_shape.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/line_tickmark_shape.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/rectangular_slider_value_indicator_shape.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_gradient_model.dart';
 import 'package:provider/provider.dart';
+
+// TODO: Add Comments
 
 class SliderColorGradient extends StatelessWidget {
   final bool swap;
@@ -14,11 +17,14 @@ class SliderColorGradient extends StatelessWidget {
 
   final int divisions;
 
+  final bool showTopLabel;
+
   const SliderColorGradient({
     this.min = 0,
     this.max = 10,
     this.divisions = 10,
     this.swap = false,
+    this.showTopLabel = false,
     super.key,
   });
   @override
@@ -49,16 +55,36 @@ class SliderColorGradient extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Slider(
-              value: model.value,
-              min: min,
-              max: max,
-              divisions: divisions,
-              label: model.value.toInt().toString(),
-              onChanged: (value) => model.setValue(value),
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                showTopLabel
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ...Utils.modelBuilder(
+                            List<String>.generate(
+                              max.toInt() + 1,
+                              (index) => (index++).toString(),
+                            ),
+                            Utils.labelBuilder(model.value, visible: false),
+                          )
+                        ],
+                      )
+                    : const SizedBox(),
+                Slider(
+                  value: model.value,
+                  min: min,
+                  max: max,
+                  divisions: divisions,
+                  label: model.value.toInt().toString(),
+                  onChanged: (value) => model.setValue(value),
+                ),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 11, right: 7),
+              padding: EdgeInsets.only(left: 11, right: 7, top: showTopLabel ? 21 : 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
