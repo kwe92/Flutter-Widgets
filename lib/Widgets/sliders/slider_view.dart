@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_gradient.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_label_widget.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_shape_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_size_widget.dart';
+import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_vertical_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/tabbar_widget.dart';
 
 class SliderView extends StatelessWidget {
@@ -29,6 +31,14 @@ class SliderView extends StatelessWidget {
           icon: Icon(Icons.border_color),
           text: "Gradient",
         ),
+        Tab(
+          icon: Icon(Icons.aspect_ratio_outlined),
+          text: "Shape",
+        ),
+        Tab(
+          icon: Icon(Icons.battery_full),
+          text: "Vertical",
+        ),
       ],
       children: [
         SliderColorWidget(),
@@ -38,6 +48,8 @@ class SliderView extends StatelessWidget {
           swap: false,
           showTopLabel: true,
         ),
+        SliderShapeWidget(),
+        SliderVerticalWidget(),
       ],
     );
   }
