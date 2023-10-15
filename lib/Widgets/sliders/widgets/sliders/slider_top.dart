@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/sliders/utils.dart';
 
@@ -25,7 +26,8 @@ class SliderTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -39,13 +41,16 @@ class SliderTop extends StatelessWidget {
                   )),
             ),
           ),
-          Slider(
-            value: indexTop.toDouble(),
-            min: min,
-            max: max,
-            divisions: divisions,
-            label: visibleLabel ? labels[indexTop.toInt()] : null,
-            onChanged: onChanged,
+          SizedBox(
+            width: double.maxFinite,
+            child: Slider(
+              value: indexTop.toDouble(),
+              min: min,
+              max: max,
+              divisions: divisions,
+              label: visibleLabel ? labels[indexTop.toInt()] : null,
+              onChanged: onChanged,
+            ),
           ),
         ],
       );
