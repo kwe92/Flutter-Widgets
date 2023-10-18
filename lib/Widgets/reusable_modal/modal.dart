@@ -69,7 +69,7 @@ class Modal {
           context: context,
           builder: (context) {
             //! TODO: Remove paddingH24 | Doesn't do anything after centering content
-            const paddingH24 = EdgeInsets.symmetric(horizontal: 0);
+            // const paddingH24 = EdgeInsets.symmetric(horizontal: 0);
             //! TODO: Add mediaWidth | dialogContentCardPadding
             final double mediaWidth = MediaQuery.of(context).size.width;
             // SimpleDialog has no height or width properties

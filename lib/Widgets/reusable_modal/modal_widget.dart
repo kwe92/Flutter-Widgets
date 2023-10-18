@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter_widgets/Widgets/reusable_modal/modal.dart";
 import "package:flutter_widgets/Widgets/reusable_modal/modal_v2.dart";
 
 class ModalWidget extends StatelessWidget {
