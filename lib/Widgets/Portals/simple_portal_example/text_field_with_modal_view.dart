@@ -68,16 +68,21 @@ class TextFieldWithModalView extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      PortalTarget(
+                      AnimatedPortalTarget(
                         visible: model.showRequirements,
+                        // triggered when user taps outside of the follower
+                        onClose: () {
+                          model.setShowRequirements(false);
+                          unFocusAll(context);
+                        },
                         anchor: const Aligned(
                           follower: Alignment.bottomRight,
                           target: Alignment.topRight,
                         ),
-                        portalFollower: RequirementsPopup(
+                        follower: RequirementsPopup(
                           passwordController: passwordController,
                         ),
-                        child: TextFormField(
+                        target: TextFormField(
                           obscureText: model.obscurePassword,
                           textInputAction: TextInputAction.done,
                           controller: passwordController,
@@ -128,6 +133,89 @@ class TextFieldWithModalView extends StatelessWidget {
       },
     );
   }
+}
+
+class AnimatedPortalTarget extends StatelessWidget {
+  final bool visible;
+  final VoidCallback onClose;
+  final Anchor anchor;
+  final Widget target;
+  final Widget follower;
+
+  const AnimatedPortalTarget({
+    required this.visible,
+    required this.onClose,
+    required this.anchor,
+    required this.follower,
+    required this.target,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => Barrier(
+        isVisible: visible,
+        onPressed: onClose,
+        target: PortalTarget(
+          visible: visible,
+          anchor: anchor,
+          closeDuration: kThemeAnimationDuration,
+          // animated follower widget
+          portalFollower: TweenAnimationBuilder<double>(
+            duration: kThemeAnimationDuration,
+            curve: Curves.easeOut,
+            tween: Tween(begin: 0, end: visible ? 1 : 0),
+            builder: (context, progress, _) {
+              return Transform(
+                transform: Matrix4.translationValues(0, (1 - progress) * 50, 0),
+                child: Opacity(
+                  opacity: progress,
+                  child: follower,
+                ),
+              );
+            },
+          ),
+          // target widget
+          child: target,
+        ),
+      );
+}
+
+/// Barrier: parent PortalTarget that wraps follower and target
+/// to detect if the users clicked outside follower to close it (change the follower visibility)
+class Barrier extends StatelessWidget {
+  final bool isVisible;
+  final VoidCallback onPressed;
+  final Widget target;
+
+  const Barrier({
+    required this.isVisible,
+    required this.onPressed,
+    required this.target,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => PortalTarget(
+        visible: isVisible,
+        closeDuration: kThemeAnimationDuration,
+        portalFollower: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onPressed,
+          // ! required if you want a background for modal with animation
+          // child: TweenAnimationBuilder(
+          //   tween: ColorTween(
+          //     begin: Colors.transparent,
+          //     end: isVisible ? Colors.black54 : Colors.transparent,
+          //   ),
+          //   duration: kThemeAnimationDuration,
+          //   builder: (context, color, _) {
+          //     return ColoredBox(color: color!);
+          //   },
+          // ),
+        ),
+        // target widget
+        child: target,
+      );
 }
 
 // unFocusAll: remove the focus from all currently focused nodes

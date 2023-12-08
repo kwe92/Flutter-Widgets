@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/example_from_flutter_portal_docs.dart';
 import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/menu_example.dart';
 import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/text_field_with_modal_view.dart';
 import 'package:flutter_widgets/Widgets/animations/animated_cross_fade.dart';
@@ -94,6 +95,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
+    // const ExampleFromFlutterPortalDocs00(),
     const MyApp(),
   );
 }

@@ -122,7 +122,7 @@ class _MenuExampleState extends State<MenuExample> {
 //   - also determines how a follower is positioned relative to a target
 //   - informs the Portal that there is a follower/target relationship
 //   - the child (target widget you wish to be overlayed) is rendered normally in the widget tree
-//     the portalFollower (floating overlay widget) is rendered through the ancestor Portal in a diffrent locastion
+//     the portalFollower (floating overlay widget) is rendered on top of your UI through the ancestor Portal in a diffrent location
 //     in thre widget tree, hence the name Portal
 //   - also controls the visibility of the follower with some mutable boolean variable
 
