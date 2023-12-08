@@ -17,10 +17,19 @@ class ModalV2 {
           builder: (context) {
             // ?? currentDeviceWidth && dialogPadding ensure that the width of the dialog box stays 310px according to figma design
             final currentDeviceWidth = MediaQuery.of(context).size.width;
-            final dialogPadding = (currentDeviceWidth - 310) / 2;
+            final currentDeviceOrientation = MediaQuery.of(context).orientation;
+
+            debugPrint("$currentDeviceOrientation");
+
+            debugPrint("$currentDeviceWidth");
+
+            final dialogPadding = (currentDeviceWidth - 764) / 2;
+
+            debugPrint("$dialogPadding");
+
             return SimpleDialog(
               // ?? modify insetPadding to control width | titlePadding && contentPadding to match figma
-              insetPadding: EdgeInsets.symmetric(horizontal: dialogPadding),
+              insetPadding: EdgeInsets.symmetric(horizontal: 40),
               // ! when changing to EdgeInsets.all(10) there is an issue wtih spacing and the text extends to an additional line
               titlePadding: const EdgeInsets.only(top: 10, left: 5, right: 5),
               contentPadding: const EdgeInsets.only(top: 12, left: 0, right: 0, bottom: 20),

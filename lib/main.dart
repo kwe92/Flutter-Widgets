@@ -4,6 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_portal/flutter_portal.dart';
+import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/menu_example.dart';
+import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/text_field_with_modal_view.dart';
 import 'package:flutter_widgets/Widgets/animations/animated_cross_fade.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
@@ -15,11 +18,15 @@ import 'package:flutter_widgets/Widgets/plaid_example/ui/plaid_example_view.dart
 import 'package:flutter_widgets/Widgets/push_notifications/services/notification_service.dart';
 import 'package:flutter_widgets/Widgets/push_notifications/ui/push_notification_view.dart';
 import 'package:flutter_widgets/Widgets/range_slider.dart';
+import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
 import 'package:flutter_widgets/Widgets/sets_reps_hold_time_widget.dart';
 import 'package:flutter_widgets/Widgets/sliders/slider_view.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_gradient_model.dart';
+import 'package:flutter_widgets/Widgets/switch/switch_widget_view.dart';
+import 'package:flutter_widgets/Widgets/switch/switch_widget_view_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
+import 'package:flutter_widgets/examples/colorSelectedListItem_onTap/color_Selected_ListItem_onTap.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
@@ -85,42 +92,88 @@ import 'package:provider/provider.dart';
 //
 // nl
 
-final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
 void main() {
   runApp(
     const MyApp(),
   );
 }
 
-// ??---------------Working With Sliders---------------??
-
 class MyApp extends StatelessWidget {
-  static const String title = "Sliders";
-
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => SliderColorGradientModel(),
-        )
-      ],
+    return Portal(
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-            primary: Colors.lightBlue,
-          ),
-        ),
-        home: const SliderView(),
+        home: TextFieldWithModalView(),
       ),
     );
   }
 }
+
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (context) => SelectListItemOnTapViewModel(),
+//       child: SelectListItemOnTap(),
+//     ),
+//   );
+// }
+
+// final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+// void main() {
+//   runApp(
+//     const MyApp(),
+//   );
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) => MultiProvider(
+//         providers: [
+//           ChangeNotifierProvider(
+//             create: (context) => SwitchWidgetViewModel(),
+//           )
+//         ],
+//         child: const MaterialApp(
+//           home: SwitchWidgetView(),
+//         ),
+//       );
+// }
+
+// ??---------------Working With Sliders---------------??
+
+// class MyApp extends StatelessWidget {
+//   static const String title = "Sliders";
+
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(
+//           create: (context) => SliderColorGradientModel(),
+//         )
+//       ],
+//       child: MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: title,
+//         theme: ThemeData(
+//           colorScheme: const ColorScheme.light(
+//             primary: Colors.lightBlue,
+//           ),
+//         ),
+//         home: const SliderView(),
+//       ),
+//     );
+//   }
+// }
 
 // ??---------------Working With Plaid-------------------------------------------------------------
 
@@ -133,13 +186,11 @@ class MyApp extends StatelessWidget {
 //   }
 // }
 
-
 //!----------------------Working With Notifications--------------------------------------
 
 // Prefixes runApp
 
 // WidgetsFlutterBinding.ensureInitialized();
-
 
 // class MyApp extends StatefulWidget {
 //   const MyApp({super.key});
@@ -187,7 +238,6 @@ class MyApp extends StatelessWidget {
 
 //------------------------------------------------------------
 
-
 // ! ------continue REVIEW BELOW !!!!!
 
 // ? working with auto_route
@@ -222,22 +272,22 @@ class MyApp extends StatelessWidget {
 // ! end continue
 
 // void main() {
-  // TODO: need to look into why the providers are not working | maybe create a new main function for this section
-  // runApp(
-  //   MultiProvider(
-  //     providers: <ChangeNotifierProvider>[
-  //       ChangeNotifierProvider(
-  //         create: (BuildContext context) => WorkingWithCameraPreviewModel(),
-  //       ),
-  //     ],
-  //     child: const MaterialApp(home: WorkingWithCameraPreview()),
-  //   ),
-  // );
+// TODO: need to look into why the providers are not working | maybe create a new main function for this section
+// runApp(
+//   MultiProvider(
+//     providers: <ChangeNotifierProvider>[
+//       ChangeNotifierProvider(
+//         create: (BuildContext context) => WorkingWithCameraPreviewModel(),
+//       ),
+//     ],
+//     child: const MaterialApp(home: WorkingWithCameraPreview()),
+//   ),
+// );
 
-  // runApp(const WorkingWithNativeDeviceOrientation());
+// runApp(const WorkingWithNativeDeviceOrientation());
 
-  // WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+// WidgetsFlutterBinding.ensureInitialized();
+// SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
 //   runApp(
 //     MaterialApp(
@@ -254,11 +304,11 @@ class MyApp extends StatelessWidget {
 
 // ? main with future
 
-// Future<void> main() async {
+// void main() {
 //   runApp(
 //     MaterialApp(
 //       theme: ThemeData(useMaterial3: false), home: const ModalWidget(),
-//       home: WorkingWithMaterialState2(),
+// //       home: WorkingWithMaterialState2(),
 //     ),
 //   );
 // WidgetsFlutterBinding.ensureInitialized();
@@ -319,5 +369,3 @@ class MyApp extends StatelessWidget {
 //   ),
 // );
 // }
-
-
