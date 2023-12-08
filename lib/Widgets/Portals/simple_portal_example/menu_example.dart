@@ -16,11 +16,14 @@ class _MenuExampleState extends State<MenuExample> {
     return Scaffold(
       body: Center(
         child: PortalTarget(
+          // follower visibility | set by some mutable state
           visible: isMenuOpen,
+          // follower positioning | relative to target
           anchor: const Aligned(
             follower: Alignment.topLeft,
             target: Alignment.topRight,
           ),
+          // follower instantiation | floating widget you want to display
           portalFollower: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () {
@@ -29,6 +32,7 @@ class _MenuExampleState extends State<MenuExample> {
               });
               debugPrint("tapped outside of widget");
             },
+            // target instantiation | widget you wish to attach follower to
             child: const Material(
               elevation: 8,
               child: SizedBox(
