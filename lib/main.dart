@@ -28,6 +28,8 @@ import 'package:flutter_widgets/Widgets/switch/switch_widget_view_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:flutter_widgets/examples/colorSelectedListItem_onTap/color_Selected_ListItem_onTap.dart';
+import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view.dart';
+import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view_model.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
@@ -95,7 +97,6 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    // const ExampleFromFlutterPortalDocs00(),
     const MyApp(),
   );
 }
@@ -105,13 +106,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Portal(
-      child: MaterialApp(
-        home: TextFieldWithModalView(),
-      ),
+    // Instatiate ViewModel as a ChangeNotifier to be consumed by its respective View
+    return const MaterialApp(
+      home: JournalEntryView(),
     );
   }
 }
+
+//! PORTAL EXAMPLE 
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Portal(
+//       child: MaterialApp(
+//         home: TextFieldWithModalView(),
+//       ),
+//     );
+//   }
+// }
+//! PORTAL EXAMPLE 
 
 // void main() {
 //   runApp(

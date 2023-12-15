@@ -65,7 +65,7 @@ class _MenuExampleState extends State<MenuExample> {
   }
 }
 
-// TODO: review and edit notes
+// TODO: review
 
 // Showing Floating Overlays in Flutter
 
