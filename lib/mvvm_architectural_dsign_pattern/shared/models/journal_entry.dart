@@ -31,9 +31,8 @@ class JournalEntry extends BaseJournalEntry {
 }
 
 
-// Model Class
+// Model Class (M-V-VM: Model-View-ViewModel Architectural Design Pattern) 
 
-//   - The Model Class in M-V-VM (Model-View-ViewModel) Architectural Design Pattern
 //   - Represents the Domain Model that encapsulates your applications data, part of Domain Driven Design
 //   - The Model Class also serves as a DTO (Data Transfer Object) facilitating communication between API's and your application
 //   - The communication mechanism consists mainly of marshaling (serialization) and unmarshaling (deserialization, can be handed off to a Factory Class) of the domain
