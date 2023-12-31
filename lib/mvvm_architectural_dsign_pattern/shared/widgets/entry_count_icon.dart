@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/journal_entry_service.dart';
+import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/services.dart';
 import 'package:provider/provider.dart';
 
 class EntryCountIcon extends StatelessWidget {
