@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/journal_entry_service.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/extended_change_notifier.dart';
+import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/services.dart';
 
 class JournalEntryViewModel extends ExtendedChangeNotifier {
   List<BaseJournalEntry> _journalEntries = [];
@@ -10,9 +10,9 @@ class JournalEntryViewModel extends ExtendedChangeNotifier {
   List<BaseJournalEntry> get journalEntries => _journalEntries;
 
   JournalEntryViewModel() {
-    // model initialization should happen in the constructor body of the ViewModel Class
-    // as to not trigger notification events while the view is building.
-    // seems equivalent to onViewModelReady from the stacked framework
+    // initialization should happen in the ViewModel Class constructor body
+    // to not trigger notification events while the view is building
+    // similar to onViewModelReady from stacked framework
     _initialize();
   }
 

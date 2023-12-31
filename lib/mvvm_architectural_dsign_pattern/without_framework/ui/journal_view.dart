@@ -13,7 +13,8 @@ class JournalEntryView extends StatelessWidget {
     return ChangeNotifierProvider(
       // declaratively instantiate (create) ViewModel: View First Composition
       create: (context) => JournalEntryViewModel(),
-      // The Builder Widget is required to obtain the ViewModel instance that was created above it within a callback
+      // Builder Widget required to obtain ViewModel instance created above within a callback
+
       child: Builder(
         builder: (context) {
           // obtain the created ViewModel instance
@@ -53,6 +54,8 @@ class JournalEntryView extends StatelessWidget {
   }
 }
 
+// TODO: review and add comments
+
 // View Class (M-V-VM: Model-View-ViewModel Architectural Design Pattern)
 
 //   - Defines the structure, appearance and layout of your applications U.I.
@@ -63,3 +66,7 @@ class JournalEntryView extends StatelessWidget {
 //   - The View observes ViewModel properties that change in response to user interaction or asynchronous method calls
 //     like pre-caching images or retrieving data from an API.
 //   - The View should not contain business logic and its components should be enabled, disabled, and mutated based on observed ViewModel properties
+
+// ChangeNotifierProvider
+
+// Builder Widget
