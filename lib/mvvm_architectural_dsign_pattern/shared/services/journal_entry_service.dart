@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/factory/factory.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
+import 'package:stacked/stacked.dart';
 
-// ! typically instantiated with a service locator like the get_it package
-final journalEntryService = JournalEntryService();
-
-class JournalEntryService extends ChangeNotifier {
+class JournalEntryService extends ChangeNotifier with ListenableServiceMixin {
   List<BaseJournalEntry> _journalEntries = [];
 
   List<BaseJournalEntry> get journalEntries => _journalEntries;
 
-  /// Represents fake API call to backend to retrieve deserialized domain model data.
+  /// Represents fake API call to backend retrieving deserialized domain model data.
   Future<void> fakeApiCallToGetAllEntries() async {
-    // mimic a really long delay, typical API calls are much faster than this.
+    // mimic a really long delay, typical API calls are much faster than this
     await Future.delayed(const Duration(seconds: 1, milliseconds: 500));
 
-    // represents data received from an API call response body that would typically be deserialized into a collection of domain model objects.
+    // represents data received from API call response body, typically deserialized from JSON into domain model objects
+    // that process is skipped for brevity
     _journalEntries = <BaseJournalEntry>[
+      // use Factory to create new model instances
       Factory.createJournalEntry(
         entryId: 1001,
         userId: 42,
@@ -62,3 +62,7 @@ class JournalEntryService extends ChangeNotifier {
 // TODO: add comments
 
 // Service Class
+
+// ListenableServiceMixin
+
+// Flutter MixIn
