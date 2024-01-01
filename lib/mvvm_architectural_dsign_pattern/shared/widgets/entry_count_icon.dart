@@ -28,6 +28,12 @@ class EntryCountIcon extends StatelessWidget {
   }
 }
 
-// TODO: add notes
+// ChangeNotifierProvider<T extends ChangeNotifier?>
 
-// ChangeNotifierProvider<JournalEntryService>.value
+//   - creates or reuses a ChangeNotifier depending on which constructor you use
+//   = there are two constructors:
+//       - 1: ChangeNotifierProvider() - (default constructor used to create a new instance of ChangeNotifier)
+//       - 2: ChangeNotifierProvider<T>.value - (named constructor used to provide an exisiting (instantiated) ChangeNotifier)
+//   - listen and expose a ChangeNotifier to decendant nodes (Widgets) in the Widget tree
+//   - decendant nodes (Widgets) dependent upon the ChangeNotifier exposed by the ancestor node (ChangeNotifierProvider)
+//     rebuild their U.I. with updated data when a notification event is emited by ChangeNotifier.notifyListeners
