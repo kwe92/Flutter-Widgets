@@ -1,8 +1,6 @@
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/journal_entry.dart';
 
-// TODO: add UpdatedEntry
-
 class Factory {
   const Factory._();
 
@@ -31,6 +29,16 @@ class Factory {
     );
   }
 }
-// TODO: add notes for Factory Methods and Dependency Injection from Dart Foundation and Notes
-// You can't define factory or static methods within an abstraction (interface / abstract base class)
-// Therefore a Factory Class is required to handle instantiation (creation of objects) and inject dependencies 
+
+// Factory Method Pattern (Creational Design Pattern) | static Class That Creates Objects
+
+//   - also referred to as the Virtual Constructor Pattern
+//   - one of the most widely used creational design patterns
+//   - used to create objects via a static Factory class
+//   - the Factory class implements static methods containing creation logic, where objects are created at compile time
+//   - Factory class methods create and return objects adhering to abstraction contracts (i.e. the return type of a Factory static method is an interface or abstract class)
+//   - Factory method implementations conceal creation logic away from clients
+//   - adds flexibility to object creation architecture without adding too much complexity
+//   - you can't define static method signatures within an abstraction (interface / abstract base class)
+//     therefore a static Factory Class is required to handle instantiation (creation of objects)
+//   - contains concrete dependancies adhering to abstract dependiecies
