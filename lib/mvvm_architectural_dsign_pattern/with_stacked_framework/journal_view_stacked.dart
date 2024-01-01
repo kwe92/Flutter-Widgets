@@ -48,10 +48,8 @@ class JournalEntryViewStacked extends StatelessWidget {
   }
 }
 
-// TODO: add comments
-
-// ViewModelBuilder<T>.reactive
 
 // ViewModelBuilder
 
-//   - has additional benefits not included withih a ChangeNotifierProvider to reduce the amount of boiler plate code needed
+//   - has additional benefits not included withih a ChangeNotifierProvider
+//     to reduce the amount of boiler plate code needed
