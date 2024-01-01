@@ -59,10 +59,36 @@ class JournalEntryService extends ChangeNotifier with ListenableServiceMixin {
   }
 }
 
-// TODO: add comments
+// ChangeNotifier
+
+//   - can be extended or mixed in to provide a change notification event API
+//   - used to notify clients that a value has changed so they should rebuild or update
+//   - can be used to implement a M-V-VM architectural design pattern as it required a notification event API implementation of some sort
 
 // Service Class
 
+//   - "Create a service and call it in your ViewModel"
+//   - Remove business logic (actual work) from your ViewModel so it can focus only on
+//     managing the state for the View
+//   - Work (business logic) like:
+//       - making API and Database calls
+//       - Deserializing data
+//       - Checking responses for errors
+//       - Model Creation
+//       - Orchestration between multiple services
+
+// Benefits of Services
+
+//   - Separarion of Concerns / Single responsibility
+//   - More Testable
+//   - D.R.Y code
+//   - Code Readability
+
 // ListenableServiceMixin
 
+//   - makes services listenable within the ViewModels that use them
+
 // Flutter MixIn
+
+//   - defined code that can be reused in multiple class hierarchies
+//   - adds extra functionality to classes as you can only inherit (extend) from one class in dart as a time
