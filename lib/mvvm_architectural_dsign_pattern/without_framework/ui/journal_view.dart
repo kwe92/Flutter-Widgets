@@ -54,19 +54,11 @@ class JournalEntryView extends StatelessWidget {
   }
 }
 
-// TODO: review and add comments
-
 // View Class (M-V-VM: Model-View-ViewModel Architectural Design Pattern)
 
 //   - Defines the structure, appearance and layout of your applications U.I.
 //   - View Classes should be immutable where possible and react (rebuild parts but not all of their U.I.)
-//     to state changes in the ViewModel
-//   - The View reacts to changes in the ViewModel by listening to notification events (notifyListeners)
-//     triggered by the ViewModel
-//   - The View observes ViewModel properties that change in response to user interaction or asynchronous method calls
+//     to state changes in the ViewModel by listening to notification events (notifyListeners)
+//   - The View observes mutable ViewModel properties that change in response to user interaction or asynchronous (concurrent) method calls
 //     like pre-caching images or retrieving data from an API.
-//   - The View should not contain business logic and its components should be enabled, disabled, and mutated based on observed ViewModel properties
-
-// ChangeNotifierProvider
-
-// Builder Widget
+//   - The View should not contain business logic and its components (Widgets) should be enabled, disabled, and mutated based on observed ViewModel properties
