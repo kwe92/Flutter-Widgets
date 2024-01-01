@@ -37,4 +37,4 @@ class JournalEntry extends BaseJournalEntry {
 //   - The Model Class also serves as a DTO (Data Transfer Object) facilitating communication between API's and your application
 //   - The communication mechanism consists mainly of marshaling (serialization) and unmarshaling (deserialization, can be handed off to a Factory Class) of the domain
 //     model to and from JSON respectively
-//   - Model Classes are typicall immutable
+//   - Model Classes are typically immutable where possible
