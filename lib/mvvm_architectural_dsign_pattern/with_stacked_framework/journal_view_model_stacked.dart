@@ -27,13 +27,13 @@ class JournalEntryViewModelStacked extends ReactiveViewModel {
 //   - calls setBusy before and after an asynchronous (concurrent) method call
 //     for brevity of busy state management
 
+// ReactiveViewModel
+
+//   - a BaseViewModel that can listen to changes of a service that
+//     uses ListenableServiceMixin as a mixin
 
 // listenableServices
 
 //   - must be overriden to polymorphically declare what services
 //     a ReactiveViewModel wants to listen to
 
-// ReactiveViewModel
-
-//   - a BaseViewModel that can listen to changes of a service that
-//     uses ListenableServiceMixin as a mixin

@@ -14,4 +14,14 @@ class ExtendedChangeNotifier extends ChangeNotifier {
     _isLoading = isBusy;
     notifyListeners();
   }
+
+  Future<T> runBusyFuture<T>(Future<T> bustFuture) async {
+    setIsLoading(true);
+    T futureValue = await () async {
+      return await bustFuture;
+    }();
+    setIsLoading(false);
+
+    return futureValue;
+  }
 }

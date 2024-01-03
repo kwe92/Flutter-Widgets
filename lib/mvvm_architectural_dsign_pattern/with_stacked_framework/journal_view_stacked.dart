@@ -51,5 +51,8 @@ class JournalEntryViewStacked extends StatelessWidget {
 
 // ViewModelBuilder
 
+//   - Provides a ViewModel (ChangeNoitifier) to decendents and fires builder
+//     when ViewModel.notifyListeners is called 
+
 //   - has additional benefits not included withih a ChangeNotifierProvider
 //     to reduce the amount of boiler plate code needed

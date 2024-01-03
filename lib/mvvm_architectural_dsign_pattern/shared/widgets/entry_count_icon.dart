@@ -10,18 +10,22 @@ class EntryCountIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<JournalEntryService>.value(
       value: journalEntryService,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.book_online_outlined),
-          const SizedBox(
-            width: 6,
-          ),
-          // TODO: ensure U.I. rebuilds when an entry is removed
-          Text(context.watch<JournalEntryService>().journalEntries.length.toString()),
-        ],
-      ),
+      builder: (BuildContext context, _) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.book_online_outlined),
+            const SizedBox(
+              width: 6,
+            ),
+            Text(
+              context.watch<JournalEntryService>().journalEntries.length.toString(),
+            ),
+          ],
+        );
+      },
 
+      // Example using Consumer instead of extension method context.watch
       // Consumer<JournalEntryService>(
       //   builder: (BuildContext context, JournalEntryService journalEntryService, _) {
       //     return Row(

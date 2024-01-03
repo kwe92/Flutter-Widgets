@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/extended_change_notifier.dart';
+import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/extended_change_notifier.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/services.dart';
 
 class JournalEntryViewModel extends ExtendedChangeNotifier {
@@ -17,15 +17,10 @@ class JournalEntryViewModel extends ExtendedChangeNotifier {
   }
 
   Future<void> _initialize() async {
-    // set loading state to true notifying the View that the ViewModel is not ready.
-    setIsLoading(true);
-
-    // call service to retrieve all entries from API asynchronously
-    await journalEntryService.fakeApiCallToGetAllEntries();
+    // set busy state to true and call service to retrieve all entries from API asynchronously then set busy state to false
+    await runBusyFuture(journalEntryService.fakeApiCallToGetAllEntries());
 
     _journalEntries = journalEntryService.journalEntries;
-    // set loading state to false notifying the View that the ViewModel is ready to be consumed.
-    setIsLoading(false);
   }
 }
 
