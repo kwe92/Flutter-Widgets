@@ -7,4 +7,4 @@ JournalEntryService get journalEntryService {
   return locator.get<JournalEntryService>();
 }
 
-// using getter computed method to make service global variables immutable
+// using getter method computed variables to make service global variables immutable
