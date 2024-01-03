@@ -5,11 +5,11 @@ import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/b
 /// Represents the Domain Model and DTO (Data Transfer Object) for journal entries.
 class JournalEntry extends BaseJournalEntry {
   const JournalEntry({
-    super.entryId,
-    super.userId,
-    super.content,
-    super.createdAt,
-    super.updatedAt,
+    required super.entryId,
+    required super.userId,
+    required super.content,
+    required super.createdAt,
+    required super.updatedAt,
   });
 
   @override
@@ -35,6 +35,6 @@ class JournalEntry extends BaseJournalEntry {
 
 //   - Represents the Domain Model that encapsulates your applications data, part of Domain Driven Design
 //   - The Model Class also serves as a DTO (Data Transfer Object) facilitating communication between API's and your application
-//   - The communication mechanism consists mainly of marshaling (serialization) and unmarshaling (deserialization, can be handed off to a Factory Class) of the domain
-//     model to and from JSON respectively
+//   - The communication mechanism consists mainly of marshaling (serialization) and unmarshaling (deserialization, can be handed off to a Factory Class)
+//     of the domain model to and from JSON respectively
 //   - Model Classes are typically immutable where possible
