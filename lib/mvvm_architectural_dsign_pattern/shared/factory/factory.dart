@@ -21,15 +21,13 @@ class Factory {
         updatedAt: updatedAt,
       );
 
-  static BaseJournalEntry createJournalEntryFromMap(Map<String, dynamic> map) {
-    return JournalEntry(
-      entryId: map['entry_id'],
-      userId: map['user_id'],
-      content: map['content'],
-      createdAt: map['created_at'],
-      updatedAt: map['updated_at'],
-    );
-  }
+  static BaseJournalEntry createJournalEntryFromMap(Map<String, dynamic> map) => JournalEntry(
+        entryId: map['entry_id'],
+        userId: map['user_id'],
+        content: map['content'],
+        createdAt: map['created_at'],
+        updatedAt: map['updated_at'],
+      );
 }
 
 // Factory Method Pattern (Creational Design Pattern) | static Class That Creates Objects
@@ -45,4 +43,4 @@ class Factory {
 //   - adds flexibility to object creation architecture without adding too much complexity
 //   - you can't define static method signatures within an abstraction (interface / abstract base class)
 //     therefore a static Factory Class is required to handle instantiation (creation of objects)
-//   - contains concrete dependancies adhering to abstract contracts
+//   - contains concrete dependancies adhering to abstract contracts (interface or abstract class)

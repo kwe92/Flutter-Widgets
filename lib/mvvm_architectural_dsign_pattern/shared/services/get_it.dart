@@ -6,9 +6,7 @@ import 'package:get_it/get_it.dart';
 final GetIt locator = GetIt.I;
 
 /// register global services (dependencies) used throughout your application.
-void configureDependencies() {
-  locator.registerLazySingleton(() => JournalEntryService());
-}
+void configureDependencies() => locator.registerLazySingleton(() => JournalEntryService());
 
 // Why Use Services and a Service Locator?
 

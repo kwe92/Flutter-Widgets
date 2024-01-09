@@ -7,11 +7,9 @@ class EntryCountIcon extends StatelessWidget {
   const EntryCountIcon({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<JournalEntryService>.value(
-      value: journalEntryService,
-      builder: (BuildContext context, _) {
-        return Row(
+  Widget build(BuildContext context) => ChangeNotifierProvider<JournalEntryService>.value(
+        value: journalEntryService,
+        builder: (BuildContext context, _) => Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.book_online_outlined),
@@ -22,26 +20,24 @@ class EntryCountIcon extends StatelessWidget {
               context.watch<JournalEntryService>().journalEntries.length.toString(),
             ),
           ],
-        );
-      },
+        ),
 
-      // Example using Consumer instead of extension method context.watch
-      // Consumer<JournalEntryService>(
-      //   builder: (BuildContext context, JournalEntryService journalEntryService, _) {
-      //     return Row(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         const Icon(Icons.book_online_outlined),
-      //         const SizedBox(
-      //           width: 6,
-      //         ),
-      //         Text(journalEntryService.journalEntries.length.toString()),
-      //       ],
-      //     );
-      //   },
-      // ),
-    );
-  }
+        // Example using Consumer instead of extension method context.watch
+        // Consumer<JournalEntryService>(
+        //   builder: (BuildContext context, JournalEntryService journalEntryService, _) {
+        //     return Row(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //         const Icon(Icons.book_online_outlined),
+        //         const SizedBox(
+        //           width: 6,
+        //         ),
+        //         Text(journalEntryService.journalEntries.length.toString()),
+        //       ],
+        //     );
+        //   },
+        // ),
+      );
 }
 
 // ChangeNotifierProvider<T extends ChangeNotifier?>

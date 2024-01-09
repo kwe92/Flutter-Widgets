@@ -3,8 +3,5 @@ import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services
 
 // module responsible for retrieving or creating an instance of a registered global dependency
 
-JournalEntryService get journalEntryService {
-  return locator.get<JournalEntryService>();
-}
-
+JournalEntryService get journalEntryService => locator.get<JournalEntryService>();
 // using getter method computed variables to make service global variables immutable
