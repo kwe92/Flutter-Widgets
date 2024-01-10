@@ -11,6 +11,8 @@ class FlutterAppBadgerService with ListenableServiceMixin {
   String get appBadgeSupported => _appBadgeSupported;
 
   Future<void> initPlatformState(bool isMounted) async {
+    String appBadgeSupport;
+
     debugPrint('initPlatformState called');
     debugPrint('isMounted $isMounted');
 
@@ -20,18 +22,20 @@ class FlutterAppBadgerService with ListenableServiceMixin {
       debugPrint('res $res');
 
       if (res) {
-        _appBadgeSupported = 'Supported';
+        appBadgeSupport = 'Supported';
       } else {
-        _appBadgeSupported = 'Not supported';
+        appBadgeSupport = 'Not supported';
       }
     } on PlatformException {
-      _appBadgeSupported = 'Failed to get badge support.';
+      appBadgeSupport = 'Failed to get badge support.';
     }
 
     // If widget removed from widget tree while asynchronous platform
     // message in flight, discard reply rather than calling
     // update a non-existent appearance.
     if (!isMounted) return;
+
+    _appBadgeSupported = appBadgeSupport;
 
     notifyListeners();
   }
