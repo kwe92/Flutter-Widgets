@@ -97,12 +97,12 @@ import 'package:provider/provider.dart';
 //
 // nl
 
-// void main() {
-//   configureDependencies();
-//   runApp(
-//     const MyApp(),
-//   );
-// }
+void main() {
+  configureDependencies();
+  runApp(
+    const MyApp(),
+  );
+}
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
@@ -117,26 +117,24 @@ import 'package:provider/provider.dart';
 
 //! PORTAL EXAMPLE
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Portal(
-//       child: MaterialApp(
-//         home: TextFieldWithModalView(),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) => Portal(
+        child: MaterialApp(
+          home: TextFieldWithModalView(),
+        ),
+      );
+}
 //! PORTAL EXAMPLE
 
-void main() => runApp(MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SelectListItemOnTapView(),
-    ));
+// void main() => runApp(MaterialApp(
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const SelectListItemOnTapView(),
+//     ));
 
 // void main() => runApp(
 //       ChangeNotifierProvider(
