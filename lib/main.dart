@@ -28,11 +28,15 @@ import 'package:flutter_widgets/Widgets/switch/switch_widget_view_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:flutter_widgets/examples/colorSelectedListItem/color_Selected_ListItem_view.dart';
+import 'package:flutter_widgets/flutterAppBadger/flutter_app_badger_view.dart';
+import 'package:flutter_widgets/flutterAppBadger/services/get_it.dart';
+import 'package:flutter_widgets/flutterAppBadger/services/services.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/get_it.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/with_stacked_framework/journal_view_stacked.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 // import 'package:flutter_widgets/Widgets/colored_box_widget.dart';
 // import 'package:flutter_widgets/Widgets/countdown_timer.dart';
 // import 'package:flutter_widgets/Widgets/reusable_modal/modal_widget.dart';
@@ -98,35 +102,134 @@ import 'package:provider/provider.dart';
 // nl
 
 void main() {
-  configureDependencies();
+  // configureDependencies();
+  configureFlutterBadgerDependency();
   runApp(
     const MyApp(),
   );
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       home: JournalEntryViewStacked(),
-//     );
-//   }
-// }
-
-//! PORTAL EXAMPLE
+//? flutter_app_badger
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => Portal(
-        child: MaterialApp(
-          home: TextFieldWithModalView(),
-        ),
-      );
+  Widget build(BuildContext context) {
+    flutterAppBadgerService.initPlatformState(context.mounted);
+
+    return const MaterialApp(
+      home: FlutterAppBadgerView(),
+    );
+  }
 }
+
+// class MyApp extends StatefulWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   String _appBadgeSupported = 'Unknown';
+
+//   @override
+//   initState() {
+//     super.initState();
+//     initPlatformState();
+//   }
+
+//   initPlatformState() async {
+//     String appBadgeSupported;
+//     try {
+//       bool res = await FlutterAppBadger.isAppBadgeSupported();
+//       if (res) {
+//         appBadgeSupported = 'Supported';
+//       } else {
+//         appBadgeSupported = 'Not supported';
+//       }
+//     } on PlatformException {
+//       appBadgeSupported = 'Failed to get badge support.';
+//     }
+
+//     // If the widget was removed from the tree while the asynchronous platform
+//     // message was in flight, we want to discard the reply rather than calling
+//     // setState to update our non-existent appearance.
+//     if (!mounted) return;
+
+//     setState(() {
+//       _appBadgeSupported = appBadgeSupported;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: const Text('Plugin example app'),
+//         ),
+//         body: SizedBox.expand(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: <Widget>[
+//               Text('Badge supported: $_appBadgeSupported\n'),
+//               ElevatedButton(
+//                 child: const Text('Add badge'),
+//                 onPressed: () {
+//                   _addBadge();
+//                 },
+//               ),
+//               ElevatedButton(
+//                   child: const Text('Remove badge'),
+//                   onPressed: () {
+//                     _removeBadge();
+//                   }),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   void _addBadge() {
+//     FlutterAppBadger.updateBadgeCount(1);
+//   }
+
+//   void _removeBadge() {
+//     FlutterAppBadger.removeBadge();
+//   }
+// }
+
+
+//? flutter_app_badger end
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) => const MaterialApp(
+//         home: JournalEntryViewStacked(),
+//       );
+// }
+
+
+
+
+//! PORTAL EXAMPLE
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) => Portal(
+//         child: MaterialApp(
+//           home: TextFieldWithModalView(),
+//         ),
+//       );
+// }
 //! PORTAL EXAMPLE
 
 // void main() => runApp(MaterialApp(
