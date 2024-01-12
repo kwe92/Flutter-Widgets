@@ -15,10 +15,10 @@ class FlutterAppBadgerViewModel extends ReactiveViewModel {
 
   void addBadge() {
     //? increment example
-    _count += 1;
+    // _count += 1;
 
     //? hard coded example
-    // _count = 4892;
+    _count = 4892;
 
     flutterAppBadgerService.addBadge(_count);
     notifyListeners();

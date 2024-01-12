@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 
 class FlutterAppBadgerService with ListenableServiceMixin {
   FlutterAppBadgerService();
-
+// TODO: make boolean
   String _appBadgeSupported = 'Unknown';
 
   String get appBadgeSupported => _appBadgeSupported;
