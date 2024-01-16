@@ -31,6 +31,7 @@ import 'package:flutter_widgets/examples/colorSelectedListItem/color_Selected_Li
 import 'package:flutter_widgets/flutterAppBadger/flutter_app_badger_view.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/get_it.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/services.dart';
+import 'package:flutter_widgets/listViewSearchBar/searchable_list_view.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/get_it.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/with_stacked_framework/journal_view_stacked.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view.dart';
@@ -109,100 +110,38 @@ void main() {
   );
 }
 
-//? flutter_app_badger
-
+//? searchable list view start
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    flutterAppBadgerService.initPlatformState(context.mounted);
-
-    return const MaterialApp(
-      home: FlutterAppBadgerView(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(
+          colorScheme: ColorScheme.light(
+            surface: Colors.blue.withOpacity(0.50),
+          ),
+        ),
+        home: SearchableListView(),
+      );
 }
 
-// class MyApp extends StatefulWidget {
+
+//? searchable list view end
+
+//? flutter_app_badger
+
+// class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
 
 //   @override
-//   _MyAppState createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   String _appBadgeSupported = 'Unknown';
-
-//   @override
-//   initState() {
-//     super.initState();
-//     initPlatformState();
-//   }
-
-//   initPlatformState() async {
-//     String appBadgeSupported;
-//     try {
-//       bool res = await FlutterAppBadger.isAppBadgeSupported();
-//       if (res) {
-//         appBadgeSupported = 'Supported';
-//       } else {
-//         appBadgeSupported = 'Not supported';
-//       }
-//     } on PlatformException {
-//       appBadgeSupported = 'Failed to get badge support.';
-//     }
-
-//     // If the widget was removed from the tree while the asynchronous platform
-//     // message was in flight, we want to discard the reply rather than calling
-//     // setState to update our non-existent appearance.
-//     if (!mounted) return;
-
-//     setState(() {
-//       _appBadgeSupported = appBadgeSupported;
-//     });
-//   }
-
-//   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Plugin example app'),
-//         ),
-//         body: SizedBox.expand(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: <Widget>[
-//               Text('Badge supported: $_appBadgeSupported\n'),
-//               ElevatedButton(
-//                 child: const Text('Add badge'),
-//                 onPressed: () {
-//                   _addBadge();
-//                 },
-//               ),
-//               ElevatedButton(
-//                   child: const Text('Remove badge'),
-//                   onPressed: () {
-//                     _removeBadge();
-//                   }),
-//             ],
-//           ),
-//         ),
-//       ),
+//     flutterAppBadgerService.initPlatformState(context.mounted);
+
+//     return const MaterialApp(
+//       home: FlutterAppBadgerView(),
 //     );
 //   }
-
-//   void _addBadge() {
-//     FlutterAppBadger.updateBadgeCount(1);
-//   }
-
-//   void _removeBadge() {
-//     FlutterAppBadger.removeBadge();
-//   }
 // }
-
 
 //? flutter_app_badger end
 
