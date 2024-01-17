@@ -31,7 +31,9 @@ import 'package:flutter_widgets/examples/colorSelectedListItem/color_Selected_Li
 import 'package:flutter_widgets/flutterAppBadger/flutter_app_badger_view.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/get_it.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/services.dart';
-import 'package:flutter_widgets/listViewSearchBar/searchable_list_view.dart';
+import 'package:flutter_widgets/listViewSearchBar/services/item_locator.dart';
+import 'package:flutter_widgets/listViewSearchBar/theme/theme.dart';
+import 'package:flutter_widgets/listViewSearchBar/ui/searchable_list_view.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/services/get_it.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/with_stacked_framework/journal_view_stacked.dart';
 import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/without_framework/ui/journal_view.dart';
@@ -104,7 +106,8 @@ import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 void main() {
   // configureDependencies();
-  configureFlutterBadgerDependency();
+  // configureFlutterBadgerDependency();
+  configureItemService();
   runApp(
     const MyApp(),
   );
@@ -116,11 +119,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        theme: ThemeData(
-          colorScheme: ColorScheme.light(
-            surface: Colors.blue.withOpacity(0.50),
-          ),
-        ),
+        theme: AppTheme.getTheme(),
         home: SearchableListView(),
       );
 }
