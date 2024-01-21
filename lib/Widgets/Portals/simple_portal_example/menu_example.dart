@@ -94,7 +94,7 @@ class _MenuExampleState extends State<MenuExample> {
 //   - Follower widgets will behave like they are children of the Portal widget you inserted
 //   - There only needs to be one portal widget for the entire app
 //   - inserting a single Portal allows your entire app to have Followers (floating widgets) connected to Targets (widget that would be nn the normal widget tree)
-//   - used to show content above some other content (not in the literal since, the content can be positioned to the side or bellow)
+//   - used to show content above some other content (not in the literal since, the content can be positioned to the side or below)
 //   - if a Portal is inserted at the top of your Widget tree the PortalTarget can persist above all routes (like a snackBar that is shown even when the initiating route is poped off of the stack)
 //   - similar to how you should wrap your entire app with a Provider for change notifiers
 
