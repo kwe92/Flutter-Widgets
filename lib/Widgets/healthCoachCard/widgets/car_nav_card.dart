@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/Widgets/healthCoachCard/choose_health_coach_view_model.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/model/care_navigator.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/reusables/reusables.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/theme/colors.dart';
@@ -6,10 +7,13 @@ import 'package:flutter_widgets/Widgets/healthCoachCard/theme/text_styles.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/utils/helper_functions.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/widgets/centered_text.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/widgets/selectable_button.dart';
+import 'package:gap/gap.dart';
+import 'package:stacked/stacked.dart';
 
 class CareNavigatorCard extends StatelessWidget {
   final CareNavigator careNavigator;
   final Function? onPressed;
+  final VoidCallback? onReadPressed;
   final bool fullDescription;
   final bool showFooter;
   final bool selected;
@@ -19,6 +23,7 @@ class CareNavigatorCard extends StatelessWidget {
     super.key,
     required this.careNavigator,
     this.onPressed,
+    this.onReadPressed,
     this.fullDescription = false,
     this.showFooter = true,
     this.selected = false,
@@ -31,13 +36,19 @@ class CareNavigatorCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CardHeader(careNavigator: careNavigator),
+          CardHeader(
+            careNavigator: careNavigator,
+          ),
           if (showBio) ...[
-            gap18,
+            gap16,
             SizedBox(
-              // TODO: make dynamic instead? | quite large, was originally 70 | size doesnt affect other views
-              height: 136,
-              child: CardBody(careNavigator: careNavigator, fullDescription: fullDescription),
+              //!! Unconstrained height looks far better than having a minimum height | get opinion of others | was originally 70
+              // height: 136,
+              child: CardBody(
+                careNavigator: careNavigator,
+                fullDescription: fullDescription,
+                onPressed: onReadPressed,
+              ),
             ),
             gap12
           ],
@@ -117,21 +128,22 @@ class CardHeader extends StatelessWidget {
       );
 }
 
-class CardBody extends StatelessWidget {
+class CardBody extends ViewModelWidget<ChooseCareNavigatorViewModel> {
   final CareNavigator careNavigator;
   final bool fullDescription;
-
+  final VoidCallback? onPressed;
   const CardBody({
     required this.careNavigator,
     required this.fullDescription,
+    required this.onPressed,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context, ChooseCareNavigatorViewModel viewModel) => Column(
         children: [
           CenteredText(
-            maxCharacterLengthCutOff(careNavigator.bio ?? '', 144),
+            !fullDescription ? maxCharacterLengthCutOff(careNavigator.bio ?? '', 144) : careNavigator.bio ?? '',
             style: textStyleBlueBody1.copyWith(
               color: CareNavigationColors.tpDarkBlue,
               fontSize: 16,
@@ -150,22 +162,20 @@ class CardBody extends StatelessWidget {
               ),
               gap8,
               GestureDetector(
-                onTap: () {
-                  // !! TODO: implement callback or pass onPressed callback
-                },
+                onTap: onPressed,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Read More',
+                      !fullDescription ? 'Read More' : 'Close',
                       style: fifteen700.copyWith(
                         color: CareNavigationColors.tpBrightBlue,
                       ),
                     ),
-                    gap8,
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16,
+                    const Gap(2),
+                    Icon(
+                      !fullDescription ? Icons.keyboard_arrow_right : Icons.keyboard_arrow_up,
+                      size: 24,
                       color: CareNavigationColors.tpBrightBlue,
                     ),
                   ],
@@ -198,3 +208,68 @@ class CardFooter extends StatelessWidget {
         ),
       );
 }
+
+// class ExpandedSection extends StatefulWidget {
+//   final Widget child;
+//   final bool expand;
+//   ExpandedSection({this.expand = false, required this.child});
+
+//   @override
+//   _ExpandedSectionState createState() => _ExpandedSectionState();
+// }
+
+// class _ExpandedSectionState extends State<ExpandedSection> with SingleTickerProviderStateMixin {
+//   late AnimationController expandController;
+//   late Animation<double> animation;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     prepareAnimations();
+//     _runExpandCheck();
+//   }
+
+//   ///Setting up the animation
+//   void prepareAnimations() {
+//     expandController =
+//         AnimationController(vsync: this, duration: Duration(milliseconds: 500), reverseDuration: Duration(seconds: 2, milliseconds: 500));
+//     animation = CurvedAnimation(
+//       parent: expandController,
+//       curve: Curves.fastOutSlowIn,
+//     );
+//   }
+
+//   void _runExpandCheck() {
+//     if (widget.expand) {
+//       expandController.forward();
+//     } else {
+//       expandController.reverse();
+//     }
+//   }
+
+//   @override
+//   void didUpdateWidget(ExpandedSection oldWidget) {
+//     super.didUpdateWidget(oldWidget);
+//     _runExpandCheck();
+//   }
+
+//   @override
+//   void dispose() {
+//     expandController.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return ConstrainedBox(
+//       constraints: BoxConstraints(minHeight: 120),
+//       // height: !widget.expand ? 120 : null,
+//       // color: Colors.purple,
+//       child: SizeTransition(
+//         axisAlignment: 1.0,
+//         sizeFactor: animation,
+//         child: widget.child,
+//       ),
+//     );
+//   }
+// }
