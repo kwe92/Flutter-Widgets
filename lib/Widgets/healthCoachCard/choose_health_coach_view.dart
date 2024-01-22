@@ -9,8 +9,10 @@ import 'package:flutter_widgets/Widgets/healthCoachCard/widgets/flat_card.dart';
 import 'package:flutter_widgets/Widgets/healthCoachCard/widgets/secondary_app_bar.dart';
 import 'package:stacked/stacked.dart';
 
+// ?? Done
+
 class ChooseCareNavigatorView extends StatelessWidget {
-  ChooseCareNavigatorView({super.key});
+  const ChooseCareNavigatorView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,59 +48,39 @@ class ChooseCareNavigatorView extends StatelessWidget {
                   ),
                   if (!model.isBusy)
                     ListView.builder(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemCount: model.carNavs.length,
-                        itemBuilder: (context, index) {
-                          //!! used to jump to widget not jumping properly
-                          final dataKey = GlobalKey();
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      itemCount: model.carNavs.length,
+                      itemBuilder: (context, index) {
+                        // !! used to jump to widget not jumping properly
+                        final dataKey = GlobalKey();
 
-                          return Padding(
-                            padding: paddingV16,
-                            child: FlatCard(
-                              padding: 12,
-                              borderRadius: circular16,
-                              borderColor: CareNavigationColors.grayAccent,
-                              child: CareNavigatorCard(
-                                //!! used to jump to widget not jumping properly
-                                // key: dataKey,
-                                careNavigator: model.carNavs[index],
-                                fullDescription: model.currentIndex == index ? true : false,
-                                onReadPressed: () {
-                                  model.setCurrentIndex(index);
-                                  //!! used to jump to widget not jumping properly
+                        return Padding(
+                          padding: paddingV16,
+                          child: FlatCard(
+                            padding: 12,
+                            borderRadius: circular16,
+                            borderColor: CareNavigationColors.grayAccent,
+                            child: CareNavigatorCard(
+                              // !! used to jump to widget not jumping properly
+                              // key: dataKey,
+                              careNavigator: model.carNavs[index],
+                              fullDescription: model.currentIndex == index ? true : false,
+                              onReadPressed: () {
+                                model.setCurrentIndex(index);
+                                // !! used to jump to widget not jumping properly
 
-                                  // Scrollable.ensureVisible(dataKey.currentContext!);
-                                },
-                                onPressed: () async {
-                                  model.resetAllIndices();
-                                  // !! TODO: implement navigation to health coach view
-                                },
-                              ),
+                                // Scrollable.ensureVisible(dataKey.currentContext!);
+                              },
+                              onPressed: () async {
+                                model.resetAllIndices();
+                                // !! TODO: implement navigation to health coach view
+                              },
                             ),
-                          );
-                        })
-                  // ListView(
-                  // shrinkWrap: true,
-                  // physics: const ClampingScrollPhysics(),
-                  //   children: [
-                  //     ...model.data!.map(
-                  //       (careNavigator) => Padding(
-                  //         padding: paddingV16,
-                  //         child: FlatCard(
-                  //           padding: 12,
-                  //           borderRadius: circular16,
-                  //           borderColor: CareNavigationColors.grayAccent,
-                  //           child: CareNavigatorCard(
-                  //             careNavigator: careNavigator,
-                  //             onPressed: () {},
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // )
-                  ,
+                          ),
+                        );
+                      },
+                    ),
                   if (model.isBusy)
                     const Padding(
                       padding: EdgeInsets.all(48),

@@ -10,6 +10,8 @@ import 'package:flutter_widgets/Widgets/healthCoachCard/widgets/selectable_butto
 import 'package:gap/gap.dart';
 import 'package:stacked/stacked.dart';
 
+// ?? DONE
+
 class CareNavigatorCard extends StatelessWidget {
   final CareNavigator careNavigator;
   final Function? onPressed;
@@ -42,7 +44,7 @@ class CareNavigatorCard extends StatelessWidget {
           if (showBio) ...[
             gap16,
             SizedBox(
-              //!! Unconstrained height looks far better than having a minimum height | get opinion of others | was originally 70
+              // !! Unconstrained height looks far better than having a minimum height | get opinion of others | was originally 70
               // height: 136,
               child: CardBody(
                 careNavigator: careNavigator,

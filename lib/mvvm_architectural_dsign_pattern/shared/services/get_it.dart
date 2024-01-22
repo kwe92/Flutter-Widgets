@@ -37,7 +37,7 @@ void configureDependencies() => locator.registerLazySingleton(() => JournalEntry
 //   2.a: implement a function to register services to GetIt.instance variable (`configureDependencies` is the choosen name I use for my register function)
 //   2.b: insure your dependency/service registration function is called within your startup code as high as possible
 //   3: access registered objects by calling locator.get<RegisteredConcreteImplementation>()
-//     - I prefer to access registered objects by using global getter method computed variables as shown bellow:
+//     - I prefer to access registered objects by using global getter method computed variables as shown below:
 
 // note: there should not be a leading unerscore, was placed there to not have duplicative global variable names
 JournalEntryService get _journalEntryService {

@@ -1,13 +1,14 @@
 import 'package:flutter_widgets/Widgets/healthCoachCard/model/care_navigator.dart';
 import 'package:stacked/stacked.dart';
 
+// ?? Done
 class ChooseCareNavigatorViewModel extends BaseViewModel {
   // !! add | add getter method
   List<CareNavigator> _carNavs = [];
   // !! add
   int _currentIndex = -1;
 
-  //!! maybe add
+  // !! maybe add
   List<int> _indexState = [];
 
 // !! add
@@ -40,9 +41,7 @@ class ChooseCareNavigatorViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool _closeButtonPressed() {
-    return _indexState[0] == _indexState[1];
-  }
+  bool _closeButtonPressed() => _indexState[0] == _indexState[1];
 
   // !! add
   Future<void> initialize() async {

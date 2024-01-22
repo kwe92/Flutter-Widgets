@@ -1,4 +1,4 @@
-// !! add
+// ?? DONE
 String maxCharacterLengthCutOff(
   String text,
   int maxLength, [
@@ -11,7 +11,6 @@ String maxCharacterLengthCutOff(
           }
         : text;
 
-// !! add
 enum CharacterLengthCutOffType {
   clip,
   ellipsis,
