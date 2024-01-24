@@ -1,11 +1,21 @@
-// Copyright 2019 Aleksander Woźniak
-// SPDX-License-Identifier: Apache-2.0
-
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/table_calendar/journal_date_view.dart';
+import 'package:flutter_widgets/Widgets/table_calendar/calendar_complex_example.dart';
+import 'package:flutter_widgets/Widgets/table_calendar/calendar_event_example_view.dart';
+
+// void main() {
+//   runApp(const MaterialApp(
+//     home: JournalDateView(),
+//   ));
+// }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: TableEventsExampleView(),
+//   ));
+// }
 
 void main() {
-  runApp(const MaterialApp(
-    home: JournalDateView(),
+  runApp(MaterialApp(
+    home: TableComplexExample(),
   ));
 }
