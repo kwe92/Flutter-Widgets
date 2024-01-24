@@ -21,12 +21,13 @@ class JournalDateView extends StatelessWidget {
                 itemCount: journalDateService.updatedDates.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () async => await AppNavigator.push(
-                      context,
-                      (context) => TableBasicsExample(
-                            firstDay: journalDateService.minDate,
-                            lastDay: journalDateService.maxDate,
-                            focusedDay: journalDateService.updatedDates[index],
-                          )),
+                    context,
+                    (context) => TableBasicsExampleView(
+                      firstDay: journalDateService.minDate,
+                      lastDay: journalDateService.maxDate,
+                      focusedDay: journalDateService.updatedDates[index],
+                    ),
+                  ),
                   child: Padding(
                     padding: EdgeInsets.only(bottom: index != journalDateService.updatedDates.length - 1 ? 12 : 0),
                     child: DateTile(updatedAt: journalDateService.updatedDates[index]),
