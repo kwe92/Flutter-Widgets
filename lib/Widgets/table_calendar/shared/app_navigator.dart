@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// !! COULD BE USED IN ANY APP!!
+
+// maybe write an article about?
+
 class AppNavigator {
   AppNavigator._();
 

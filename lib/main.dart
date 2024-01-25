@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/table_calendar/calendar_complex_example.dart';
-import 'package:flutter_widgets/Widgets/table_calendar/calendar_event_example_view.dart';
+import 'package:flutter_widgets/Widgets/table_calendar/complex_example/calendar_complex_example.dart';
+import 'package:flutter_widgets/Widgets/table_calendar/events_example/calendar_event_example_view.dart';
+import 'package:flutter_widgets/Widgets/table_calendar/journal_date_view.dart';
 
 // void main() {
 //   runApp(const MaterialApp(
@@ -8,14 +9,14 @@ import 'package:flutter_widgets/Widgets/table_calendar/calendar_event_example_vi
 //   ));
 // }
 
-// void main() {
-//   runApp(MaterialApp(
-//     home: TableEventsExampleView(),
-//   ));
-// }
-
 void main() {
-  runApp(MaterialApp(
-    home: TableComplexExample(),
+  runApp(const MaterialApp(
+    home: TableEventsExampleView(),
   ));
 }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: TableComplexExample(),
+//   ));
+// }

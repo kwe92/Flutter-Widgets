@@ -16,15 +16,15 @@ class JournalEntryService extends ChangeNotifier with ListenableServiceMixin {
     // represents data received from API call response body, typically deserialized from JSON into domain model objects
     // that process is skipped for brevity
     _journalEntries = <BaseJournalEntry>[
-      // use Factory to create new model instances
-      Factory.createJournalEntry(
+      // use AbstractFactory to create new model instances
+      AbstractFactory.createJournalEntry(
         entryId: 1001,
         userId: 42,
         content: 'Begin, to begin is half the work let half still remain. Again beginthis and thou wilt have finished.',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
-      Factory.createJournalEntry(
+      AbstractFactory.createJournalEntry(
         entryId: 1002,
         userId: 42,
         content:
@@ -32,21 +32,21 @@ class JournalEntryService extends ChangeNotifier with ListenableServiceMixin {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
-      Factory.createJournalEntry(
+      AbstractFactory.createJournalEntry(
         entryId: 1003,
         userId: 42,
         content: 'You are a light on a hill that can not be hid.',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
-      Factory.createJournalEntry(
+      AbstractFactory.createJournalEntry(
         entryId: 1005,
         userId: 42,
         content: 'Emptiness is calmness, calmness is emptiness.',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
-      Factory.createJournalEntry(
+      AbstractFactory.createJournalEntry(
         entryId: 1005,
         userId: 42,
         content: 'all is opinion.',

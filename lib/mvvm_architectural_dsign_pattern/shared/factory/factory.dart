@@ -3,8 +3,8 @@ import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/j
 
 /// Responsible for the creation (instantiation) of all consumed
 /// concrete class implementations for both high level and low level modules
-class Factory {
-  const Factory._();
+class AbstractFactory {
+  const AbstractFactory._();
 
   static BaseJournalEntry createJournalEntry({
     int? entryId,
