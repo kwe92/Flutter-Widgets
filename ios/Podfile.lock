@@ -793,12 +793,17 @@ PODS:
   - nanopb/encode (2.30909.1)
   - native_device_orientation (0.0.1):
     - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - Plaid (4.7.0)
   - plaid_flutter (0.0.1):
     - Flutter
     - Plaid (= 4.7.0)
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
+  - share_plus (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
@@ -811,7 +816,9 @@ DEPENDENCIES:
   - flutter_app_badger (from `.symlinks/plugins/flutter_app_badger/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - plaid_flutter (from `.symlinks/plugins/plaid_flutter/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
 
 SPEC REPOS:
   trunk:
@@ -858,8 +865,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   native_device_orientation:
     :path: ".symlinks/plugins/native_device_orientation/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   plaid_flutter:
     :path: ".symlinks/plugins/plaid_flutter/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
@@ -890,10 +901,12 @@ SPEC CHECKSUMS:
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   native_device_orientation: 3b4cfc9565a7b879cc4fde282b3e27745e852d0d
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   Plaid: 431ef9be5314a1345efb451bc5e6b067bfb3b4c6
   plaid_flutter: f3fc2f181857ac4b180a704ef5633aaeeb5ba6a6
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
