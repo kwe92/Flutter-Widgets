@@ -15,7 +15,7 @@ class LikedQuotesView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xff131b24),
-      appBar: !(model.likedQuotes.isNotEmpty)
+      appBar: model.likedQuotes.isNotEmpty
           ? AppBar(
               scrolledUnderElevation: 0.0,
               backgroundColor: const Color(0xff131b24),
@@ -31,7 +31,7 @@ class LikedQuotesView extends StatelessWidget {
               ),
             )
           : null,
-      body: model.likedQuotes.isNotEmpty
+      body: model.likedQuotes.isEmpty
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

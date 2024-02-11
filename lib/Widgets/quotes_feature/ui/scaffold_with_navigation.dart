@@ -44,16 +44,16 @@ class ScaffoldWithNavigation extends StatelessWidget {
                 backgroundColor: const Color(0xff131b24),
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
+                    icon: Icon(Icons.book_online_rounded),
+                    label: 'Journal',
+                  ),
+                  BottomNavigationBarItem(
                     icon: Icon(Icons.article_outlined),
                     label: 'Quotes',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.favorite_outline),
                     label: 'Liked',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.book_online_rounded),
-                    label: 'Journal',
                   ),
                 ],
                 currentIndex: model.selectedIndex,

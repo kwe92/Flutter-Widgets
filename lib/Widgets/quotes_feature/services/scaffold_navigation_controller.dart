@@ -9,9 +9,9 @@ class ScaffoldNavigationController extends ChangeNotifier {
   int get selectedIndex => _selectedIndex;
 
   List<Widget> widgetOptions = <Widget>[
+    const JournalEntryView(),
     const QuotesView(),
     const LikedQuotesView(),
-    const JournalEntryView(),
   ];
 
   void onItemTapped(int index) {
