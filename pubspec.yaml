@@ -61,6 +61,7 @@ dependencies:
   table_calendar: ^3.0.9
   intl: ^0.18.1
   share_plus: ^7.2.2
+  entry: ^0.0.9
 
 dev_dependencies:
   flutter_test:
