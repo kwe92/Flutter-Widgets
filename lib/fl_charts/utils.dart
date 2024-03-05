@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_widgets/fl_charts/mood.dart';
+import 'package:intl/intl.dart';
 
 class GetRandom {
   GetRandom._();
@@ -29,3 +30,5 @@ DateTime getRandomDateTime() {
 
   return DateTime.now().add(Duration(days: -value));
 }
+
+String removeTimeStamp(DateTime date) => DateFormat("yyyy-MM-dd").format(date);
