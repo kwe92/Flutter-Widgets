@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:intl/intl.dart';
+import 'package:flutter_widgets/fl_charts/utils.dart';
 
 class WeightedMood {
   final String mood;
@@ -29,7 +29,8 @@ class WeightedMood {
   Map<String, dynamic> toMap() {
     return {
       'mood': mood,
-      'createdAt': DateFormat.yMMMMd().format(createdAt),
+      'createdAt': removeTimeStamp(createdAt),
+      'weight': weight,
     };
   }
 
