@@ -11,7 +11,7 @@ class MoodsService extends ChangeNotifier {
 
   MoodsService() {
     _weightedMoodData = [
-      for (int i = 0; i < 90; i++)
+      for (int i = 0; i < 200; i++)
         WeightedMood(
           mood: getRandomMood(),
           createdAt: getRandomDateTime(),

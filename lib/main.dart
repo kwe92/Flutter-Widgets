@@ -27,9 +27,12 @@ import 'package:flutter_widgets/Widgets/sliders/slider_view.dart';
 import 'package:flutter_widgets/Widgets/sliders/widgets/sliders/slider_color_gradient_model.dart';
 import 'package:flutter_widgets/Widgets/switch/switch_widget_view.dart';
 import 'package:flutter_widgets/Widgets/switch/switch_widget_view_model.dart';
+import 'package:flutter_widgets/Widgets/work_with_text_scaling/user_experience_example.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:flutter_widgets/examples/colorSelectedListItem/color_Selected_ListItem_view.dart';
+import 'package:flutter_widgets/fl_charts/line_chart_example.dart';
+import 'package:flutter_widgets/fl_charts/line_chart_example_view.dart';
 import 'package:flutter_widgets/flutterAppBadger/flutter_app_badger_view.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/get_it.dart';
 import 'package:flutter_widgets/flutterAppBadger/services/services.dart';
@@ -115,16 +118,37 @@ void main() {
   );
 }
 
-//? care nav view start
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-        // home: ChooseCareNavigatorView(),
-        home: AnimatedCrossFadeAppView(),
-      );
+  Widget build(BuildContext context) {
+    return
+
+        // MaterialApp(
+        //   home: UserExperienceExample(),
+        // );
+
+        const MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          body: LineChartSampleView(),
+        ),
+      ),
+    );
+  }
 }
+
+//? care nav view start
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) => const MaterialApp(
+//         // home: ChooseCareNavigatorView(),
+//         home: AnimatedCrossFadeAppView(),
+//       );
+// }
 
 //? care nav view end
 

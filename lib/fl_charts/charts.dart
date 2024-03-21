@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 class LineChartExample extends StatelessWidget {
   final List<FlSpot> spots;
+
   const LineChartExample({
     required this.spots,
     super.key,
@@ -122,12 +123,18 @@ class LineChartExample extends StatelessWidget {
           break;
 
         case 15:
-          text = GestureDetector(
-            onTap: () {},
-            child: const Text(
-              'Month',
-              style: style,
-            ),
+          text = Builder(
+            builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.month);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 24.0),
+                  child: Text('Month', style: style),
+                ),
+              );
+            },
           );
           break;
 
@@ -214,3 +221,5 @@ class AppColors {
   static const Color contentColorRed = Color(0xFFE80054);
   static const Color contentColorCyan = Color(0xFF50E4FF);
 }
+
+class CustomSideTitles extends SideTitles {}
