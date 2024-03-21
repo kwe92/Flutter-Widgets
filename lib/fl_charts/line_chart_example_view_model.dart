@@ -6,7 +6,7 @@ import 'package:flutter_widgets/fl_charts/mood.dart';
 import 'package:flutter_widgets/fl_charts/moods_service.dart';
 
 class LineChartSampleViewModel extends ChangeNotifier {
-  double _maxX = 31;
+  double _maxX = 30;
 
   List<WeightedMood> _weightedMoods = moodsService.weightedMoodData;
 
@@ -14,9 +14,12 @@ class LineChartSampleViewModel extends ChangeNotifier {
 
   List<WeightedMood> get weightedMoods => _weightedMoods;
 
-  Map get _groupByCreatedAt => groupBy([for (var mood in _weightedMoods) mood.toMap()], (Map obj) => DateTime.parse(obj['createdAt']).day);
+  Map get _groupByCreatedAt => groupBy(
+      // TODO: fix issue with the last 90 days
+      [for (WeightedMood mood in _weightedMoods) mood.toMap()],
+      (Map<String, dynamic> moodMap) => moodMap['createdAt']);
 
-  List<Map<int, double>> get groupedMoodsData => [for (var moodMap in _groupByCreatedAt.entries) _getMoodMetric(moodMap)]
+  List<Map> get groupedMoodsData => [for (var moodMap in _groupByCreatedAt.entries) _getMoodMetric(moodMap)]
       .sorted((moodA, moodB) => moodA.entries.toList()[0].key.compareTo(moodB.entries.toList()[0].key));
 
   LineChartSampleViewModel();
@@ -31,24 +34,26 @@ class LineChartSampleViewModel extends ChangeNotifier {
         break;
 
       case MoodFilter.month:
-        _maxX = 31;
+        _maxX = 30;
 
         _weightedMoods =
-            moodsService.weightedMoodData.where((mood) => (mood.createdAt.difference(DateTime.now()).inDays).abs() <= 31).toList();
+            moodsService.weightedMoodData.where((mood) => (mood.createdAt.difference(DateTime.now()).inDays).abs() <= 30).toList();
         notifyListeners();
         break;
 
-      case MoodFilter.year:
-        _maxX = 365;
+      case MoodFilter.threeMonths:
+        _maxX = 90;
 
         _weightedMoods =
-            moodsService.weightedMoodData.where((mood) => (mood.createdAt.difference(DateTime.now()).inDays).abs() <= 365).toList();
+            moodsService.weightedMoodData.where((mood) => (mood.createdAt.difference(DateTime.now()).inDays).abs() <= 90).toList();
+
+        print(_weightedMoods.length);
         notifyListeners();
         break;
     }
   }
 
-  static Map<int, double> _getMoodMetric(MapEntry moodMap) {
+  static Map _getMoodMetric(MapEntry moodMap) {
     double value = 0;
     int count = 0;
     for (Map<String, dynamic> moodMap in moodMap.value) {
@@ -62,5 +67,5 @@ class LineChartSampleViewModel extends ChangeNotifier {
 enum MoodFilter {
   week,
   month,
-  year;
+  threeMonths;
 }
