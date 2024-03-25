@@ -31,6 +31,7 @@ import 'package:flutter_widgets/Widgets/work_with_text_scaling/user_experience_e
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/model/check_box_model.dart';
 import 'package:flutter_widgets/Widgets/working_with_dialog/ui/working_with_dialog.dart';
 import 'package:flutter_widgets/examples/colorSelectedListItem/color_Selected_ListItem_view.dart';
+import 'package:flutter_widgets/fl_charts/doughnut_chart_example.dart';
 import 'package:flutter_widgets/fl_charts/line_chart_example.dart';
 import 'package:flutter_widgets/fl_charts/line_chart_example_view.dart';
 import 'package:flutter_widgets/flutterAppBadger/flutter_app_badger_view.dart';
@@ -131,9 +132,10 @@ class MyApp extends StatelessWidget {
 
         const MaterialApp(
       home: SafeArea(
-        child: Scaffold(
-          body: LineChartSampleView(),
-        ),
+        child: Scaffold(body: PieChartSample2()
+
+            //  LineChartSampleView(),
+            ),
       ),
     );
   }

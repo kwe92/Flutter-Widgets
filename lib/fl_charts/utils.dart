@@ -26,8 +26,7 @@ String getRandomMood() {
 }
 
 DateTime getRandomDateTime() {
-  // TODO: Maybe change back to one month
-  final int value = GetRandom.randRangeInt(min: 1, max: 91);
+  final int value = GetRandom.randRangeInt(min: 1, max: 31);
 
   return DateTime.now().add(Duration(days: -value));
 }

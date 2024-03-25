@@ -118,19 +118,7 @@ class LineChartExampleV2 extends StatelessWidget {
               },
               child: const Padding(
                 padding: EdgeInsets.only(left: 42.0),
-                child: Text('1 Week', style: style),
-              ),
-            );
-            break;
-
-          case 4:
-            text = GestureDetector(
-              onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.month);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(right: 12.0),
-                child: Text('1 Month', style: style),
+                child: Text('1 week', style: style),
               ),
             );
             break;
@@ -138,11 +126,11 @@ class LineChartExampleV2 extends StatelessWidget {
           case 7:
             text = GestureDetector(
               onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.threeMonths);
+                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.month);
               },
               child: const Padding(
                 padding: EdgeInsets.only(right: 69.0),
-                child: Text('3 Months', style: style),
+                child: Text('1 Month', style: style),
               ),
             );
             break;
@@ -167,70 +155,14 @@ class LineChartExampleV2 extends StatelessWidget {
             );
             break;
 
-          case 15:
-            text = GestureDetector(
-              onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.month);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 0.0),
-                child: Text('1 Month', style: style),
-              ),
-            );
-            break;
-
           case 28:
             text = GestureDetector(
               onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.threeMonths);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(right: 24.0),
-                child: Text('3 Months', style: style),
-              ),
-            );
-            break;
-
-          default:
-            text = const Text('');
-            break;
-        }
-      }
-      // TODO: finish implementing 90 days
-      if (maxX == 90) {
-        switch (value.toInt()) {
-          case 1:
-            text = GestureDetector(
-              onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.week);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 42.0),
-                child: Text('1 Week', style: style),
-              ),
-            );
-            break;
-
-          case 45:
-            text = GestureDetector(
-              onTap: () {
                 context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.month);
               },
               child: const Padding(
-                padding: EdgeInsets.only(left: 0.0),
-                child: Text('1 Month', style: style),
-              ),
-            );
-            break;
-
-          case 88:
-            text = GestureDetector(
-              onTap: () {
-                context.read<LineChartSampleViewModel>().filterMoodsData(MoodFilter.threeMonths);
-              },
-              child: const Padding(
                 padding: EdgeInsets.only(right: 24.0),
-                child: Text('3 Months', style: style),
+                child: Text('1 Month', style: style),
               ),
             );
             break;
@@ -268,12 +200,12 @@ class LineChartExampleV2 extends StatelessWidget {
       );
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
-        isCurved: false,
+        isCurved: true,
         color: Colors.lightBlue,
         barWidth: 2,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),
-        belowBarData: BarAreaData(show: false),
+        belowBarData: BarAreaData(show: true),
         spots: spots,
       );
 }

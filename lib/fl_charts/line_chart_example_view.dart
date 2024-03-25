@@ -17,47 +17,63 @@ class LineChartSampleView extends StatelessWidget {
           aspectRatio: 1.23,
           child: Stack(
             children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 37,
-                  ),
-                  const Text(
-                    'Mood Statistics',
-                    style: TextStyle(
-                      color: Colors.lightBlue,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
+              Container(
+                margin: const EdgeInsets.only(left: 16, top: 32, right: 16),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(16),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 37,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 16, left: 6),
-                      child: LineChartExampleV2(
-                        spots: [
-                          for (int i = 0; i < model.groupedMoodsData.length; i++)
-                            () {
-                              print("model.groupedMoodsData.length: ${model.groupedMoodsData.length}");
-                              final entry = model.groupedMoodsData[i].entries.toList()[0];
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15),
+                        offset: const Offset(0, 2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                      )
+                    ]),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      model.isMonthlyView ? 'Monthly Mood Statistics' : 'Weekly Mood Statistics',
+                      style: const TextStyle(
+                        color: Colors.lightBlue,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16, left: 6),
+                        child: LineChartExampleV2(
+                          spots: [
+                            for (int i = 0; i < model.groupedMoodsData.length; i++)
+                              () {
+                                print("model.groupedMoodsData.length: ${model.groupedMoodsData.length}");
+                                final entry = model.groupedMoodsData[i].entries.toList()[0];
 
-                              debugPrint("entry: $entry");
+                                debugPrint("entry: $entry");
 
-                              return FlSpot(i + 1.0, entry.value * 4);
-                            }()
-                        ],
+                                return FlSpot(i + 1.0, entry.value * 4);
+                              }()
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
