@@ -24,6 +24,7 @@ const inputDecorationTheme = InputDecorationTheme(
 
 final outlinedButtonTheme = OutlinedButtonThemeData(
   style: ButtonStyle(
+    side: resolver(BorderSide.none),
     backgroundColor: resolver(AppColorsNotes.mainThemeColor),
     textStyle: resolver(
       TextStyle(

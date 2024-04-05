@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AppNavigatior {
+class AppNavigator {
   static final navigatorKey = GlobalKey<NavigatorState>();
-  AppNavigatior._();
+  AppNavigator._();
 
   static Future<void> push(Widget view) async => navigatorKey.currentState!.push(
         MaterialPageRoute(
