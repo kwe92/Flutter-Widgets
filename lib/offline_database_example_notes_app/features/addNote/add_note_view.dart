@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/add_note_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class AddNoteView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ChangeNotifierProvider(
+          // declaratively instantiate view model | creation, storage, and disposing are abstracted away from you
           create: (context) => AddNoteViewModel(),
           builder: (context, _) {
             final AddNoteViewModel viewModel = context.watch<AddNoteViewModel>();
@@ -62,9 +64,9 @@ class AddNoteView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         MainButton(
-                          onTap: () {
-                            viewModel.save();
-                            Navigator.pop(context);
+                          onTap: () async {
+                            await viewModel.save();
+                            AppNavigator.pop();
                           },
                           height: 65,
                           child: const Text("Save"),
