@@ -32,23 +32,36 @@ class AddNoteViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// inserts new note into database and appends to list of notes in memory
   Future<void> save() async {
+    // instantiate note based on user input
     final note = Note(
-      content: content,
       title: title,
+      content: content,
       createdAt: DateTime.now(),
     );
-    _title = '';
-    _content = '';
-    titleController.clear();
-    contentController.clear();
 
+    // insert note into database and retrieve unique id
+    final int id = await notesProviderService.insert(note);
+
+    // assign unique id to note
+    note.id = id;
+
+    // append note to list of notes in memory
     notesService.addNote(note);
 
-    await notesProviderService.insert(note);
+    // clear all input variables
+    cearVariables();
 
     debugPrint("Note saved successfully!");
 
     notifyListeners();
+  }
+
+  void cearVariables() {
+    _title = '';
+    _content = '';
+    titleController.clear();
+    contentController.clear();
   }
 }
