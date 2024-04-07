@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/editNote/edit_note_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
@@ -65,9 +66,8 @@ class EditNoteView extends StatelessWidget {
                       children: [
                         MainButton(
                           onTap: () async {
-                            Navigator.pop(context);
-
                             await viewModel.edit(note);
+                            AppNavigator.pop();
                           },
                           height: 65,
                           child: const Text("Edit"),

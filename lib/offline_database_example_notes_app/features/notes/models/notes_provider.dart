@@ -4,14 +4,13 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 final notesProviderService = NotesProviderService();
 
 class NotesProviderService {
-  Future<void> insert(Note note) async {
-    await databaseService.db.insert(databaseService.tables.notes, note.toMap());
+  Future<int> insert(Note note) async {
+    return await databaseService.db.insert(databaseService.tables.notes, note.toMap());
   }
 
   Future<List<Note>> getAllNotes() async {
     final List<Map<String, dynamic>> result = await databaseService.db.query(databaseService.tables.notes);
 
-    // final List<Note> notes = List.generate(result.length, (index) => Note.fromJSON())
     final List<Note> notes = [for (Map<String, dynamic> note in result) Note.fromJSON(note)];
 
     return notes;

@@ -9,4 +9,6 @@ class AppNavigator {
           builder: (context) => view,
         ),
       );
+
+  static Future<void> pop() async => navigatorKey.currentState!.pop();
 }

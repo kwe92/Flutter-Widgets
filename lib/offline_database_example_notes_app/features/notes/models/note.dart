@@ -1,12 +1,12 @@
 // TODO: add updated at column
 
 class Note {
-  final int? id;
+  int? id;
   final String title;
   final String content;
   final DateTime createdAt;
 
-  const Note({
+  Note({
     this.id,
     required this.content,
     required this.title,

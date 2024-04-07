@@ -16,6 +16,7 @@ class NotesService extends ChangeNotifier {
 
   void addNote(Note note) {
     _notes!.add(note);
+    debugPrint("addNote: $_notes");
     debugPrint("Note added successfully.");
     notifyListeners();
   }
@@ -33,7 +34,9 @@ class NotesService extends ChangeNotifier {
 
     _notes!.insert(index, note);
 
-    debugPrint("Note updates successfully.");
+    debugPrint("replaceNote notes: $_notes");
+
+    debugPrint("Note replaced successfully.");
     notifyListeners();
   }
 }
