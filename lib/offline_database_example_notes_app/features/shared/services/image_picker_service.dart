@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/models/photo.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
 // TODO: add notes
@@ -40,6 +41,18 @@ class ImagePickerService {
 
   static Future<List<String>> convertToString(List<XFile> imageFiles) async {
     final images = [for (var imageFile in imageFiles) base64Encode(await imageFile.readAsBytes())];
+
+    return images;
+  }
+
+  static List<ImageProvider> imageFromBase64String(List<Photo?> imageObjs) {
+    final images = [
+      for (Photo? photo in imageObjs)
+        Image.memory(
+          base64Decode(photo!.imageName),
+          fit: BoxFit.fill,
+        ).image
+    ];
 
     return images;
   }

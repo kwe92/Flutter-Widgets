@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_layout.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/editNote/edit_note_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:provider/provider.dart';
 
 class EditNoteView extends StatelessWidget {
@@ -49,15 +51,30 @@ class EditNoteView extends StatelessWidget {
                         controller: viewModel.titleController,
                         onChanged: viewModel.setTitle,
                       ),
-                      const SizedBox(height: 36),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: viewModel.contentController,
                         onChanged: viewModel.setContent,
-                        maxLines: 10,
+                        maxLines: note.images == null || note.images!.isEmpty
+                            ? 15
+                            : note.images!.length < 4
+                                ? 6
+                                : 1,
                       ),
                     ],
                   ),
                 ),
+                note.images != null && note.images!.isNotEmpty
+                    ? Expanded(
+                        child: Center(
+                          child: SingleChildScrollView(
+                            child: ImageLayout(
+                              images: ImagePickerService.imageFromBase64String(note.images!),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 32.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/add_note_view_model.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_layout.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
 import 'package:provider/provider.dart';
 
@@ -48,33 +49,28 @@ class AddNoteView extends StatelessWidget {
                         controller: viewModel.titleController,
                         onChanged: viewModel.setTitle,
                       ),
-                      const SizedBox(height: 36),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: viewModel.contentController,
                         onChanged: viewModel.setContent,
-                        maxLines: 10,
+                        maxLines: viewModel.images.isEmpty
+                            ? 15
+                            : viewModel.images.length < 4
+                                ? 6
+                                : 1,
                       ),
                     ],
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: viewModel.images.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        height: 40,
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: viewModel.images[index],
-                          ),
-                        ),
-                      );
-                    },
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: ImageLayout(images: viewModel.images),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
+                  padding: const EdgeInsets.only(bottom: 32.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
