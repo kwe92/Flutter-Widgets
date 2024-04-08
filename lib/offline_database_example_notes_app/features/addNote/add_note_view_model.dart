@@ -6,9 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/notes_provider.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/notes_mixin.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 
 class AddNoteViewModel extends ChangeNotifier with NotesMixin {
+  List<ImageProvider> _images = [];
+
+  List<ImageProvider> get images => _images;
+
+  void setImages(List<ImageProvider> images) {
+    _images = images;
+
+    debugPrint("setImages Called: $_images");
+    notifyListeners();
+  }
+
   /// inserts new note into database and appends to list of notes in memory
   Future<void> save() async {
     final note = await _insertNote();
@@ -46,5 +58,11 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     note.id = id;
 
     return note;
+  }
+
+  Future<void> pickImages() async {
+    final result = await ImagePickerService.pickImages();
+
+    setImages(ImagePickerService.toImageProvider(result.imageFiles ?? []));
   }
 }

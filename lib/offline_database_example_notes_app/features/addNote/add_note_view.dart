@@ -58,21 +58,41 @@ class AddNoteView extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 32.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MainButton(
-                          onTap: () async {
-                            await viewModel.save();
-                            AppNavigator.pop();
-                          },
-                          height: 65,
-                          child: const Text("Save"),
+                  child: ListView.builder(
+                    itemCount: viewModel.images.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 40,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: viewModel.images[index],
+                          ),
                         ),
-                      ],
-                    ),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MainButton(
+                        onTap: () async => await viewModel.pickImages(),
+                        height: 65,
+                        child: const Text("Select Image"),
+                      ),
+                      const SizedBox(height: 12),
+                      MainButton(
+                        onTap: () async {
+                          await viewModel.save();
+                          AppNavigator.pop();
+                        },
+                        height: 65,
+                        child: const Text("Save"),
+                      ),
+                    ],
                   ),
                 ),
               ],
