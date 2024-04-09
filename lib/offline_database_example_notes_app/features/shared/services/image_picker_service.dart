@@ -56,4 +56,19 @@ class ImagePickerService {
 
     return images;
   }
+
+  static Map<String, ImageProvider> imageFromBase64StringAsMap(List<Photo?> imageObjs) {
+    Map<String, ImageProvider> result = {};
+
+    for (Photo? photo in imageObjs) {
+      result.putIfAbsent(
+          photo!.imageName,
+          () => Image.memory(
+                base64Decode(photo!.imageName),
+                fit: BoxFit.fill,
+              ).image);
+    }
+
+    return result;
+  }
 }

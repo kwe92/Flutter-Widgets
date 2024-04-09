@@ -25,6 +25,12 @@ class PhotoProvider {
     await databaseService.db.delete(databaseService.tables.images, where: 'id = ?', whereArgs: [image.id]);
   }
 
+  static Future<void> deleteMulti(List<Photo> images) async {
+    for (var i = 0; i < images.length; i++) {
+      await databaseService.db.delete(databaseService.tables.images, where: 'id = ?', whereArgs: [images[i].id]);
+    }
+  }
+
   static Future<void> edit(Photo image) async {
     await databaseService.db.update(
       databaseService.tables.images,

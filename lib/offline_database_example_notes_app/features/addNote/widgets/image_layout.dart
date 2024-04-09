@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ImageLayout extends StatelessWidget {
+  final void Function(ImageProvider image)? removeImageCallback;
   final List<ImageProvider> images;
   const ImageLayout({
     required this.images,
+    this.removeImageCallback,
     super.key,
   });
 
@@ -16,6 +18,7 @@ class ImageLayout extends StatelessWidget {
             child: Column(
               children: [
                 ImageContainer(
+                  removeImageCallback: removeImageCallback,
                   image: images[0],
                 ),
               ],
@@ -26,11 +29,17 @@ class ImageLayout extends StatelessWidget {
                 height: 180,
                 child: Row(
                   children: [
-                    ImageContainer(image: images[0]),
+                    ImageContainer(
+                      removeImageCallback: removeImageCallback,
+                      image: images[0],
+                    ),
                     const SizedBox(
                       width: 6,
                     ),
-                    ImageContainer(image: images[1]),
+                    ImageContainer(
+                      removeImageCallback: removeImageCallback,
+                      image: images[1],
+                    ),
                   ],
                 ),
               )
@@ -281,24 +290,32 @@ class ImageLayout extends StatelessWidget {
 
 class ImageContainer extends StatelessWidget {
   final ImageProvider image;
+  final void Function(ImageProvider image)? removeImageCallback;
 
-  const ImageContainer({required this.image, super.key});
+  const ImageContainer({
+    required this.image,
+    this.removeImageCallback,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       flex: 1,
-      child: Container(
-        clipBehavior: Clip.hardEdge, // force child to take the shape of parent container
-        height: double.maxFinite,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(16),
-          ),
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: image,
+      child: GestureDetector(
+        onTap: removeImageCallback != null ? () => removeImageCallback!(image) : () {},
+        child: Container(
+          clipBehavior: Clip.hardEdge, // force child to take the shape of parent container
+          height: double.maxFinite,
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(16),
+            ),
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: image,
+            ),
           ),
         ),
       ),

@@ -4,7 +4,6 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/addN
 import 'package:flutter_widgets/offline_database_example_notes_app/features/editNote/edit_note_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
-import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:provider/provider.dart';
 
 class EditNoteView extends StatelessWidget {
@@ -65,17 +64,20 @@ class EditNoteView extends StatelessWidget {
                   ),
                 ),
                 note.images != null && note.images!.isNotEmpty
-                    ? Expanded(
+                    ? Flexible(
+                        flex: 4,
                         child: Center(
                           child: SingleChildScrollView(
                             child: ImageLayout(
-                              images: ImagePickerService.imageFromBase64String(note.images!),
+                              removeImageCallback: viewModel.removeImage,
+                              images: viewModel.images.values.toList(),
                             ),
                           ),
                         ),
                       )
                     : const SizedBox(),
-                Expanded(
+                Flexible(
+                  flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 32.0),
                     child: Column(

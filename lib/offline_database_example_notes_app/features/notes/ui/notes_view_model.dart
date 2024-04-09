@@ -19,6 +19,10 @@ class NotesViewModel extends ExtendedChangeNotifier {
     await notesService.getNotes();
     _notes = notesService.notes;
 
+    for (var note in _notes!) {
+      print("note: $note");
+    }
+
     setBusy(false);
   }
 

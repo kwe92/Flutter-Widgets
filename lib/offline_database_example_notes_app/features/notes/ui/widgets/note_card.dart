@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_layout.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 
 // TODO: remove
 
@@ -58,12 +60,17 @@ class NoteCard extends StatelessWidget {
               overflow: TextOverflow.fade,
               textAlign: TextAlign.center,
             ),
-            //     Text(
-            //   longTextForTesting,
-            //   overflow: TextOverflow.fade,
-            //   textAlign: TextAlign.center,
-            // ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 12,
+              right: 12,
+              bottom: 12,
+            ),
+            child: ImageLayout(
+              images: note.images != null ? ImagePickerService.imageFromBase64String(note.images!) : [],
+            ),
+          )
         ],
       ),
     );
