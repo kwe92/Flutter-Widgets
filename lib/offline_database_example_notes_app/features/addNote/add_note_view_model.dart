@@ -2,6 +2,7 @@
 
 //   - error ignored because we want private member variables to be mutable
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/notes_provider.dart';
@@ -47,6 +48,9 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   void cearVariables() {
     setTitle('');
     setContent('');
+    _photos = [];
+    _photoStrings = [];
+    _images = [];
     titleController.clear();
     contentController.clear();
   }
@@ -62,9 +66,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     // insert note into database and retrieve unique id
     final int id = await notesProviderService.insert(note);
 
-    _photos = [for (String imageString in _photoStrings) Photo(noteID: id, imageName: imageString)];
-
-    await PhotoProvider.insert(_photos);
+    await _insertImages(id);
 
     // assign unique id to note
     note.id = id;
@@ -78,5 +80,13 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     _photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
 
     setImages(ImagePickerService.toImageProvider(result.imageFiles ?? []));
+  }
+
+  Future<void> _insertImages(int noteID) async {
+    _photos = [for (String imageString in _photoStrings) Photo(noteID: noteID, imageName: imageString)];
+
+    List<int> photoIds = await PhotoProvider.insert(_photos);
+
+    _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
   }
 }
