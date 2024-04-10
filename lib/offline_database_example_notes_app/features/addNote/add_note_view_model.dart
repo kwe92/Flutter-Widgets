@@ -11,6 +11,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/notes_mixin.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
 
 class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   List<Photo> _photos = [];
@@ -22,7 +23,19 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   List<ImageProvider> get images => _images;
 
   void setImages(List<ImageProvider> images) {
-    _images = images;
+    if (_images.isNotEmpty && (_images.length + images.length) <= 9) {
+      _images.addAll(images);
+      notifyListeners();
+      return;
+    }
+
+    if (_images.isEmpty) {
+      _images = images;
+      notifyListeners();
+      return;
+    }
+
+    toastService.showSnackbar("can only have up to 9 images per note.");
 
     debugPrint("setImages Called: $_images");
     notifyListeners();

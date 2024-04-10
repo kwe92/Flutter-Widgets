@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
 
 final toastService = ToastService(); // typically a singleton, we are using a global variable for brevity
 
 typedef CancelationButtons = ({MainButton yes, MainButton no});
 
 class ToastService {
+  void showSnackbar(String message) async {
+    WidgetKey.rootScaffoldMessengerKey.currentState!.showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
   Future<void> popUpMenu(BuildContext context, CancelationButtons buttons, String content) async {
     await showDialog(
       context: context,

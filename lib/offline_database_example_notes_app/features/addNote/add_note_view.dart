@@ -23,7 +23,7 @@ class AddNoteView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ChangeNotifierProvider(
-          // declaratively instantiate view model | creation, storage, and disposing are abstracted away from you
+          // declaratively instantiate view model | creation, storage, and disposal are abstracted away
           create: (context) => AddNoteViewModel(),
           builder: (context, _) {
             final AddNoteViewModel viewModel = context.watch<AddNoteViewModel>();
