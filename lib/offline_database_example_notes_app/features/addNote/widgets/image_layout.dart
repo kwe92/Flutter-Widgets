@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_container.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_row.dart';
 
 class ImageLayout extends StatelessWidget {
   final void Function(ImageProvider image)? removeImageCallback;
@@ -25,65 +27,29 @@ class ImageLayout extends StatelessWidget {
             ),
           )
         : images.length == 2
-            ? SizedBox(
+            ? ImageRow(
+                images: [images[0], images[1]],
                 height: 180,
-                child: Row(
-                  children: [
-                    ImageContainer(
-                      removeImageCallback: removeImageCallback,
-                      image: images[0],
-                    ),
-                    const SizedBox(
-                      width: 6,
-                    ),
-                    ImageContainer(
-                      removeImageCallback: removeImageCallback,
-                      image: images[1],
-                    ),
-                  ],
-                ),
+                removeImageCallback: removeImageCallback,
               )
             : images.length == 3
-                ? SizedBox(
+                ? ImageRow(
+                    images: [images[0], images[1], images[2]],
                     height: 180,
-                    child: Row(
-                      children: [
-                        ImageContainer(image: images[0]),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        ImageContainer(image: images[1]),
-                        const SizedBox(
-                          width: 6,
-                        ),
-                        ImageContainer(image: images[2]),
-                      ],
-                    ),
+                    removeImageCallback: removeImageCallback,
                   )
                 : images.length == 4
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
-                            height: 150,
-                            child: Row(
-                              children: [
-                                ImageContainer(image: images[0]),
-                                const SizedBox(width: 6),
-                                ImageContainer(image: images[1]),
-                              ],
-                            ),
+                          ImageRow(
+                            images: [images[0], images[1]],
+                            removeImageCallback: removeImageCallback,
                           ),
                           const SizedBox(height: 6),
-                          SizedBox(
-                            height: 150,
-                            child: Row(
-                              children: [
-                                ImageContainer(image: images[2]),
-                                const SizedBox(width: 6),
-                                ImageContainer(image: images[3]),
-                              ],
-                            ),
+                          ImageRow(
+                            images: [images[2], images[3]],
+                            removeImageCallback: removeImageCallback,
                           ),
                         ],
                       )
@@ -91,28 +57,14 @@ class ImageLayout extends StatelessWidget {
                         ? Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(
-                                height: 150,
-                                child: Row(
-                                  children: [
-                                    ImageContainer(image: images[0]),
-                                    const SizedBox(width: 6),
-                                    ImageContainer(image: images[1]),
-                                  ],
-                                ),
+                              ImageRow(
+                                images: [images[0], images[1]],
+                                removeImageCallback: removeImageCallback,
                               ),
                               const SizedBox(height: 6),
-                              SizedBox(
-                                height: 150,
-                                child: Row(
-                                  children: [
-                                    ImageContainer(image: images[2]),
-                                    const SizedBox(width: 6),
-                                    ImageContainer(image: images[3]),
-                                    const SizedBox(width: 6),
-                                    ImageContainer(image: images[4]),
-                                  ],
-                                ),
+                              ImageRow(
+                                images: [images[2], images[3], images[4]],
+                                removeImageCallback: removeImageCallback,
                               ),
                             ],
                           )
@@ -120,30 +72,14 @@ class ImageLayout extends StatelessWidget {
                             ? Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  SizedBox(
-                                    height: 150,
-                                    child: Row(
-                                      children: [
-                                        ImageContainer(image: images[0]),
-                                        const SizedBox(width: 6),
-                                        ImageContainer(image: images[1]),
-                                        const SizedBox(width: 6),
-                                        ImageContainer(image: images[2]),
-                                      ],
-                                    ),
+                                  ImageRow(
+                                    images: [images[0], images[1], images[2]],
+                                    removeImageCallback: removeImageCallback,
                                   ),
                                   const SizedBox(height: 6),
-                                  SizedBox(
-                                    height: 150,
-                                    child: Row(
-                                      children: [
-                                        ImageContainer(image: images[3]),
-                                        const SizedBox(width: 6),
-                                        ImageContainer(image: images[4]),
-                                        const SizedBox(width: 6),
-                                        ImageContainer(image: images[5]),
-                                      ],
-                                    ),
+                                  ImageRow(
+                                    images: [images[3], images[4], images[5]],
+                                    removeImageCallback: removeImageCallback,
                                   ),
                                 ],
                               )
@@ -151,43 +87,19 @@ class ImageLayout extends StatelessWidget {
                                 ? Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      SizedBox(
-                                        height: 150,
-                                        child: Row(
-                                          children: [
-                                            ImageContainer(image: images[0]),
-                                            const SizedBox(width: 6),
-                                            ImageContainer(image: images[1]),
-                                            const SizedBox(width: 6),
-                                          ],
-                                        ),
+                                      ImageRow(
+                                        images: [images[0], images[1]],
+                                        removeImageCallback: removeImageCallback,
                                       ),
-                                      const SizedBox(height: 6),
-                                      SizedBox(
-                                        height: 150,
-                                        child: Row(
-                                          children: [
-                                            ImageContainer(image: images[2]),
-                                            const SizedBox(width: 6),
-                                            ImageContainer(image: images[3]),
-                                            const SizedBox(width: 6),
-                                          ],
-                                        ),
+                                      const SizedBox(height: 6, width: 6),
+                                      ImageRow(
+                                        images: [images[2], images[3]],
+                                        removeImageCallback: removeImageCallback,
                                       ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      SizedBox(
-                                        height: 150,
-                                        child: Row(
-                                          children: [
-                                            ImageContainer(image: images[4]),
-                                            const SizedBox(width: 6),
-                                            ImageContainer(image: images[5]),
-                                            const SizedBox(width: 6),
-                                            ImageContainer(image: images[6]),
-                                          ],
-                                        ),
+                                      const SizedBox(height: 6, width: 6),
+                                      ImageRow(
+                                        images: [images[4], images[5], images[6]],
+                                        removeImageCallback: removeImageCallback,
                                       ),
                                     ],
                                   )
@@ -195,48 +107,19 @@ class ImageLayout extends StatelessWidget {
                                     ? Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          SizedBox(
-                                            height: 150,
-                                            child: Row(
-                                              children: [
-                                                ImageContainer(image: images[0]),
-                                                const SizedBox(width: 6),
-                                                ImageContainer(image: images[1]),
-                                                const SizedBox(
-                                                  width: 6,
-                                                ),
-                                              ],
-                                            ),
+                                          ImageRow(
+                                            images: [images[0], images[1]],
+                                            removeImageCallback: removeImageCallback,
+                                          ),
+                                          const SizedBox(height: 6, width: 6),
+                                          ImageRow(
+                                            images: [images[2], images[3], images[4]],
+                                            removeImageCallback: removeImageCallback,
                                           ),
                                           const SizedBox(height: 6),
-                                          SizedBox(
-                                            height: 150,
-                                            child: Row(
-                                              children: [
-                                                ImageContainer(image: images[2]),
-                                                const SizedBox(
-                                                  width: 6,
-                                                ),
-                                                ImageContainer(image: images[3]),
-                                                const SizedBox(
-                                                  width: 6,
-                                                ),
-                                                ImageContainer(image: images[4]),
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(height: 6),
-                                          SizedBox(
-                                            height: 150,
-                                            child: Row(
-                                              children: [
-                                                ImageContainer(image: images[5]),
-                                                const SizedBox(width: 6),
-                                                ImageContainer(image: images[6]),
-                                                const SizedBox(width: 6),
-                                                ImageContainer(image: images[7]),
-                                              ],
-                                            ),
+                                          ImageRow(
+                                            images: [images[5], images[6], images[7]],
+                                            removeImageCallback: removeImageCallback,
                                           ),
                                         ],
                                       )
@@ -244,81 +127,22 @@ class ImageLayout extends StatelessWidget {
                                         ? Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              SizedBox(
-                                                height: 150,
-                                                child: Row(
-                                                  children: [
-                                                    ImageContainer(image: images[0]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[1]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[2]),
-                                                  ],
-                                                ),
+                                              ImageRow(
+                                                images: [images[0], images[1], images[2]],
+                                                removeImageCallback: removeImageCallback,
                                               ),
                                               const SizedBox(height: 6),
-                                              SizedBox(
-                                                height: 150,
-                                                child: Row(
-                                                  children: [
-                                                    ImageContainer(image: images[3]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[4]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[5]),
-                                                  ],
-                                                ),
+                                              ImageRow(
+                                                images: [images[3], images[4], images[5]],
+                                                removeImageCallback: removeImageCallback,
                                               ),
                                               const SizedBox(height: 6),
-                                              SizedBox(
-                                                height: 150,
-                                                child: Row(
-                                                  children: [
-                                                    ImageContainer(image: images[6]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[7]),
-                                                    const SizedBox(width: 6),
-                                                    ImageContainer(image: images[8]),
-                                                  ],
-                                                ),
+                                              ImageRow(
+                                                images: [images[6], images[7], images[8]],
+                                                removeImageCallback: removeImageCallback,
                                               ),
                                             ],
                                           )
                                         : const SizedBox();
-  }
-}
-
-class ImageContainer extends StatelessWidget {
-  final ImageProvider image;
-  final void Function(ImageProvider image)? removeImageCallback;
-
-  const ImageContainer({
-    required this.image,
-    this.removeImageCallback,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      flex: 1,
-      child: GestureDetector(
-        onTap: removeImageCallback != null ? () => removeImageCallback!(image) : () {},
-        child: Container(
-          clipBehavior: Clip.hardEdge, // force child to take the shape of parent container
-          height: double.maxFinite,
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16),
-            ),
-            image: DecorationImage(
-              fit: BoxFit.fill,
-              image: image,
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
