@@ -12,6 +12,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
 class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   List<Photo> _photos = [];
@@ -23,28 +24,26 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   List<ImageProvider> get images => _images;
 
   void setImages(List<ImageProvider> images) {
-    if (_images.isNotEmpty && (_images.length + images.length) <= 9) {
+    if (isImageCount9orLess()) {
       _images.addAll(images);
       notifyListeners();
       return;
     }
 
-    if (_images.isEmpty) {
-      _images = images;
-      notifyListeners();
-      return;
-    }
-
-    toastService.showSnackbar("can only have up to 9 images per note.");
+    toastService.showSnackbar("images are limited to 9 per note.");
 
     debugPrint("setImages Called: $_images");
     notifyListeners();
   }
 
-  /// inserts new note into database and appends to list of notes in memory
+  bool isImageCount9orLess() => _images.isEmpty || (_images.isNotEmpty && (_images.length + images.length) <= 9);
+
+  /// inserts new note into database and append to list of notes in memory
   Future<void> save() async {
+    // insert note into database
     final note = await _insertNote();
 
+    // assign List of Photo objects
     note.images = _photos;
 
     // append note to list of notes in memory
@@ -58,16 +57,6 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     notifyListeners();
   }
 
-  void cearVariables() {
-    setTitle('');
-    setContent('');
-    _photos = [];
-    _photoStrings = [];
-    _images = [];
-    titleController.clear();
-    contentController.clear();
-  }
-
   Future<Note> _insertNote() async {
     // instantiate note based on user input
     final note = Note(
@@ -79,6 +68,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     // insert note into database and retrieve unique id
     final int id = await notesProviderService.insert(note);
 
+    // insert images into database with associated note id
     await _insertImages(id);
 
     // assign unique id to note
@@ -88,18 +78,43 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> pickImages() async {
-    final result = await ImagePickerService.pickImages();
+    // prompt user to select multiple images from photo gallery
+    final ({String? error, List<XFile>? imageFiles}) result = await ImagePickerService.pickImages();
 
+    // check if there was an error when selecting images from gallery
+    if (result.error != null) {
+      toastService.showSnackbar(result.error.toString());
+      return;
+    }
+
+    // convert image files into string representations to be inserted into database
     _photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
 
-    setImages(ImagePickerService.toImageProvider(result.imageFiles ?? []));
+    // convert images files to image providers to be displayed in the UI
+    final List<ImageProvider> imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
+
+    // set the state of the images that should be displayed in the UI
+    setImages(imageProviders);
   }
 
   Future<void> _insertImages(int noteID) async {
+    // convert list of image string to list of Photo object to be assigned to newly added note in memory
     _photos = [for (String imageString in _photoStrings) Photo(noteID: noteID, imageName: imageString)];
 
+    // insert list of Photo objects into database returning list of Photo id's
     List<int> photoIds = await PhotoProvider.insert(_photos);
 
+    // assign each Photo its respective unique id returned from database insertion
     _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
+  }
+
+  void cearVariables() {
+    setTitle('');
+    setContent('');
+    _photos = [];
+    _photoStrings = [];
+    _images = [];
+    titleController.clear();
+    contentController.clear();
   }
 }
