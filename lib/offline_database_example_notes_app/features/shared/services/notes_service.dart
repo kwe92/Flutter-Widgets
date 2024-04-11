@@ -30,7 +30,7 @@ class NotesService extends ChangeNotifier {
   void replaceNote(Note note, Note prevNote) {
     final index = _notes!.indexOf(prevNote);
 
-    _notes!.remove(prevNote);
+    _notes!.removeWhere((note) => note!.id == prevNote.id);
 
     _notes!.insert(index, note);
 

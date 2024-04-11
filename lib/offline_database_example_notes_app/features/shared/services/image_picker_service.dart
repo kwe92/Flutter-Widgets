@@ -64,7 +64,7 @@ class ImagePickerService {
       result.putIfAbsent(
           photo!.imageName,
           () => Image.memory(
-                base64Decode(photo!.imageName),
+                base64Decode(photo.imageName),
                 fit: BoxFit.fill,
               ).image);
     }

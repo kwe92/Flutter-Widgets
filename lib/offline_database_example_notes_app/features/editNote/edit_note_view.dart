@@ -54,35 +54,41 @@ class EditNoteView extends StatelessWidget {
                       TextFormField(
                         controller: viewModel.contentController,
                         onChanged: viewModel.setContent,
-                        maxLines: note.images == null || note.images!.isEmpty
+                        maxLines: viewModel.images.isEmpty
                             ? 15
-                            : note.images!.length < 4
+                            : viewModel.images.length < 4
                                 ? 6
                                 : 1,
                       ),
                     ],
                   ),
                 ),
-                note.images != null && note.images!.isNotEmpty
+                viewModel.images.isNotEmpty
                     ? Flexible(
                         flex: 4,
                         child: Center(
                           child: SingleChildScrollView(
                             child: ImageLayout(
                               removeImageCallback: viewModel.removeImage,
-                              images: viewModel.images.values.toList(),
+                              images: viewModel.images,
                             ),
                           ),
                         ),
                       )
                     : const SizedBox(),
                 Flexible(
-                  flex: 2,
+                  flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 32.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        MainButton(
+                          onTap: () async => await viewModel.pickImages(),
+                          height: 65,
+                          child: const Text("Select Image"),
+                        ),
+                        const SizedBox(height: 12),
                         MainButton(
                           onTap: () async {
                             await viewModel.edit(note);

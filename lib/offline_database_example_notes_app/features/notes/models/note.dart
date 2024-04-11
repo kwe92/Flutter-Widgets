@@ -2,7 +2,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 
 class Note {
   int? id;
-  List<Photo?>? images;
+  List<Photo?> images;
   final String title;
   final String content;
   final DateTime createdAt;
@@ -13,7 +13,7 @@ class Note {
     required this.title,
     required this.content,
     required this.createdAt,
-    this.images,
+    this.images = const [],
     this.updatedAt,
   });
 
@@ -21,7 +21,7 @@ class Note {
         id: json['id'],
         title: json['title'],
         content: json['content'],
-        images: json['images'],
+        images: json['images'] ?? [],
         createdAt: DateTime.parse(json['created_at']),
         updatedAt: DateTime.parse(json['updated_at']),
       );
