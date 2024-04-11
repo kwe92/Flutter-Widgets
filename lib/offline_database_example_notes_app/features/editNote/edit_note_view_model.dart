@@ -62,7 +62,7 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
       updatedAt: DateTime.now(),
     );
 
-    await notesProviderService.edit(updatedNote);
+    await NotesProvider.edit(updatedNote);
 
     await PhotoProvider.deleteMulti(imagesToDelete);
 

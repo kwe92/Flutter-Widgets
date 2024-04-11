@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/note.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/models/notes_provider.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/extended_change_notifier.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/models/photo_provider.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 
 class NotesViewModel extends ExtendedChangeNotifier {
@@ -29,7 +30,9 @@ class NotesViewModel extends ExtendedChangeNotifier {
   Future<void> delete(Note note) async {
     setBusy(true);
 
-    await notesProviderService.delete(note);
+    await NotesProvider.delete(note);
+
+    await PhotoProvider.deleteMulti(note.images);
 
     notesService.deleteNote(note);
 

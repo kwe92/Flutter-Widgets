@@ -66,7 +66,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     );
 
     // insert note into database and retrieve unique id
-    final int id = await notesProviderService.insert(note);
+    final int id = await NotesProvider.insert(note);
 
     // insert images into database with associated note id
     await _insertImages(id);

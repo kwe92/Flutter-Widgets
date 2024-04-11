@@ -18,5 +18,5 @@ class Photo {
       );
 
   @override
-  String toString() => 'Photo(id: $id, noteID: $noteID, imageName: $imageName)';
+  String toString() => 'Photo(id: $id, noteID: $noteID)';
 }
