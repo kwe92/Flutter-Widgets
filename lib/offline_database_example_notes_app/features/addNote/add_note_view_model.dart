@@ -87,8 +87,16 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
       return;
     }
 
-    // convert image files into string representations to be inserted into database
-    _photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+    debugPrint("result.imageFiles: ${result.imageFiles!.length}");
+
+    if (_photoStrings.isNotEmpty) {
+      List<String> photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+
+      _photoStrings.addAll(photoStrings);
+    } else {
+      // convert image files into string representations to be inserted into database
+      _photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+    }
 
     // convert images files to image providers to be displayed in the UI
     final List<ImageProvider> imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
@@ -106,6 +114,8 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
 
     // assign each Photo its respective unique id returned from database insertion
     _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
+
+    debugPrint("Number of images added: ${_photos.length}");
   }
 
   void cearVariables() {

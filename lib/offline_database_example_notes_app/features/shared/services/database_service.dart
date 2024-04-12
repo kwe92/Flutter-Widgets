@@ -90,6 +90,15 @@ class DatabaseService extends ChangeNotifier {
     for (int i = 0; i < currentSchema.length; i++) {
       debugPrint('${currentSchema[i]['sql']}\n');
     }
+
+// ! Remove
+
+    final images = await db.query(
+      'Images',
+    );
+    debugPrint("images in database: ${images.length}");
+
+// ! Remove end
   }
 }
 

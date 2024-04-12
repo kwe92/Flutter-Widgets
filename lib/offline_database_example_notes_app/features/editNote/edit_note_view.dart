@@ -69,7 +69,7 @@ class EditNoteView extends StatelessWidget {
                         child: Center(
                           child: SingleChildScrollView(
                             child: ImageLayout(
-                              removeImageCallback: viewModel.removeImage,
+                              removeImageCallback: viewModel.markImageForDeletion,
                               images: viewModel.images,
                             ),
                           ),

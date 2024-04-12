@@ -13,28 +13,26 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
 
-// TODO: clean up editing images
-
-//
-
 class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   late Note _note;
 
   Map<String, ImageProvider> _imagesMap = {};
 
-  List<Photo> imagesToDelete = [];
+  List<Photo?> _imagesToDelete = [];
 
   List<String> _updatedPhotoStrings = [];
 
   List<ImageProvider> _images = [];
-
-  List<ImageProvider> _updatedImages = [];
 
   List<Photo> _photos = [];
 
   List<ImageProvider> get images => _images;
 
   EditNoteViewModel(Note note) {
+    initialize(note);
+  }
+
+  void initialize(Note note) {
     titleController.text = note.title;
 
     contentController.text = note.content;
@@ -51,24 +49,29 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> edit(Note prevNote) async {
-    await _insertImages(_note.id!);
+    removeImages();
+
+    // insert newly added images into the database
+    await _insertImages(prevNote.id!);
 
     final updatedNote = Note(
       id: prevNote.id,
-      content: content,
       title: title,
+      content: content,
       images: [..._note.images, ..._photos],
       createdAt: prevNote.createdAt,
       updatedAt: DateTime.now(),
     );
 
+    // update note in database
     await NotesProvider.edit(updatedNote);
 
-    await PhotoProvider.deleteMulti(imagesToDelete);
-
-    clearInput();
+    // delete images marked for deletion from the database
+    await PhotoProvider.deleteMulti(_imagesToDelete);
 
     notesService.replaceNote(updatedNote, prevNote);
+
+    clearInput();
 
     debugPrint("Note edited successfully!");
 
@@ -84,60 +87,82 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     contentController.clear();
   }
 
-  void removeImage(ImageProvider image) {
+  // TODO: clean up implementation
+
+  void markImageForDeletion(ImageProvider image) {
     var imageToRemove;
+    var updatedImageToRemove;
+    var keyToRemove;
 
     for (var entry in _imagesMap.entries) {
       if (entry.value == image) {
-        imageToRemove = entry.key;
-        _note.images.removeWhere((photo) {
-          bool result = photo!.imageName == entry.key;
-          if (result) {
-            imagesToDelete.add(photo);
-          }
-          return result;
-        });
+        keyToRemove = entry.key;
+        imageToRemove = keyToRemove.split('-')[0];
+
+        Photo? imageMarkedForRemoval = _note.images.firstWhere(
+          (photo) => photo?.imageName == imageToRemove,
+          orElse: () => Photo(noteID: 0, imageName: ''),
+        );
+
+        _imagesToDelete.add(imageMarkedForRemoval);
       }
 
-      _images.remove(image);
-
-      notifyListeners();
+      for (var imageName in _updatedPhotoStrings) {
+        if (entry.key == imageName && imageName != imageToRemove) {
+          updatedImageToRemove = imageName;
+        }
+      }
     }
 
-    _imagesMap.remove(imageToRemove);
+    _imagesMap.remove(keyToRemove);
 
-    print("removed images left: ${_note.images}");
-    print("imagesToDelete: $imagesToDelete");
+    _images.remove(image);
 
+    _updatedPhotoStrings.remove(updatedImageToRemove);
+
+    debugPrint("images marked for deletion: $_imagesToDelete");
+
+    notifyListeners();
+  }
+
+  void removeImages() {
+    for (var i = 0; i < _imagesToDelete.length; i++) {
+      _note.images.removeWhere((photo) => photo?.id == _imagesToDelete[i]?.id);
+    }
     notifyListeners();
   }
 
   Future<void> pickImages() async {
     final result = await ImagePickerService.pickImages();
 
-    _updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+    List<String> updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
 
-    setImages(ImagePickerService.toImageProvider(result.imageFiles ?? []));
+    if (_updatedPhotoStrings.isNotEmpty) {
+      _updatedPhotoStrings.addAll(updatedPhotoStrings);
+    } else {
+      // convert image files into string representations to be inserted into database
+      _updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+    }
+
+    final imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
+
+    final providerMap = {for (var i = 0; i < updatedPhotoStrings.length; i++) _updatedPhotoStrings[i]: imageProviders[i]};
+
+    _imagesMap.addAll(providerMap);
+
+    setImages(imageProviders);
   }
 
   void setImages(List<ImageProvider> images) {
-    if (_images.isNotEmpty && (_images.length + images.length) <= 9 && (_images.length + images.length + _updatedImages.length) <= 9) {
+    if (_images.isEmpty || (_images.length + images.length) <= 9) {
       _images.addAll(images);
 
       notifyListeners();
       return;
     }
 
-    if (_images.isEmpty) {
-      print("_images.isEmpty: iamges added!");
-      _images = images;
-      notifyListeners();
-      return;
-    }
-
     toastService.showSnackbar("can only have up to 9 images per note.");
 
-    debugPrint("setImages Called: $_images");
     notifyListeners();
   }
 

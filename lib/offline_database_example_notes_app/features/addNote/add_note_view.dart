@@ -5,6 +5,8 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/addN
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
 import 'package:provider/provider.dart';
 
+// TODO: add form validation
+
 class AddNoteView extends StatelessWidget {
   const AddNoteView({super.key});
 

@@ -68,7 +68,7 @@ class NoteCard extends StatelessWidget {
               bottom: 12,
             ),
             child: ImageLayout(
-              images: note.images != null ? ImagePickerService.imageFromBase64String(note.images!) : [],
+              images: ImagePickerService.imageFromBase64String(note.images),
             ),
           )
         ],
