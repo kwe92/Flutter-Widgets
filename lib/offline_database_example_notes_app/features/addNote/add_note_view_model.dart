@@ -19,12 +19,14 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
 
   List<String> _photoStrings = [];
 
+  Map<String, ImageProvider> _imagesMap = {};
+
   List<ImageProvider> _images = [];
 
   List<ImageProvider> get images => _images;
 
   void setImages(List<ImageProvider> images) {
-    if (isImageCount9orLess()) {
+    if (isImageCount9orLess(images)) {
       _images.addAll(images);
       notifyListeners();
       return;
@@ -36,7 +38,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     notifyListeners();
   }
 
-  bool isImageCount9orLess() => _images.isEmpty || (_images.isNotEmpty && (_images.length + images.length) <= 9);
+  bool isImageCount9orLess(List<ImageProvider> images) => _images.isEmpty || (_images.isNotEmpty && (_images.length + images.length) <= 9);
 
   /// inserts new note into database and append to list of notes in memory
   Future<void> save() async {
@@ -81,6 +83,8 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     // prompt user to select multiple images from photo gallery
     final ({String? error, List<XFile>? imageFiles}) result = await ImagePickerService.pickImages();
 
+    List<String> photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+
     // check if there was an error when selecting images from gallery
     if (result.error != null) {
       toastService.showSnackbar(result.error.toString());
@@ -90,16 +94,16 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     debugPrint("result.imageFiles: ${result.imageFiles!.length}");
 
     if (_photoStrings.isNotEmpty) {
-      List<String> photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
-
       _photoStrings.addAll(photoStrings);
     } else {
       // convert image files into string representations to be inserted into database
-      _photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+      _photoStrings = photoStrings;
     }
 
     // convert images files to image providers to be displayed in the UI
     final List<ImageProvider> imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
+
+    _imagesMap.addAll({for (var i = 0; i < photoStrings.length; i++) '${photoStrings[i]}-$i': imageProviders[i]});
 
     // set the state of the images that should be displayed in the UI
     setImages(imageProviders);
@@ -116,6 +120,29 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
 
     debugPrint("Number of images added: ${_photos.length}");
+  }
+
+// TODO: Review and refactor where possible
+  void removeImage(ImageProvider image) {
+    String keyToRemove = '';
+
+    for (var entry in _imagesMap.entries) {
+      if (entry.value == image) {
+        debugPrint("removeImage called!");
+        keyToRemove = entry.key; // represents image name
+
+        var imageToRemove = keyToRemove.split('-')[0];
+
+        _images.remove(image);
+        _photoStrings.removeWhere((imageName) => imageName == imageToRemove);
+
+        debugPrint("${_photos.length}");
+      }
+    }
+
+    _imagesMap.remove(keyToRemove);
+
+    notifyListeners();
   }
 
   void cearVariables() {

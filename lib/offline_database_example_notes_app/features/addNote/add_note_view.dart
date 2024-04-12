@@ -67,7 +67,7 @@ class AddNoteView extends StatelessWidget {
                 Expanded(
                   child: Center(
                     child: SingleChildScrollView(
-                      child: ImageLayout(images: viewModel.images),
+                      child: ImageLayout(removeImageCallback: viewModel.removeImage, images: viewModel.images),
                     ),
                   ),
                 ),

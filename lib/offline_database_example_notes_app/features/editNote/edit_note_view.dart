@@ -12,100 +12,108 @@ class EditNoteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        title: const Text(
-          'Edit Note',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: ChangeNotifierProvider(
-          create: (context) => EditNoteViewModel(note),
-          builder: (context, _) {
-            final EditNoteViewModel viewModel = context.watch<EditNoteViewModel>();
-            return Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: Center(
-                    child: Text(
-                      "What has changed?",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+    return ChangeNotifierProvider(
+        create: (context) => EditNoteViewModel(note),
+        builder: (context, _) {
+          final EditNoteViewModel viewModel = context.watch<EditNoteViewModel>();
+          return Scaffold(
+            appBar: AppBar(
+              iconTheme: const IconThemeData(
+                color: Colors.white,
+              ),
+              leading: IconButton(
+                onPressed: () async {
+                  viewModel.cancelEdit();
+                  await AppNavigator.pop();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                ),
+              ),
+              title: const Text(
+                'Edit Note',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16.0),
+                    child: Center(
+                      child: Text(
+                        "What has changed?",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Form(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        controller: viewModel.titleController,
-                        onChanged: viewModel.setTitle,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: viewModel.contentController,
-                        onChanged: viewModel.setContent,
-                        maxLines: viewModel.images.isEmpty
-                            ? 15
-                            : viewModel.images.length < 4
-                                ? 6
-                                : 1,
-                      ),
-                    ],
-                  ),
-                ),
-                viewModel.images.isNotEmpty
-                    ? Flexible(
-                        flex: 4,
-                        child: Center(
-                          child: SingleChildScrollView(
-                            child: ImageLayout(
-                              removeImageCallback: viewModel.markImageForDeletion,
-                              images: viewModel.images,
-                            ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-                Flexible(
-                  flex: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 32.0),
+                  Form(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        MainButton(
-                          onTap: () async => await viewModel.pickImages(),
-                          height: 65,
-                          child: const Text("Select Image"),
+                        const SizedBox(height: 24),
+                        TextFormField(
+                          controller: viewModel.titleController,
+                          onChanged: viewModel.setTitle,
                         ),
-                        const SizedBox(height: 12),
-                        MainButton(
-                          onTap: () async {
-                            await viewModel.edit(note);
-                            AppNavigator.pop();
-                          },
-                          height: 65,
-                          child: const Text("Edit"),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: viewModel.contentController,
+                          onChanged: viewModel.setContent,
+                          maxLines: viewModel.images.isEmpty
+                              ? 15
+                              : viewModel.images.length < 4
+                                  ? 6
+                                  : 1,
                         ),
                       ],
                     ),
                   ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
+                  viewModel.images.isNotEmpty
+                      ? Flexible(
+                          flex: 4,
+                          child: Center(
+                            child: SingleChildScrollView(
+                              child: ImageLayout(
+                                removeImageCallback: viewModel.markImageForDeletion,
+                                images: viewModel.images,
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                  Flexible(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 32.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MainButton(
+                            onTap: () async => await viewModel.pickImages(),
+                            height: 65,
+                            child: const Text("Select Image"),
+                          ),
+                          const SizedBox(height: 12),
+                          MainButton(
+                            onTap: () async {
+                              await viewModel.edit(note);
+                              AppNavigator.pop();
+                            },
+                            height: 65,
+                            child: const Text("Edit"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

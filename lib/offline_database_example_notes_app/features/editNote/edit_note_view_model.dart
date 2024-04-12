@@ -49,8 +49,6 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> edit(Note prevNote) async {
-    removeImages();
-
     // insert newly added images into the database
     await _insertImages(prevNote.id!);
 
@@ -90,27 +88,35 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   // TODO: clean up implementation
 
   void markImageForDeletion(ImageProvider image) {
-    var imageToRemove;
-    var updatedImageToRemove;
-    var keyToRemove;
+    String imageToRemove = '';
+    String updatedImageToRemove = '';
+    String keyToRemove = '';
+    Photo? imageMarkedForRemoval;
 
     for (var entry in _imagesMap.entries) {
       if (entry.value == image) {
-        keyToRemove = entry.key;
-        imageToRemove = keyToRemove.split('-')[0];
+        keyToRemove = entry.key; // represents image name
 
-        Photo? imageMarkedForRemoval = _note.images.firstWhere(
+        imageToRemove = keyToRemove.split('-')[0]; // remove hyphen added to track duplicate images
+
+        // mark the first occurence of an image name for deletion
+        imageMarkedForRemoval = _note.images.firstWhere(
           (photo) => photo?.imageName == imageToRemove,
           orElse: () => Photo(noteID: 0, imageName: ''),
         );
 
+        _note.images.remove(imageMarkedForRemoval);
+
+        // add morked image to list of images to delete upon updating
         _imagesToDelete.add(imageMarkedForRemoval);
       }
+    }
 
-      for (var imageName in _updatedPhotoStrings) {
-        if (entry.key == imageName && imageName != imageToRemove) {
-          updatedImageToRemove = imageName;
-        }
+    // logic to remove duplicate image if added during edit
+    for (String imageName in _updatedPhotoStrings) {
+      debugPrint("imageMarkedForRemoval: $imageMarkedForRemoval");
+      if (imageMarkedForRemoval?.id == null) {
+        updatedImageToRemove = imageName;
       }
     }
 
@@ -125,23 +131,16 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     notifyListeners();
   }
 
-  void removeImages() {
-    for (var i = 0; i < _imagesToDelete.length; i++) {
-      _note.images.removeWhere((photo) => photo?.id == _imagesToDelete[i]?.id);
-    }
-    notifyListeners();
-  }
-
   Future<void> pickImages() async {
     final result = await ImagePickerService.pickImages();
 
+    // convert image files into string representations to be inserted into database
     List<String> updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
 
     if (_updatedPhotoStrings.isNotEmpty) {
       _updatedPhotoStrings.addAll(updatedPhotoStrings);
     } else {
-      // convert image files into string representations to be inserted into database
-      _updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+      _updatedPhotoStrings = updatedPhotoStrings;
     }
 
     final imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
@@ -172,5 +171,10 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     List<int> photoIds = await PhotoProvider.insert(_photos);
 
     _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
+  }
+
+  void cancelEdit() {
+    _note.images = [..._note.images, ..._imagesToDelete];
+    notifyListeners();
   }
 }
