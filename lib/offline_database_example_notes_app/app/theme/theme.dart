@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/offline_database_example_notes_app/theme/colors.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app/theme/colors.dart';
 
 class AppThemeNotes {
   AppThemeNotes._();

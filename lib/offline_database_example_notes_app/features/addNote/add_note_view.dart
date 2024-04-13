@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app/app_navigatior.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/add_note_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/widgets/image_layout.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';

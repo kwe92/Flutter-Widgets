@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/offline_database_example_notes_app/app_navigatior.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app/app_navigatior.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/addNote/add_note_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/editNote/edit_note_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/notes_view_model.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
-import 'package:flutter_widgets/offline_database_example_notes_app/theme/colors.dart';
+import 'package:flutter_widgets/offline_database_example_notes_app/app/theme/colors.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/widgets/note_card.dart';
 import 'package:provider/provider.dart';
 
