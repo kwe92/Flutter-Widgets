@@ -46,7 +46,7 @@ class AddNoteView extends StatelessWidget {
                 Form(
                   child: Column(
                     children: [
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: viewModel.titleController,
                         onChanged: viewModel.setTitle,
@@ -66,8 +66,13 @@ class AddNoteView extends StatelessWidget {
                 ),
                 Expanded(
                   child: Center(
-                    child: SingleChildScrollView(
-                      child: ImageLayout(removeImageCallback: viewModel.removeImage, images: viewModel.images),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: viewModel.images.length > 6 ? 16.0 : 0,
+                      ),
+                      child: SingleChildScrollView(
+                        child: ImageLayout(removeImageCallback: viewModel.removeImage, images: viewModel.images),
+                      ),
                     ),
                   ),
                 ),

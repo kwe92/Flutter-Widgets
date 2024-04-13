@@ -6,6 +6,8 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/note
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/main_button.dart';
 import 'package:provider/provider.dart';
 
+// TODO: add form validation
+
 class EditNoteView extends StatelessWidget {
   final Note note;
   const EditNoteView({required this.note, super.key});
@@ -54,7 +56,7 @@ class EditNoteView extends StatelessWidget {
                   Form(
                     child: Column(
                       children: [
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 16),
                         TextFormField(
                           controller: viewModel.titleController,
                           onChanged: viewModel.setTitle,
@@ -73,41 +75,45 @@ class EditNoteView extends StatelessWidget {
                     ),
                   ),
                   viewModel.images.isNotEmpty
-                      ? Flexible(
-                          flex: 4,
+                      ? Expanded(
                           child: Center(
-                            child: SingleChildScrollView(
-                              child: ImageLayout(
-                                removeImageCallback: viewModel.markImageForDeletion,
-                                images: viewModel.images,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: viewModel.images.length > 6 ? 16.0 : 0,
+                              ),
+                              child: SingleChildScrollView(
+                                child: ImageLayout(
+                                  removeImageCallback: viewModel.markImageForDeletion,
+                                  images: viewModel.images,
+                                ),
                               ),
                             ),
                           ),
                         )
                       : const SizedBox(),
-                  Flexible(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 32.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          MainButton(
-                            onTap: () async => await viewModel.pickImages(),
-                            height: 65,
-                            child: const Text("Select Image"),
-                          ),
-                          const SizedBox(height: 12),
-                          MainButton(
-                            onTap: () async {
-                              await viewModel.edit(note);
-                              AppNavigator.pop();
-                            },
-                            height: 65,
-                            child: const Text("Edit"),
-                          ),
-                        ],
-                      ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: viewModel.images.isEmpty ? 24.0 : 0.0,
+                      bottom: viewModel.images.isNotEmpty ? 32.0 : 0.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        MainButton(
+                          onTap: () async => await viewModel.pickImages(),
+                          height: 65,
+                          child: const Text("Select Image"),
+                        ),
+                        const SizedBox(height: 12),
+                        MainButton(
+                          onTap: () async {
+                            await viewModel.edit(note);
+                            AppNavigator.pop();
+                          },
+                          height: 65,
+                          child: const Text("Edit"),
+                        ),
+                      ],
                     ),
                   ),
                 ],
