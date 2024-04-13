@@ -49,9 +49,10 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> edit(Note prevNote) async {
-    // insert newly added images into the database
+    // insert newly added images into database
     await _insertImages(prevNote.id!);
 
+    // instantiate updated note
     final updatedNote = Note(
       id: prevNote.id,
       title: title,
@@ -76,26 +77,16 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     notifyListeners();
   }
 
-  void clearInput() {
-    setTitle('');
-    setContent('');
-
-    titleController.clear();
-
-    contentController.clear();
-  }
-
-  // TODO: clean up implementation
-
   void markImageForDeletion(ImageProvider image) {
     String imageToRemove = '';
-    String updatedImageToRemove = '';
     String keyToRemove = '';
     Photo? imageMarkedForRemoval;
 
-    for (var entry in _imagesMap.entries) {
-      if (entry.value == image) {
-        keyToRemove = entry.key; // represents image name
+    _imagesMap.removeWhere((key, value) {
+      final isMatchingValue = value == image;
+      if (isMatchingValue) {
+        debugPrint(key);
+        keyToRemove = key; // represents image name
 
         imageToRemove = keyToRemove.split('-')[0]; // remove hyphen added to track duplicate images
 
@@ -107,24 +98,21 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
 
         _note.images.remove(imageMarkedForRemoval);
 
-        // add morked image to list of images to delete upon updating
+        // add marked image to list of images to delete upon updating
         _imagesToDelete.add(imageMarkedForRemoval);
       }
-    }
 
-    // logic to remove duplicate image if added during edit
-    for (String imageName in _updatedPhotoStrings) {
-      debugPrint("imageMarkedForRemoval: $imageMarkedForRemoval");
-      if (imageMarkedForRemoval?.id == null) {
-        updatedImageToRemove = imageName;
-      }
+      return isMatchingValue;
+    });
+
+    // logic to remove updated images
+    if (imageMarkedForRemoval?.id == null) {
+      _updatedPhotoStrings.remove(imageToRemove);
     }
 
     _imagesMap.remove(keyToRemove);
 
     _images.remove(image);
-
-    _updatedPhotoStrings.remove(updatedImageToRemove);
 
     debugPrint("images marked for deletion: $_imagesToDelete");
 
@@ -177,4 +165,35 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     _note.images = [..._note.images, ..._imagesToDelete];
     notifyListeners();
   }
+
+  void clearInput() {
+    setTitle('');
+    setContent('');
+
+    titleController.clear();
+
+    contentController.clear();
+  }
 }
+
+
+// ! legacy code keep to ensure nothing breaks for now
+
+ // for (var entry in _imagesMap.entries) {
+    //   if (entry.value == image) {
+    //     keyToRemove = entry.key; // represents image name
+
+    //     imageToRemove = keyToRemove.split('-')[0]; // remove hyphen added to track duplicate images
+
+    //     // mark the first occurence of an image name for deletion
+    //     imageMarkedForRemoval = _note.images.firstWhere(
+    //       (photo) => photo?.imageName == imageToRemove,
+    //       orElse: () => Photo(noteID: 0, imageName: ''),
+    //     );
+
+    //     _note.images.remove(imageMarkedForRemoval);
+
+    //     // add morked image to list of images to delete upon updating
+    //     _imagesToDelete.add(imageMarkedForRemoval);
+    //   }
+    // }

@@ -63,28 +63,15 @@ class ImagePickerService {
     debugPrint("imageFromBase64StringAsMap imageObjs count: ${imageObjs.length}");
 
     for (var i = 0; i < imageObjs.length; i++) {
-      result.addAll({
-        '${imageObjs[i]!.imageName}-$i': Image.memory(
-          base64Decode(imageObjs[i]!.imageName),
-          fit: BoxFit.fill,
-        ).image,
-      });
-      // result.putIfAbsent(
-      //     photo!.imageName,
-      //     () => Image.memory(
-      //           base64Decode(photo.imageName),
-      //           fit: BoxFit.fill,
-      //         ).image);
+      result.addAll(
+        {
+          '${imageObjs[i]!.imageName}-$i': Image.memory(
+            base64Decode(imageObjs[i]!.imageName),
+            fit: BoxFit.fill,
+          ).image,
+        },
+      );
     }
-
-    // for (Photo? photo in imageObjs) {
-    //   result.putIfAbsent(
-    //       photo!.imageName,
-    //       () => Image.memory(
-    //             base64Decode(photo.imageName),
-    //             fit: BoxFit.fill,
-    //           ).image);
-    // }
 
     return result;
   }
