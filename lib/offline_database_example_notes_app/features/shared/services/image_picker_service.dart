@@ -10,7 +10,9 @@ import 'package:image_picker_platform_interface/image_picker_platform_interface.
 class ImagePickerService {
   ImagePickerService._();
 
-  static Future<({List<XFile>? imageFiles, String? error})> pickImages() async {
+  // ({List<XFile> imageFiles, String error})
+
+  static Future<(List<XFile> imageFiles, String error)> pickImages() async {
     final ImagePickerPlatform picker = ImagePickerPlatform.instance;
 
     try {
@@ -25,12 +27,12 @@ class ImagePickerService {
       );
 
       if (pickedImageFile.isEmpty) {
-        return (imageFiles: <XFile>[], error: null);
+        return (<XFile>[], '');
       }
 
-      return (imageFiles: pickedImageFile, error: null);
+      return (pickedImageFile, '');
     } catch (error) {
-      return (imageFiles: null, error: error.toString());
+      return (<XFile>[], error.toString());
     }
   }
 

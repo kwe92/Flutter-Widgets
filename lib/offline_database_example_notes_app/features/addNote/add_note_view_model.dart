@@ -15,6 +15,8 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
 class AddNoteViewModel extends ChangeNotifier with NotesMixin {
+  int _imageCounter = 0;
+
   List<Photo> _photos = [];
 
   List<String> _photoStrings = [];
@@ -25,22 +27,6 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
 
   List<ImageProvider> get images => _images;
 
-  void setImages(List<ImageProvider> images) {
-    if (isImageCount9orLess(images)) {
-      _images.addAll(images);
-      notifyListeners();
-      return;
-    }
-
-    toastService.showSnackbar("images are limited to 9 per note.");
-
-    debugPrint("setImages Called: $_images");
-    notifyListeners();
-  }
-
-  bool isImageCount9orLess(List<ImageProvider> images) => _images.isEmpty || (_images.isNotEmpty && (_images.length + images.length) <= 9);
-
-  /// inserts new note into database and append to list of notes in memory
   Future<void> save() async {
     // insert note into database
     final note = await _insertNote();
@@ -60,7 +46,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<Note> _insertNote() async {
-    // instantiate note based on user input
+    // instantiate new Note object
     final note = Note(
       title: title,
       content: content,
@@ -70,7 +56,7 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
     // insert note into database and retrieve unique id
     final int id = await NotesProvider.insert(note);
 
-    // insert images into database with associated note id
+    // insert images into database
     await _insertImages(id);
 
     // assign unique id to note
@@ -80,78 +66,114 @@ class AddNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> pickImages() async {
-    // prompt user to select multiple images from photo gallery
-    final ({String? error, List<XFile>? imageFiles}) result = await ImagePickerService.pickImages();
+    // prompt user to select images
 
-    List<String> photoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
+    var (List<XFile> imageFiles, String error) = await ImagePickerService.pickImages();
 
-    // check if there was an error when selecting images from gallery
-    if (result.error != null) {
-      toastService.showSnackbar(result.error.toString());
+    // check for error
+    if (error.isNotEmpty) {
+      toastService.showSnackbar(error.toString());
       return;
     }
 
-    debugPrint("result.imageFiles: ${result.imageFiles!.length}");
+    // retrieve image providers to be displayed in the UI
+    final List<ImageProvider> imageProviders = ImagePickerService.toImageProvider(imageFiles);
 
-    if (_photoStrings.isNotEmpty) {
+    if ((_images.length + imageProviders.length) <= 9) {
+      // retrieve image String representations to be inserted into database
+      List<String> photoStrings = await ImagePickerService.convertToString(imageFiles);
+
       _photoStrings.addAll(photoStrings);
-    } else {
-      // convert image files into string representations to be inserted into database
-      _photoStrings = photoStrings;
+
+      _imagesMap.addAll(
+        {
+          for (int i = 0; i < photoStrings.length; i++) '${photoStrings[i]}-$_imageCounter': imageProviders[i],
+        },
+      );
+
+      _imageCounter++;
+
+      _images.addAll(imageProviders);
+
+      notifyListeners();
+      return;
     }
 
-    // convert images files to image providers to be displayed in the UI
-    final List<ImageProvider> imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
-
-    _imagesMap.addAll({for (var i = 0; i < photoStrings.length; i++) '${photoStrings[i]}-$i': imageProviders[i]});
-
-    // set the state of the images that should be displayed in the UI
-    setImages(imageProviders);
+    toastService.showSnackbar("images are limited to 9 per note.");
   }
 
   Future<void> _insertImages(int noteID) async {
-    // convert list of image string to list of Photo object to be assigned to newly added note in memory
     _photos = [for (String imageString in _photoStrings) Photo(noteID: noteID, imageName: imageString)];
 
-    // insert list of Photo objects into database returning list of Photo id's
+    // insert Photo objects into database returning list of Photo id's
     List<int> photoIds = await PhotoProvider.insert(_photos);
 
-    // assign each Photo its respective unique id returned from database insertion
-    _photos.forEachIndexed((index, Photo photo) => photo.id = photoIds[index]);
+    // assign each Photo it's respective unique id
+    _photos.forEachIndexed((int index, Photo photo) => photo.id = photoIds[index]);
 
     debugPrint("Number of images added: ${_photos.length}");
   }
 
-// TODO: Review and refactor where possible
   void removeImage(ImageProvider image) {
-    String keyToRemove = '';
-
-    for (var entry in _imagesMap.entries) {
-      if (entry.value == image) {
-        debugPrint("removeImage called!");
-        keyToRemove = entry.key; // represents image name
-
-        var imageToRemove = keyToRemove.split('-')[0];
-
-        _images.remove(image);
-        _photoStrings.removeWhere((imageName) => imageName == imageToRemove);
-
-        debugPrint("${_photos.length}");
-      }
-    }
-
-    _imagesMap.remove(keyToRemove);
+    _imagesMap.removeWhere(_removeImage(image));
 
     notifyListeners();
   }
 
+  bool Function(String, ImageProvider) _removeImage(ImageProvider image) {
+    return (key, imageProvider) {
+      final isMatchingImages = imageProvider == image;
+
+      if (isMatchingImages) {
+        String keyToRemove = key; // represents image name
+
+        String imageToRemove = keyToRemove.split('-')[0];
+
+        _images.remove(image);
+
+        _photoStrings.remove(imageToRemove);
+
+        debugPrint("image deleted!");
+      }
+
+      return isMatchingImages;
+    };
+  }
+
   void cearVariables() {
+    _imageCounter = 0;
     setTitle('');
     setContent('');
     _photos = [];
     _photoStrings = [];
     _images = [];
+    _imagesMap = {};
     titleController.clear();
     contentController.clear();
+    notifyListeners();
   }
 }
+
+  // void removeImage(ImageProvider image) {
+  //   String keyToRemove = '';
+
+  //   for (var entry in _imagesMap.entries) {
+  //     if (entry.value == image) {
+  //       debugPrint("removeImage called!");
+  //       keyToRemove = entry.key; // represents image name
+
+  //       var imageToRemove = keyToRemove.split('-')[0];
+
+  //       _images.remove(image);
+  //       _photoStrings.removeWhere((imageName) => imageName == imageToRemove);
+
+  //       debugPrint("${_photos.length}");
+  //     }
+  //   }
+
+  //   _imagesMap.remove(keyToRemove);
+
+  //   notifyListeners();
+  // }
+
+

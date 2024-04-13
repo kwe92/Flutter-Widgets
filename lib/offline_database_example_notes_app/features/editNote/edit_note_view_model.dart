@@ -12,13 +12,12 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/image_picker_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
-
-// TODO: add comments
-
-// TODO: check proper functionality when member exceeds photo limit
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
 class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   late Note _note;
+
+  int _imageCounter = 0;
 
   Map<String, ImageProvider> _imagesMap = {};
 
@@ -53,7 +52,7 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   }
 
   Future<void> edit(Note prevNote) async {
-    // insert newly added images into database
+    // insert images into database
     await _insertImages(prevNote.id!);
 
     // instantiate updated note
@@ -89,12 +88,11 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
     _imagesMap.removeWhere((key, value) {
       final isMatchingValue = value == image;
       if (isMatchingValue) {
-        debugPrint(key);
         keyToRemove = key; // represents image name
 
         imageToRemove = keyToRemove.split('-')[0]; // remove hyphen added to track duplicate images
 
-        // mark the first occurence of an image name for deletion
+        // mark first occurence of image for deletion
         imageMarkedForRemoval = _note.images.firstWhere(
           (photo) => photo?.imageName == imageToRemove,
           orElse: () => Photo(noteID: 0, imageName: ''),
@@ -114,47 +112,44 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
       _updatedPhotoStrings.remove(imageToRemove);
     }
 
-    _imagesMap.remove(keyToRemove);
-
     _images.remove(image);
 
-    debugPrint("images marked for deletion: $_imagesToDelete");
+    debugPrint("images marked for deletion: ${_imagesToDelete.length}");
 
     notifyListeners();
   }
 
   Future<void> pickImages() async {
-    final result = await ImagePickerService.pickImages();
+    var (List<XFile> imageFiles, String error) = await ImagePickerService.pickImages();
 
-    // convert image files into string representations to be inserted into database
-    List<String> updatedPhotoStrings = result.imageFiles != null ? await ImagePickerService.convertToString(result.imageFiles!) : [];
-
-    if (_updatedPhotoStrings.isNotEmpty) {
-      _updatedPhotoStrings.addAll(updatedPhotoStrings);
-    } else {
-      _updatedPhotoStrings = updatedPhotoStrings;
+    // check for error
+    if (error.isNotEmpty) {
+      toastService.showSnackbar(error.toString());
+      return;
     }
 
-    final imageProviders = ImagePickerService.toImageProvider(result.imageFiles ?? []);
+    final imageProviders = ImagePickerService.toImageProvider(imageFiles);
 
-    final providerMap = {for (var i = 0; i < updatedPhotoStrings.length; i++) _updatedPhotoStrings[i]: imageProviders[i]};
+    if ((_images.length + imageProviders.length) <= 9) {
+      List<String> updatedPhotoStrings = await ImagePickerService.convertToString(imageFiles);
 
-    _imagesMap.addAll(providerMap);
+      _images.addAll(imageProviders);
 
-    setImages(imageProviders);
-  }
+      // convert image files into string representations to be inserted into database
+      _updatedPhotoStrings.addAll(updatedPhotoStrings);
 
-  void setImages(List<ImageProvider> images) {
-    if (_images.isEmpty || (_images.length + images.length) <= 9) {
-      _images.addAll(images);
+      final providerMap = {
+        for (var i = 0; i < updatedPhotoStrings.length; i++) '${_updatedPhotoStrings[i]}-$_imageCounter': imageProviders[i]
+      };
+
+      _imagesMap.addAll(providerMap);
+
+      _imageCounter++;
 
       notifyListeners();
       return;
     }
-
-    toastService.showSnackbar("can only have up to 9 images per note.");
-
-    notifyListeners();
+    toastService.showSnackbar("images are limited to 9 per note.");
   }
 
   Future<void> _insertImages(int noteID) async {
@@ -172,32 +167,25 @@ class EditNoteViewModel extends ChangeNotifier with NotesMixin {
 
   void clearInput() {
     setTitle('');
+
     setContent('');
+
+    _imageCounter = 0;
+
+    _imagesMap = {};
+
+    _imagesToDelete = [];
+
+    _updatedPhotoStrings = [];
+
+    _images = [];
+
+    _photos = [];
 
     titleController.clear();
 
     contentController.clear();
+
+    notifyListeners();
   }
 }
-
-
-// ! legacy code keep to ensure nothing breaks for now
-
- // for (var entry in _imagesMap.entries) {
-    //   if (entry.value == image) {
-    //     keyToRemove = entry.key; // represents image name
-
-    //     imageToRemove = keyToRemove.split('-')[0]; // remove hyphen added to track duplicate images
-
-    //     // mark the first occurence of an image name for deletion
-    //     imageMarkedForRemoval = _note.images.firstWhere(
-    //       (photo) => photo?.imageName == imageToRemove,
-    //       orElse: () => Photo(noteID: 0, imageName: ''),
-    //     );
-
-    //     _note.images.remove(imageMarkedForRemoval);
-
-    //     // add morked image to list of images to delete upon updating
-    //     _imagesToDelete.add(imageMarkedForRemoval);
-    //   }
-    // }
