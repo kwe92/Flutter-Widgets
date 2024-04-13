@@ -44,23 +44,28 @@ class AddNoteView extends StatelessWidget {
                   ),
                 ),
                 Form(
+                  key: viewModel.formKey,
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
                       TextFormField(
-                        controller: viewModel.titleController,
-                        onChanged: viewModel.setTitle,
-                      ),
+                          controller: viewModel.titleController,
+                          onChanged: viewModel.setTitle,
+                          validator: (value) {
+                            return value == null || value.isEmpty ? 'title can not be empty' : null;
+                          }),
                       const SizedBox(height: 16),
                       TextFormField(
-                        controller: viewModel.contentController,
-                        onChanged: viewModel.setContent,
-                        maxLines: viewModel.images.isEmpty
-                            ? 15
-                            : viewModel.images.length < 4
-                                ? 6
-                                : 1,
-                      ),
+                          controller: viewModel.contentController,
+                          onChanged: viewModel.setContent,
+                          maxLines: viewModel.images.isEmpty
+                              ? 12
+                              : viewModel.images.length < 4
+                                  ? 6
+                                  : 1,
+                          validator: (value) {
+                            return value == null || value.isEmpty ? 'note body can not be empty' : null;
+                          }),
                     ],
                   ),
                 ),
@@ -89,8 +94,10 @@ class AddNoteView extends StatelessWidget {
                       const SizedBox(height: 12),
                       MainButton(
                         onTap: () async {
-                          await viewModel.save();
-                          AppNavigator.pop();
+                          if (viewModel.formKey.currentState?.validate() ?? false) {
+                            await viewModel.save();
+                            AppNavigator.pop();
+                          }
                         },
                         height: 65,
                         child: const Text("Save"),

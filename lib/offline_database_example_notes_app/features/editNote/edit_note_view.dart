@@ -54,28 +54,36 @@ class EditNoteView extends StatelessWidget {
                     ),
                   ),
                   Form(
+                    key: viewModel.formKey,
                     child: Column(
                       children: [
                         const SizedBox(height: 16),
                         TextFormField(
                           controller: viewModel.titleController,
                           onChanged: viewModel.setTitle,
+                          validator: (value) {
+                            return value == null || value.isEmpty ? 'title can not be empty' : null;
+                          },
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
                           controller: viewModel.contentController,
                           onChanged: viewModel.setContent,
                           maxLines: viewModel.images.isEmpty
-                              ? 15
+                              ? 12
                               : viewModel.images.length < 4
                                   ? 6
                                   : 1,
+                          validator: (value) {
+                            return value == null || value.isEmpty ? 'note body can not be empty' : null;
+                          },
                         ),
                       ],
                     ),
                   ),
                   viewModel.images.isNotEmpty
                       ? Expanded(
+                          flex: 2,
                           child: Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -91,29 +99,32 @@ class EditNoteView extends StatelessWidget {
                           ),
                         )
                       : const SizedBox(),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: viewModel.images.isEmpty ? 24.0 : 0.0,
-                      bottom: viewModel.images.isNotEmpty ? 32.0 : 0.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MainButton(
-                          onTap: () async => await viewModel.pickImages(),
-                          height: 65,
-                          child: const Text("Select Image"),
-                        ),
-                        const SizedBox(height: 12),
-                        MainButton(
-                          onTap: () async {
-                            await viewModel.edit(note);
-                            AppNavigator.pop();
-                          },
-                          height: 65,
-                          child: const Text("Edit"),
-                        ),
-                      ],
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: viewModel.images.isEmpty ? 16.0 : 0.0,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MainButton(
+                            onTap: () async => await viewModel.pickImages(),
+                            height: 65,
+                            child: const Text("Select Image"),
+                          ),
+                          const SizedBox(height: 12),
+                          MainButton(
+                            onTap: () async {
+                              if (viewModel.formKey.currentState?.validate() ?? false) {
+                                await viewModel.edit(note);
+                                AppNavigator.pop();
+                              }
+                            },
+                            height: 65,
+                            child: const Text("Edit"),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
