@@ -13,6 +13,10 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/notes_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/toast_service.dart';
 
+// TODO: add comments
+
+// TODO: check proper functionality when member exceeds photo limit
+
 class EditNoteViewModel extends ChangeNotifier with NotesMixin {
   late Note _note;
 
