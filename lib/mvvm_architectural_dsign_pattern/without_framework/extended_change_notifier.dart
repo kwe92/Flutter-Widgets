@@ -15,10 +15,10 @@ class ExtendedChangeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<T> runBusyFuture<T>(Future<T> bustFuture) async {
+  Future<T> runBusyFuture<T>(Future<T> busyFuture) async {
     setIsLoading(true);
     T futureValue = await () async {
-      return await bustFuture;
+      return await busyFuture;
     }();
     setIsLoading(false);
 
