@@ -94,6 +94,7 @@ class CollapsingList extends StatelessWidget {
                 key: viewModel.globalKey,
                 itemExtent: 56.0,
                 delegate: SliverChildBuilderDelegate(
+                  childCount: 5,
                   (BuildContext context, int index) {
                     return Container(
                       margin: EdgeInsets.only(top: index != 0 ? 0 : 6.0, bottom: 6.0),
@@ -102,7 +103,6 @@ class CollapsingList extends StatelessWidget {
                       child: Text('List item $index'),
                     );
                   },
-                  childCount: 100,
                 ),
               ),
             ],

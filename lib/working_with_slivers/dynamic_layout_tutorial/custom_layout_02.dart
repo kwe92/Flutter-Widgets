@@ -18,10 +18,10 @@ class CustomSliverLayout02 extends StatelessWidget {
             child: CustomScrollView(
               center: centerWidgetKey,
               slivers: [
+                const CustomSliver(child: TopSection()),
                 MiddleSection(
                   key: centerWidgetKey,
                 ),
-                const CustomSliver(child: TopSection()),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     childCount: 30,
