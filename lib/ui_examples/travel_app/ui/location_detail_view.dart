@@ -1,6 +1,9 @@
 // TODO: create the location detail view from: https://www.figma.com/design/MrzFHl3QryIQCLS3T2EekF/Mobile-app-UI-Template-(Community)?node-id=0-1&t=szPoBAM8LQmATeRZ-0
 
 // TODO: ensure you can use relative path instead of absolute path for images
+
+// TODO: make code more modular
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -117,6 +120,10 @@ class LocationDetailView extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
+              ),
+              MainButton(
+                label: "Book Now",
+                iconRight: SvgPicture.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/send_icon.svg"),
               ),
             ],
           ),
@@ -318,26 +325,69 @@ class DetailIconListTile extends StatelessWidget {
   }
 }
 
-// ? Growable Container
+// TODO: Start button
+class MainButton extends StatelessWidget {
+  final String label;
+  final VoidCallback? onTap;
+  final Widget? iconLeft;
+  final Widget? iconRight;
 
-//  ConstrainedBox(
-//                 constraints: const BoxConstraints(
-//                   minHeight: 100,
-//                   maxHeight: 134,
-//                   minWidth: double.infinity,
-//                 ),
-//                 child: const Padding(
-//                   // padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
-//                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+  const MainButton({
+    required this.label,
+    this.onTap,
+    this.iconLeft,
+    this.iconRight,
+    super.key,
+  });
 
-//                   child: Text(
-//                     "This vast mountain range is renowned for its remarkable diversity in terms of topography and climate. It features towering peaks, active volcanoes, deep canyons, expansive plateaus, and lush valleys. The Andes are also home to",
-//                     overflow: TextOverflow.fade,
-//                     style: TextStyle(
-//                       color: Color(0xffA5A5A5),
-//                       fontWeight: FontWeight.w500,
-//                       fontSize: 18,
-//                     ),
-//                   ),
-//                 ),
-//               ),
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 66,
+      child: OutlinedButton(
+        style: ButtonStyle(
+          backgroundColor: resolver(Colors.black),
+          shape: resolver(
+            const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+          ),
+        ),
+        onPressed: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (iconLeft != null) ...[
+              _getIcon(iconLeft!),
+              const SizedBox(width: 16),
+            ],
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+              ),
+            ),
+            if (iconRight != null) ...[
+              const SizedBox(width: 16),
+              _getIcon(iconRight!),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _getIcon(Widget icon) {
+    return SizedBox(
+      width: 22,
+      height: 22,
+      child: icon,
+    );
+  }
+}
+
+WidgetStateProperty<T> resolver<T>(T obj) => WidgetStateProperty.resolveWith<T>((_) => obj);
