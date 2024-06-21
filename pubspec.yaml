@@ -59,7 +59,7 @@ dependencies:
   flutter_app_badger: ^1.5.0
   syncfusion_flutter_calendar: ^24.1.45
   table_calendar: ^3.0.9
-  intl: ^0.18.1
+  intl: ^0.19.0
   share_plus: ^7.2.2
   entry: ^0.0.9
   fl_chart: ^0.66.2
