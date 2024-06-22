@@ -4,6 +4,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/note
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/app/theme/theme.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/home/destination_selection.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/location_detail_view.dart';
 import 'package:flutter_widgets/working_with_slivers/dynamic_layout_tutorial/custom_layout.dart';
 import 'package:flutter_widgets/working_with_slivers/dynamic_layout_tutorial/custom_layout_02.dart';
@@ -11,7 +12,7 @@ import 'package:flutter_widgets/working_with_slivers/pinning_widgets_00.dart';
 
 void main() async {
   runApp(const MaterialApp(
-    home: LocationDetailView(),
+    home: DestinationSelectionView(),
   ));
   // WidgetsFlutterBinding.ensureInitialized();
   // await databaseService.initialize();
