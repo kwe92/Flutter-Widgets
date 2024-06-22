@@ -69,7 +69,11 @@ class LocationDetailView extends StatelessWidget {
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                      child: InfoListTile(destination: "Andes Mountain", continent: "Soutth, America", price: 230),
+                      child: InfoListTile(
+                        destination: "Andes Mountain",
+                        continent: "Soutth, America",
+                        price: 230,
+                      ),
                     ),
                   ],
                 ),
