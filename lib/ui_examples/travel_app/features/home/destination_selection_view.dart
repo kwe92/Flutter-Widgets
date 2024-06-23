@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/home/destination_selection_view_model.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/home/widgets/custom_search_bar.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/home/widgets/destination_card.dart';
@@ -14,15 +15,15 @@ class DestinationSelectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: FutureBuilder(
-          future: destinationService.fetchData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SplashView();
-            }
-            if (snapshot.hasData) {
-              return Padding(
+      child: FutureBuilder(
+        future: destinationService.fetchData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashView();
+          }
+          if (snapshot.hasData) {
+            return Scaffold(
+              body: Padding(
                 padding: const EdgeInsets.only(
                   left: 24,
                   top: 32,
@@ -103,15 +104,86 @@ class DestinationSelectionView extends StatelessWidget {
                         ],
                       );
                     }),
-              );
-            }
-
-            return const Center(
-              // TODO: could add error view
-              child: CircularProgressIndicator(),
+              ),
+              bottomNavigationBar: BottomNavigationBar(
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Column(
+                      children: [
+                        SvgPicture.asset(
+                          "/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/home_icon.svg",
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 6,
+                          height: 6,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xffFF4A4A),
+                          ),
+                        )
+                      ],
+                    ),
+                    label: '',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Column(
+                      children: [
+                        SvgPicture.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/clock_menu_icon.svg"),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 6,
+                          height: 6,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                        )
+                      ],
+                    ),
+                    label: '',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Column(
+                      children: [
+                        SvgPicture.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/heart_menu_icon.svg"),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 6,
+                          height: 6,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                        )
+                      ],
+                    ),
+                    label: '',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Column(
+                      children: [
+                        SvgPicture.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/user_icon.svg"),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 6,
+                          height: 6,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                        )
+                      ],
+                    ),
+                    label: '',
+                  ),
+                ],
+              ),
             );
-          },
-        ),
+          }
+
+          return const Center(
+            // TODO: could add error view
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
