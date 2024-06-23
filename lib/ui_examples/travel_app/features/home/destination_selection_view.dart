@@ -8,8 +8,6 @@ import 'package:flutter_widgets/ui_examples/travel_app/features/shared/services/
 import 'package:flutter_widgets/ui_examples/travel_app/features/splashScreen/ui/splash_view.dart';
 import 'package:provider/provider.dart';
 
-// TODO: Construct NavigatorView
-
 class DestinationSelectionView extends StatelessWidget {
   const DestinationSelectionView({super.key});
 
