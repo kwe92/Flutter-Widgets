@@ -6,6 +6,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/shar
 import 'package:flutter_widgets/offline_database_example_notes_app/app/theme/theme.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/home/destination_selection_view.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/location_detail_view.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/navigation/navigation_view.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/shared/services/destination_service.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/splashScreen/ui/splash_view.dart';
 import 'package:flutter_widgets/working_with_slivers/dynamic_layout_tutorial/custom_layout.dart';
