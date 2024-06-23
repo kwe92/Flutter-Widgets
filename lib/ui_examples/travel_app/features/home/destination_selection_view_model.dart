@@ -7,10 +7,19 @@ class DestinationSelectionViewModel extends ChangeNotifier {
 
   int get selectedIndex => _selectedIndex;
 
+  bool _showBottomNav = false;
+
+  bool get showBottomNav => _showBottomNav;
+
   List<Destination> get destinations => destinationService.destinations;
 
   void setIndex(int index) {
     _selectedIndex = index;
+    notifyListeners();
+  }
+
+  void setShowBottomNav(bool showNav) {
+    _showBottomNav = showNav;
     notifyListeners();
   }
 
