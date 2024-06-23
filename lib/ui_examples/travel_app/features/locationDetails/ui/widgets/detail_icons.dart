@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/detail_icon_listtile.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/detail_icon_list_tile.dart';
 
 class DetailIcons extends StatelessWidget {
   final String travelTime;

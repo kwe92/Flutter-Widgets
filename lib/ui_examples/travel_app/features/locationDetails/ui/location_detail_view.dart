@@ -4,16 +4,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/circular_icon_button.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/shared/model/destination.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/shared/widgets/circular_icon_button.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/detail_icons.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/info_list_tile.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/custom_button.dart';
 
-const placeHolderText =
-    "This vast mountain range is renowned for its remarkable diversity in terms of topography and climate. It features towering peaks, active volcanoes, deep canyons, expansive plateaus, and lush valleys. The Andes are also home to";
-
 class LocationDetailView extends StatelessWidget {
-  const LocationDetailView({super.key});
+  final Destination destination;
+  const LocationDetailView({
+    required this.destination,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class LocationDetailView extends StatelessWidget {
                   ),
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: Image.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/andes-mountain.png").image,
+                    image: Image.asset(destination.image).image,
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -59,6 +61,7 @@ class LocationDetailView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CircularIconButtton(
+                            onTap: () => Navigator.pop(context),
                             icon: SvgPicture.asset("/Users/kwe/flutter-projects/FlutterWidgets/flutter_widgets/assets/back_icon.svg"),
                           ),
                           CircularIconButtton(
@@ -67,12 +70,12 @@ class LocationDetailView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
                       child: InfoListTile(
-                        destination: "Andes Mountain",
-                        continent: "Soutth, America",
-                        price: 230,
+                        destination: destination.name,
+                        continent: parseString(destination.continent),
+                        price: destination.price,
                       ),
                     ),
                   ],
@@ -101,11 +104,10 @@ class LocationDetailView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 18),
-              const DetailIcons(
-                // TODO: remove hard coded
-                travelTime: "8 hours",
-                temp: "16°C",
-                rating: 4.5,
+              DetailIcons(
+                travelTime: "${destination.flightDuration} hours",
+                temp: "${destination.temperature}°C",
+                rating: destination.rating,
               ),
               const SizedBox(height: 18),
               // TODO: ShaderMask Review
@@ -117,10 +119,10 @@ class LocationDetailView extends StatelessWidget {
                 ]).createShader(
                   Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                 ),
-                child: const Text(
-                  placeHolderText,
+                child: Text(
+                  destination.description,
                   maxLines: 4,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
@@ -137,4 +139,13 @@ class LocationDetailView extends StatelessWidget {
       ),
     );
   }
+}
+
+String parseString(String location) {
+  final locationInfo = location.split(",");
+  if (locationInfo[0].length > 8) {
+    return locationInfo.last;
+  }
+
+  return location;
 }
