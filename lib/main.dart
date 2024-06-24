@@ -14,9 +14,11 @@ import 'package:flutter_widgets/working_with_slivers/dynamic_layout_tutorial/cus
 import 'package:flutter_widgets/working_with_slivers/pinning_widgets_00.dart';
 
 void main() async {
-  runApp(const MaterialApp(
-    home: DestinationSelectionView(),
-  ));
+  runApp(
+    const MaterialApp(
+      home: DestinationSelectionView(),
+    ),
+  );
   // WidgetsFlutterBinding.ensureInitialized();
   // await databaseService.initialize();
 

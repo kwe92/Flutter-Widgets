@@ -12,6 +12,7 @@ class DestinationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // TODO: add a better transition
       onTap: () async => await Navigator.push(
         context,
         MaterialPageRoute(

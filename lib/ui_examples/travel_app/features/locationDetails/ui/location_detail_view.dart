@@ -1,9 +1,8 @@
-// TODO: create the location detail view from: https://www.figma.com/design/MrzFHl3QryIQCLS3T2EekF/Mobile-app-UI-Template-(Community)?node-id=0-1&t=szPoBAM8LQmATeRZ-0
-
 // TODO: ensure you can use relative path instead of absolute path for images
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_widgets/ui_examples/travel_app/features/locationDescription/ui/location_description_view.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/shared/model/destination.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/shared/widgets/circular_icon_button.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/widgets/detail_icons.dart';
@@ -119,12 +118,18 @@ class LocationDetailView extends StatelessWidget {
                 ]).createShader(
                   Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                 ),
-                child: Text(
-                  destination.description,
-                  maxLines: 4,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                child: GestureDetector(
+                  onTap: () async => await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LocationDescriptionView(destination: destination)),
+                  ),
+                  child: Text(
+                    destination.description,
+                    maxLines: 4,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -141,6 +146,7 @@ class LocationDetailView extends StatelessWidget {
   }
 }
 
+// TODO: colud refactor to keep D.R.Y
 String parseString(String location) {
   final locationInfo = location.split(",");
   if (locationInfo[0].length > 8) {
