@@ -21,7 +21,7 @@ class InfoListTile extends StatelessWidget {
       height: 104,
       decoration: BoxDecoration(
         // TODO: use gradient color LinearGradient?
-        color: const Color(0xff132c40),
+        color: const Color(0xff132c40).withOpacity(0.6),
         borderRadius: const BorderRadius.all(
           Radius.circular(16),
         ),

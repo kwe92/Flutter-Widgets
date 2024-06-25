@@ -61,7 +61,7 @@ class DestinationInfoListTile extends StatelessWidget {
       width: double.maxFinite,
       height: 76,
       decoration: BoxDecoration(
-        color: const Color(0xff132c40),
+        color: const Color(0xff132c40).withOpacity(0.6),
         borderRadius: const BorderRadius.all(
           Radius.circular(16),
         ),
