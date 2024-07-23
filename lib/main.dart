@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
+import 'package:flutter_widgets/custom_shimmer/custom_shimmer.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/notes_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
@@ -16,7 +17,8 @@ import 'package:flutter_widgets/working_with_slivers/pinning_widgets_00.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: DestinationSelectionView(),
+      home: ExampleShimmerAnimation(),
+      // home: DestinationSelectionView(),
     ),
   );
   // WidgetsFlutterBinding.ensureInitialized();
