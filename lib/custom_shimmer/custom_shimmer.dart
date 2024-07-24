@@ -22,7 +22,7 @@ class _ExampleShimmerAnimationState extends State<ExampleShimmerAnimation> {
   @override
   Widget build(BuildContext context) {
     //  ! Note: Future.delayed only present for delay simulation
-    final future = Future.delayed(const Duration(seconds: 4));
+    final future = Future.delayed(const Duration(seconds: 10));
 
     future.then((_) => setBusy(false));
 
