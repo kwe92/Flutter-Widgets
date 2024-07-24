@@ -8,6 +8,8 @@ import 'package:flutter_widgets/custom_shimmer/shimerWrapper/shimmer_wrapper.dar
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
 import 'package:provider/provider.dart';
 
+const darkModeShimmerColor = Color(0xff252525);
+
 class ExampleShimmerAnimationv2 extends StatelessWidget {
   const ExampleShimmerAnimationv2({super.key});
 
@@ -83,7 +85,9 @@ class QuoteCard extends StatelessWidget {
 
                 // : ShimmerCircle(),
 
-                : const ShimmerLines(
+                : ShimmerLines(
+                    // baseColor: darkModeShimmerColor,
+                    // highlightColor: Colors.grey.shade800,
                     // baseColor: Colors.green,
                     // highlightColor: Colors.lightBlue,
                     ),
