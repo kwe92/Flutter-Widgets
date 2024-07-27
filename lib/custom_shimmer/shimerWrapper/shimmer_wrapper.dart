@@ -103,7 +103,12 @@ class _SlidingGradientTransform extends GradientTransform {
 class _CommonShaderMask extends StatelessWidget {
   final Widget child;
   final LinearGradient gradient;
-  const _CommonShaderMask({required this.child, required this.gradient, super.key});
+
+  const _CommonShaderMask({
+    required this.child,
+    required this.gradient,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -116,18 +121,14 @@ class _CommonShaderMask extends StatelessWidget {
   }
 }
 
-Alignment _getTiltAlignmentBegin(HighlightTilt tilt) {
-  return switch (tilt) {
-    HighlightTilt.none => Alignment.centerLeft,
-    HighlightTilt.left => Alignment.topRight,
-    HighlightTilt.right => Alignment.bottomRight,
-  };
-}
+Alignment _getTiltAlignmentBegin(HighlightTilt tilt) => switch (tilt) {
+      HighlightTilt.none => Alignment.centerLeft,
+      HighlightTilt.left => Alignment.topRight,
+      HighlightTilt.right => Alignment.bottomRight,
+    };
 
-Alignment _getTiltAlignmentEnd(HighlightTilt tilt) {
-  return switch (tilt) {
-    HighlightTilt.none => Alignment.centerRight,
-    HighlightTilt.left => Alignment.bottomLeft,
-    HighlightTilt.right => Alignment.topLeft,
-  };
-}
+Alignment _getTiltAlignmentEnd(HighlightTilt tilt) => switch (tilt) {
+      HighlightTilt.none => Alignment.centerRight,
+      HighlightTilt.left => Alignment.bottomLeft,
+      HighlightTilt.right => Alignment.topLeft,
+    };
