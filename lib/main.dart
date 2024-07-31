@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
+import 'package:flutter_widgets/create_shimmer_loading_example/example_shimmer_loading.dart';
 import 'package:flutter_widgets/custom_shimmer/custom_shimmer.dart';
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_2.dart';
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
@@ -19,11 +20,12 @@ import 'package:provider/provider.dart';
 
 void main() async {
   runApp(
-    MaterialApp(
-      home: ChangeNotifierProvider(
-        create: (context) => ShimmerExampleViewModel(),
-        child: const ExampleShimmerAnimationv2(),
-      ),
+    const MaterialApp(
+      home: ExampleShimmerLoading(),
+      // home: ChangeNotifierProvider(
+      //   create: (context) => ShimmerExampleViewModel(),
+      //   child: const ExampleShimmerAnimationv2(),
+      // ),
       // home: ExampleShimmerAnimation(),
       // home: DestinationSelectionView(),
     ),
