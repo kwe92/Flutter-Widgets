@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_widgets/create_shimmer_loading_example/card_list_item.dart";
 import "package:flutter_widgets/create_shimmer_loading_example/circle_list_item.dart";
-import "package:flutter_widgets/create_shimmer_loading_example/shimmer.dart";
-import "package:flutter_widgets/create_shimmer_loading_example/shimmer_loading.dart";
+import "package:flutter_widgets/create_shimmer_loading_example/shimmer_provider.dart";
+import "package:flutter_widgets/create_shimmer_loading_example/shimmer_wrapper.dart";
 
 class ExampleShimmerLoading extends StatefulWidget {
   const ExampleShimmerLoading({super.key});
@@ -26,8 +26,7 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: Shimmer(
-            linearGradient: _defaultShimmerGradient,
+          child: ShimmerProvider(
             child: Column(
               children: [
                 Row(
@@ -42,7 +41,7 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(
-                    // Ensure the widget can not scroll while the view is loading
+                    // Ensure the widget can not scroll while the view is loading | if the view is allowed to scroll while shimmering an error will be thrown
                     physics: _isLoading ? const NeverScrollableScrollPhysics() : null,
                     itemCount: 5,
                     itemBuilder: (context, i) => _buildListItem(),
@@ -62,14 +61,14 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
   }
 
   Widget _buildTopRowItem() {
-    return ShimmerLoading(
+    return ShimmerWrapper(
       isLoading: _isLoading,
       child: const CircleListItem(),
     );
   }
 
   Widget _buildListItem() {
-    return ShimmerLoading(
+    return ShimmerWrapper(
       isLoading: _isLoading,
       child: CardListItem(
         isLoading: _isLoading,
@@ -77,30 +76,6 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
     );
   }
 }
-
-const _defaultShimmerGradient = LinearGradient(
-  colors: [
-    Color(0xFFEBEBF4),
-    Color(0xFFF4F4F4),
-    Color(0xFFEBEBF4),
-
-    // Colors.orange,
-    // Colors.blue,
-    // Colors.orange
-  ],
-  stops: [
-    // 0.1,
-    // 0.3,
-    // 0.4,
-
-    0.1,
-    0.1,
-    0.2,
-  ],
-  begin: Alignment(-1.0, -0.3),
-  end: Alignment(1.0, 0.3),
-  tileMode: TileMode.clamp,
-);
 
 
 
