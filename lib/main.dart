@@ -4,6 +4,7 @@ import 'package:flutter_widgets/create_shimmer_loading_example/example_shimmer_l
 import 'package:flutter_widgets/custom_shimmer/custom_shimmer.dart';
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_2.dart';
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
+import 'package:flutter_widgets/drag_physics_simulation/drag_physics_example.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/notes_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
@@ -21,7 +22,8 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: ExampleShimmerLoading(),
+      home: DragPhysicsExample(),
+      // home: ExampleShimmerLoading(),
       // home: ChangeNotifierProvider(
       //   create: (context) => ShimmerExampleViewModel(),
       //   child: const ExampleShimmerAnimationv2(),
