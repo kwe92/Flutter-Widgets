@@ -6,15 +6,15 @@ class DragPhysicsExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 56),
+        preferredSize: const Size(double.infinity, 56),
         child: AppBarWithDropShadow(
-          title: Text("Drag Phsyics"),
+          title: const Text("Drag Phsyics"),
         ),
       ),
-      body: DraggableCard(
+      body: const DraggableCard(
         child: Icon(
           color: Colors.lightBlue,
           Icons.flutter_dash,
@@ -26,31 +26,60 @@ class DragPhysicsExample extends StatelessWidget {
 }
 
 // AppBar with drop shadow underneath.
-class AppBarWithDropShadow extends StatelessWidget {
-  final Widget title;
 
-  final Color? shadowColor;
+class AppBarWithDropShadow extends AppBar {
+  factory AppBarWithDropShadow({
+    required Widget title,
+    double elevation = 3,
+    Color backgroundColor = Colors.white,
+    Color? surfaceTintColor = Colors.white,
+    Color? shadowColor,
+    List<Widget>? actions,
+  }) =>
+      AppBarWithDropShadow._internal(
+        title: title,
+        elevation: elevation,
+        backgroundColor: backgroundColor,
+        surfaceTintColor: surfaceTintColor,
+        shadowColor: shadowColor ?? Colors.black.withOpacity(0.20),
+        actions: actions,
+      );
 
-  final double? spreadRadius;
-
-  final Color? backgroundColor;
-
-  const AppBarWithDropShadow({
-    required this.title,
-    this.shadowColor,
-    this.spreadRadius = 2,
-    this.backgroundColor = Colors.white,
-    super.key,
+  AppBarWithDropShadow._internal({
+    super.elevation,
+    super.backgroundColor,
+    super.surfaceTintColor,
+    super.shadowColor,
+    super.title,
+    super.actions,
   });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      elevation: spreadRadius,
-      backgroundColor: backgroundColor,
-      surfaceTintColor: Colors.transparent,
-      shadowColor: shadowColor ?? Colors.black.withOpacity(0.25),
-      title: title,
-    );
-  }
 }
+
+// class AppBarWithDropShadow extends StatelessWidget {
+//   final Widget title;
+
+//   final Color? shadowColor;
+
+//   final double? spreadRadius;
+
+//   final Color? backgroundColor;
+
+//   const AppBarWithDropShadow({
+//     required this.title,
+//     this.shadowColor,
+//     this.spreadRadius = 2,
+//     this.backgroundColor = Colors.white,
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       elevation: spreadRadius,
+//       backgroundColor: backgroundColor,
+//       surfaceTintColor: Colors.transparent,
+//       shadowColor: shadowColor ?? Colors.black.withOpacity(0.25),
+//       title: title,
+//     );
+//   }
+// }
