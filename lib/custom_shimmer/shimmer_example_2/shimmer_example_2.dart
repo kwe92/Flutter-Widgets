@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widgets/custom_shimmer/models/quote.dart';
-import 'package:flutter_widgets/custom_shimmer/shimerWrapper/shimmerWidgets/shimmer_circle.dart';
-import 'package:flutter_widgets/custom_shimmer/shimerWrapper/shimmerWidgets/shimmer_container.dart';
 import 'package:flutter_widgets/custom_shimmer/shimerWrapper/shimmerWidgets/shimmer_text.dart';
 import 'package:flutter_widgets/custom_shimmer/shimerWrapper/shimmer_wrapper.dart';
 import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
