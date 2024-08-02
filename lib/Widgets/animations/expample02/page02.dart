@@ -6,14 +6,24 @@ class Page02 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: const Text("Page 2"),
-      ),
-      body: const ImageWithTitle(
-        title: "Isekai",
-        assetImagePath: "assets/isekai.jpeg",
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xff00b0ff),
+          surfaceTintColor: const Color(0xff00b0ff),
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Text(
+            "Page 2",
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        body: const ImageWithTitle(
+          title: "Isekai",
+          assetImagePath: "assets/isekai.jpeg",
+        ),
       ),
     );
   }

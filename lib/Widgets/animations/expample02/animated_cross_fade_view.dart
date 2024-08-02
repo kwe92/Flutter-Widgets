@@ -12,18 +12,22 @@ import 'package:flutter_widgets/Widgets/animations/shared/custom_page_route_buil
 import 'package:flutter_widgets/Widgets/animations/shared/image_with_title.dart';
 import 'package:provider/provider.dart';
 
-class AnimatedCrossFadeAppView extends StatelessWidget {
-  const AnimatedCrossFadeAppView({super.key});
+class AnimatedCrossFadeExampleView extends StatelessWidget {
+  const AnimatedCrossFadeExampleView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: ChangeNotifierProvider(
-        create: (context) => AnimatedCrossFadeAppViewModel(),
+        create: (context) => AnimatedCrossFadeExampleViewModel(),
         builder: (context, _) {
-          final model = context.watch<AnimatedCrossFadeAppViewModel>();
+          final model = context.watch<AnimatedCrossFadeExampleViewModel>();
           return Scaffold(
             appBar: AppBar(
+              elevation: 3,
+              backgroundColor: Colors.white,
+              surfaceTintColor: Colors.white,
+              shadowColor: Colors.black.withOpacity(0.20),
               title: const Text("Animated Cross Fade"),
               actions: [
                 TextButton(
@@ -39,15 +43,13 @@ class AnimatedCrossFadeAppView extends StatelessWidget {
 
                     model.setVisibility(true);
                   },
-                  child: const Text(
-                    'Switch',
-                  ),
+                  child: const Text('Switch'),
                 ),
               ],
             ),
             body: AnimatedOpacity(
               opacity: model.isVisible ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(seconds: 1),
               child: const ImageWithTitle(
                 title: "Isekai",
                 assetImagePath: "assets/isekai.jpeg",
