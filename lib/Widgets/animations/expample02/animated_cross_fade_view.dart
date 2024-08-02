@@ -1,10 +1,3 @@
-// Animated Cross Fade
-//  - A widget that cross-fades between two given children
-//    and animates itself between their sizes
-//
-//
-// nl
-
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/expample02/animated_cross_fade_view_model.dart';
 import 'package:flutter_widgets/Widgets/animations/expample02/page02.dart';
@@ -23,11 +16,7 @@ class AnimatedCrossFadeExampleView extends StatelessWidget {
         builder: (context, _) {
           final model = context.watch<AnimatedCrossFadeExampleViewModel>();
           return Scaffold(
-            appBar: AppBar(
-              elevation: 3,
-              backgroundColor: Colors.white,
-              surfaceTintColor: Colors.white,
-              shadowColor: Colors.black.withOpacity(0.20),
+            appBar: AppBarWithDropShadow(
               title: const Text("Animated Cross Fade"),
               actions: [
                 TextButton(
@@ -60,4 +49,34 @@ class AnimatedCrossFadeExampleView extends StatelessWidget {
       ),
     );
   }
+}
+
+// TODO: recap what we did here, understand the technical details
+
+class AppBarWithDropShadow extends AppBar {
+  AppBarWithDropShadow._internal({
+    super.elevation,
+    super.backgroundColor,
+    super.surfaceTintColor,
+    super.shadowColor,
+    super.title,
+    super.actions,
+  });
+
+  factory AppBarWithDropShadow({
+    required Widget title,
+    double elevation = 3,
+    Color backgroundColor = Colors.white,
+    Color? surfaceTintColor = Colors.white,
+    Color? shadowColor,
+    List<Widget>? actions,
+  }) =>
+      AppBarWithDropShadow._internal(
+        title: title,
+        elevation: elevation,
+        backgroundColor: backgroundColor,
+        surfaceTintColor: surfaceTintColor,
+        shadowColor: shadowColor ?? Colors.black.withOpacity(0.20),
+        actions: actions,
+      );
 }

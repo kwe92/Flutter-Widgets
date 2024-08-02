@@ -8,11 +8,8 @@ class DragPhysicsExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 56),
-        child: AppBarWithDropShadow(
-          title: const Text("Drag Phsyics"),
-        ),
+      appBar: AppBarWithDropShadow(
+        title: const Text("Drag Phsyics"),
       ),
       body: const DraggableCard(
         child: Icon(
@@ -25,9 +22,16 @@ class DragPhysicsExample extends StatelessWidget {
   }
 }
 
-// AppBar with drop shadow underneath.
-
+/// AppBar with drop shadow underneath.
 class AppBarWithDropShadow extends AppBar {
+  AppBarWithDropShadow._internal({
+    super.elevation,
+    super.backgroundColor,
+    super.surfaceTintColor,
+    super.shadowColor,
+    super.title,
+    super.actions,
+  });
   factory AppBarWithDropShadow({
     required Widget title,
     double elevation = 3,
@@ -44,16 +48,9 @@ class AppBarWithDropShadow extends AppBar {
         shadowColor: shadowColor ?? Colors.black.withOpacity(0.20),
         actions: actions,
       );
-
-  AppBarWithDropShadow._internal({
-    super.elevation,
-    super.backgroundColor,
-    super.surfaceTintColor,
-    super.shadowColor,
-    super.title,
-    super.actions,
-  });
 }
+
+//?? AppBarWithDropShadow that can be marked as const but requires a PreferredSize to be wrapped around it
 
 // class AppBarWithDropShadow extends StatelessWidget {
 //   final Widget title;

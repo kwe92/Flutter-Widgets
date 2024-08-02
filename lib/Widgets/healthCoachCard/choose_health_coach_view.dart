@@ -53,7 +53,7 @@ class ChooseCareNavigatorView extends StatelessWidget {
                       itemCount: model.carNavs.length,
                       itemBuilder: (context, index) {
                         // !! used to jump to widget not jumping properly
-                        final dataKey = GlobalKey();
+                        // final dataKey = GlobalKey();
 
                         return Padding(
                           padding: paddingV16,
