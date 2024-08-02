@@ -19,6 +19,21 @@ class ShimmerWrapper extends StatefulWidget {
 class _ShimmerLoadingState extends State<ShimmerWrapper> {
   Listenable? _shimmerController;
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_shimmerController != null) {
+      _shimmerController!.removeListener(_notifyWidget);
+    }
+
+    _shimmerController = ShimmerProvider.of(context)?.shimmerController;
+
+    if (_shimmerController != null) {
+      _shimmerController!.addListener(_notifyWidget);
+    }
+  }
+
   void _notifyWidget() {
     if (widget.isLoading) {
       setState(() {});
@@ -60,21 +75,6 @@ class _ShimmerLoadingState extends State<ShimmerWrapper> {
       },
       child: widget.child,
     );
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    if (_shimmerController != null) {
-      _shimmerController!.removeListener(_notifyWidget);
-    }
-
-    _shimmerController = ShimmerProvider.of(context)?.shimmerController;
-
-    if (_shimmerController != null) {
-      _shimmerController!.addListener(_notifyWidget);
-    }
   }
 
   @override
