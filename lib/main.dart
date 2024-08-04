@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cross_fade.dart';
-import 'package:flutter_widgets/Widgets/animations/expample02/animated_cross_fade_view.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/create_shimmer_loading_example/example_shimmer_loading.dart';
 import 'package:flutter_widgets/custom_shimmer/custom_shimmer.dart';
@@ -24,7 +24,7 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: AnimatedCrossFadeExampleView(),
+      home: AnimatedPageRouteTransitionView(),
 
       // home: DragPhysicsExample(),
       // home: ExampleShimmerLoading(),

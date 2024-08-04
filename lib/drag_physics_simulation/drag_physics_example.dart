@@ -6,12 +6,12 @@ class DragPhysicsExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWithDropShadow(
-        title: const Text("Drag Phsyics"),
+      appBar: AppBarWithDropShadow2(
+        title: Text("Drag Phsyics"),
       ),
-      body: const DraggableCard(
+      body: DraggableCard(
         child: Icon(
           color: Colors.lightBlue,
           Icons.flutter_dash,
@@ -50,33 +50,36 @@ class AppBarWithDropShadow extends AppBar {
       );
 }
 
-//?? AppBarWithDropShadow that can be marked as const but requires a PreferredSize to be wrapped around it
+// Another Way to Implement Custom Appbar and keep class const
 
-// class AppBarWithDropShadow extends StatelessWidget {
-//   final Widget title;
+class AppBarWithDropShadow2 extends StatelessWidget implements PreferredSizeWidget {
+  final Widget title;
 
-//   final Color? shadowColor;
+  final Color? shadowColor;
 
-//   final double? spreadRadius;
+  final double? spreadRadius;
 
-//   final Color? backgroundColor;
+  final Color? backgroundColor;
 
-//   const AppBarWithDropShadow({
-//     required this.title,
-//     this.shadowColor,
-//     this.spreadRadius = 2,
-//     this.backgroundColor = Colors.white,
-//     super.key,
-//   });
+  const AppBarWithDropShadow2({
+    required this.title,
+    this.shadowColor,
+    this.spreadRadius = 2,
+    this.backgroundColor = Colors.white,
+    super.key,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       elevation: spreadRadius,
-//       backgroundColor: backgroundColor,
-//       surfaceTintColor: Colors.transparent,
-//       shadowColor: shadowColor ?? Colors.black.withOpacity(0.25),
-//       title: title,
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      elevation: spreadRadius,
+      backgroundColor: backgroundColor,
+      surfaceTintColor: Colors.transparent,
+      shadowColor: shadowColor ?? Colors.black.withOpacity(0.25),
+      title: title,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

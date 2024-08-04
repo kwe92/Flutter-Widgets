@@ -10,7 +10,7 @@ import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/example_fr
 import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/menu_example.dart';
 import 'package:flutter_widgets/Widgets/Portals/simple_portal_example/text_field_with_modal_view.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cross_fade.dart';
-import 'package:flutter_widgets/Widgets/animations/expample02/animated_cross_fade_view.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget.dart';
 import 'package:flutter_widgets/Widgets/camera_preview_widget_model.dart';
