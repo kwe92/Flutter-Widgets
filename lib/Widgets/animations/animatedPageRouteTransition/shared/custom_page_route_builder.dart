@@ -16,10 +16,10 @@ class CustomPageRouteBuilder<T> extends PageRouteBuilder<T> {
   /// a higher order function returning a [TransitionsBuilderCallback]
   static TransitionsBuilderCallback _defaultTransitionsBuilder(bool isVerticalTranslation) =>
       (context, animation, secondaryAnimation, child) {
-        // where animation starts
+        // where the animation starts on screen
         final begin = isVerticalTranslation ? const Offset(0, 1) : const Offset(1, 0);
 
-        // where animation ends
+        // where the animation ends on screen
         const end = Offset.zero;
 
         // how the animation enters and exits into view
@@ -30,7 +30,7 @@ class CustomPageRouteBuilder<T> extends PageRouteBuilder<T> {
         final animateBetween = Tween(
           begin: begin,
           end: end,
-        ).chain(curveBetween); // chain, combins tweens
+        ).chain(curveBetween); // chain, combines tweens
 
         final Animation<Offset> offsetAnimation = animation.drive<Offset>(animateBetween);
 
@@ -60,3 +60,8 @@ class CustomPageRouteBuilder<T> extends PageRouteBuilder<T> {
 //   - equivalent to OffSet(0,0) and represents the origin of 2-d Real Cartesian Coordinate Space (two dimensional grid system)
 
 //   - the y-axis is inverted relative to the mathematical 2-D Cartesian Plane and increases in the downward direction
+
+
+// SlideTransition
+
+//   - creates a fractional translation (slide) on the Cartesian Plane
