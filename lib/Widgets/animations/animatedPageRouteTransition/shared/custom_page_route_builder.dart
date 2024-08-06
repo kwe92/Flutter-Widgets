@@ -41,6 +41,8 @@ class CustomPageRouteBuilder<T> extends PageRouteBuilder<T> {
       };
 }
 
+// TODO: refactor comments
+
 //  PageRouteBuilder
 
 //    - allows the user to customize route transition animations
