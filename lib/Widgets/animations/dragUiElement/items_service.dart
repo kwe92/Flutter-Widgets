@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/item.dart';
 
-final itemService = ItemsService();
+final itemsService = ItemsService();
 
 class ItemsService with ChangeNotifier {
   List<Item> _items = [];
