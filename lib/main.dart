@@ -25,7 +25,7 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: DragUiElementExample(),
+      home: DragUiElementExampleView(),
       // home: AnimatedPageRouteTransitionView(),
 
       // home: DragPhysicsExample(),
