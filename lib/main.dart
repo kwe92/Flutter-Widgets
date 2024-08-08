@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cross_fade.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
+import 'package:flutter_widgets/Widgets/animations/staggeringAnimations/staggered_menu_animation_view.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
-import 'package:flutter_widgets/create_shimmer_loading_example/example_shimmer_loading.dart';
-import 'package:flutter_widgets/custom_shimmer/custom_shimmer.dart';
-import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_2.dart';
-import 'package:flutter_widgets/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
-import 'package:flutter_widgets/drag_physics_simulation/drag_physics_example.dart';
+import 'package:flutter_widgets/Widgets/animations/create_shimmer_loading_example/example_shimmer_loading.dart';
+import 'package:flutter_widgets/Widgets/animations/custom_shimmer/custom_shimmer.dart';
+import 'package:flutter_widgets/Widgets/animations/custom_shimmer/shimmer_example_2/shimmer_example_2.dart';
+import 'package:flutter_widgets/Widgets/animations/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
+import 'package:flutter_widgets/Widgets/animations/drag_physics_simulation/drag_physics_example.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/notes_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
@@ -25,7 +26,8 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: DragUiElementExampleView(),
+      home: StaggeredMenuAnimationExampleView(),
+      // home: DragUiElementExampleView(),
       // home: AnimatedPageRouteTransitionView(),
 
       // home: DragPhysicsExample(),
