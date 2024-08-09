@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cross_fade.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/animated_download_button.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
 import 'package:flutter_widgets/Widgets/animations/staggeringAnimations/staggered_menu_animation_view.dart';
@@ -26,7 +27,8 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: StaggeredMenuAnimationExampleView(),
+      home: AnimatedDownloadButtonExample(),
+      // home: StaggeredMenuAnimationExampleView(),
       // home: DragUiElementExampleView(),
       // home: AnimatedPageRouteTransitionView(),
 

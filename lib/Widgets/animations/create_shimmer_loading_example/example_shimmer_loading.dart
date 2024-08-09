@@ -34,7 +34,7 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
                   children: [
                     ...List.generate(
                       5,
-                      (i) => _buildTopRowItem(),
+                      (i) => Builder(builder: _buildTopRowItem),
                     ),
                   ],
                 ),
@@ -44,7 +44,7 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
                     // Ensure the widget can not scroll while the view is loading | if the view is allowed to scroll while shimmering an error will be thrown
                     physics: _isLoading ? const NeverScrollableScrollPhysics() : null,
                     itemCount: 5,
-                    itemBuilder: (context, i) => _buildListItem(),
+                    itemBuilder: _buildListItem,
                     separatorBuilder: (context, i) => const SizedBox(height: 24),
                   ),
                 ),
@@ -60,14 +60,14 @@ class _ExampleShimmerLoadingState extends State<ExampleShimmerLoading> {
     );
   }
 
-  Widget _buildTopRowItem() {
+  Widget _buildTopRowItem(BuildContext context) {
     return ShimmerWrapper(
       isLoading: _isLoading,
       child: const CircleListItem(),
     );
   }
 
-  Widget _buildListItem() {
+  Widget _buildListItem(BuildContext context, int i) {
     return ShimmerWrapper(
       isLoading: _isLoading,
       child: CardListItem(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: refactor
+
 Widget _buildDecoratedImage({required String image}) => Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -19,10 +21,7 @@ Widget _buildDecoratedImage({required String image}) => Expanded(
     );
 
 Widget _buildImageRow({required String img1, required String img2}) => Row(
-      children: <Widget>[
-        _buildDecoratedImage(image: img1),
-        _buildDecoratedImage(image: img2)
-      ],
+      children: <Widget>[_buildDecoratedImage(image: img1), _buildDecoratedImage(image: img2)],
     );
 
 Widget buildWidetColumn() => Container(

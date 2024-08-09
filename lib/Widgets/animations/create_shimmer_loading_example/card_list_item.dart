@@ -13,14 +13,14 @@ class CardListItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildImage(),
+        Builder(builder: _buildImage),
         const SizedBox(height: 16),
-        _buildText(),
+        Builder(builder: _buildText),
       ],
     );
   }
 
-  Widget _buildImage() {
+  Widget _buildImage(BuildContext context) {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: Container(
@@ -41,7 +41,7 @@ class CardListItem extends StatelessWidget {
     );
   }
 
-  Widget _buildText() {
+  Widget _buildText(BuildContext context) {
     return isLoading
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
