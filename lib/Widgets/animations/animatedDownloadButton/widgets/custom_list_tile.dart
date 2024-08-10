@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/demo_app_icon.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/download_button.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/download_controller.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/widgets/demo_app_icon.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/widgets/download_button.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/controllers/download_controller.dart';
 
 // TODO: try using standard ListTile widget and compare differences
 

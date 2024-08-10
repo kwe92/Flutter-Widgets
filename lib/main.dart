@@ -3,6 +3,7 @@ import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cr
 import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/animated_download_button.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
+import 'package:flutter_widgets/Widgets/animations/expandableFab/expandable_fab_example.dart';
 import 'package:flutter_widgets/Widgets/animations/staggeringAnimations/staggered_menu_animation_view.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/animations/create_shimmer_loading_example/example_shimmer_loading.dart';
@@ -27,7 +28,8 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(
     const MaterialApp(
-      home: AnimatedDownloadButtonExample(),
+      home: ExpandableFabExample(),
+      // home: AnimatedDownloadButtonExample(),
       // home: StaggeredMenuAnimationExampleView(),
       // home: DragUiElementExampleView(),
       // home: AnimatedPageRouteTransitionView(),

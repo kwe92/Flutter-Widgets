@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/constants.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/download_controller.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/controllers/download_controller.dart';
 
 class SimulatedDownloadController extends DownloadController with ChangeNotifier {
   DownloadStatus _downloadStatus;

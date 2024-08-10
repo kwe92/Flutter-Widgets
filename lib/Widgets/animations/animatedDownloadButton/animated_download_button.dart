@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/custom_list_tile.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/download_controller.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/simulated_download_controller.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/widgets/custom_list_tile.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/controllers/download_controller.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/controllers/simulated_download_controller.dart';
 
 class AnimatedDownloadButtonExample extends StatefulWidget {
   const AnimatedDownloadButtonExample({super.key});

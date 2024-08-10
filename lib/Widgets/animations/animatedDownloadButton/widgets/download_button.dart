@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/button_shape.dart';
+import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/widgets/button_shape.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/constants.dart';
 
 class DownloadButton extends StatelessWidget {
