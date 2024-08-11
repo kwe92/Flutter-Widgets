@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO: review (code && comments), clean up code (refactor), add more comments and edit old comments
+
 class ParallaxScrollingEffectExample extends StatelessWidget {
   const ParallaxScrollingEffectExample({super.key});
 
