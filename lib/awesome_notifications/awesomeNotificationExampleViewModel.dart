@@ -9,10 +9,7 @@ class AwesomeNotificationExampleViewModel extends ChangeNotifier {
 
   String get channelKey => notificationService.channelKey;
 
-  AwesomeNotificationExampleViewModel() {
-    initialize();
-  }
-
+  AwesomeNotificationExampleViewModel();
 // initialize awesome notifications
   Future<void> initialize() async {
     await notificationInstance.initialize(
