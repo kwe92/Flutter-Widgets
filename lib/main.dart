@@ -4,6 +4,7 @@ import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/animat
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
 import 'package:flutter_widgets/Widgets/animations/expandableFab/expandable_fab_example.dart';
+import 'package:flutter_widgets/Widgets/animations/parallaxScrollingEffect/parallax_scrolling_effect_example_view.dart';
 import 'package:flutter_widgets/Widgets/animations/staggeringAnimations/staggered_menu_animation_view.dart';
 import 'package:flutter_widgets/Widgets/auto_route_guide/routes/app_router.dart';
 import 'package:flutter_widgets/Widgets/animations/create_shimmer_loading_example/example_shimmer_loading.dart';
@@ -25,10 +26,14 @@ import 'package:flutter_widgets/working_with_slivers/dynamic_layout_tutorial/cus
 import 'package:flutter_widgets/working_with_slivers/pinning_widgets_00.dart';
 import 'package:provider/provider.dart';
 
+const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
 void main() async {
   runApp(
-    const MaterialApp(
-      home: ExpandableFabExample(),
+    MaterialApp(
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      home: const ParallaxScrollingEffectExampleView(),
+      // home: ExpandableFabExample(),
       // home: AnimatedDownloadButtonExample(),
       // home: StaggeredMenuAnimationExampleView(),
       // home: DragUiElementExampleView(),
