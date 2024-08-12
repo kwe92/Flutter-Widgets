@@ -12,24 +12,31 @@ class AwesomeNotificationExampleView extends StatelessWidget {
       create: (context) => AwesomeNotificationExampleViewModel(),
       builder: (context, _) {
         final model = context.watch<AwesomeNotificationExampleViewModel>();
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text("Awesome Notifications"),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // create a manual notification or create a notification from json data
-              model.notificationInstance.createNotification(
-                content: NotificationContent(
-                  id: 1,
-                  channelKey: model.channelKey,
-                  title: "test notification",
-                  body: "text notification content",
-                ),
-              );
-            },
-            child: const Icon(Icons.add),
-          ),
+        return FutureBuilder(
+          future: model.initialize(),
+          builder: (context, snapshot) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Awesome Notifications"),
+              ),
+              floatingActionButton: snapshot.connectionState == ConnectionState.done
+                  ? FloatingActionButton(
+                      onPressed: () {
+                        // create a manual notification or create a notification from json data
+                        model.notificationInstance.createNotification(
+                          content: NotificationContent(
+                            id: 1,
+                            channelKey: model.channelKey,
+                            title: "test notification",
+                            body: "text notification content",
+                          ),
+                        );
+                      },
+                      child: const Icon(Icons.add),
+                    )
+                  : const CircularProgressIndicator(),
+            );
+          },
         );
       },
     );
