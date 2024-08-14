@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cross_fade.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/animated_download_button.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
+import 'package:flutter_widgets/Widgets/animations/animatingContainerProperties/container_animation_example.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
 import 'package:flutter_widgets/Widgets/animations/expandableFab/expandable_fab_example.dart';
 import 'package:flutter_widgets/Widgets/animations/parallaxScrollingEffect/parallax_scrolling_effect_example_view.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_widgets/Widgets/animations/custom_shimmer/custom_shimmer
 import 'package:flutter_widgets/Widgets/animations/custom_shimmer/shimmer_example_2/shimmer_example_2.dart';
 import 'package:flutter_widgets/Widgets/animations/custom_shimmer/shimmer_example_2/shimmer_example_view_model.dart';
 import 'package:flutter_widgets/Widgets/animations/drag_physics_simulation/drag_physics_example.dart';
+import 'package:flutter_widgets/Widgets/gradientChatBubbles/gradient_chat_bubbles_example.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/notes/ui/notes_view.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
@@ -31,8 +33,11 @@ const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 void main() async {
   runApp(
     MaterialApp(
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
-      home: const ParallaxScrollingEffectExampleView(),
+      // theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      theme: ThemeData.dark(useMaterial3: true).copyWith(primaryColor: const Color(0xFF4F4F4F)),
+      home: const GradientChatBubblesExample(),
+      // home: AnimatedContainerExample(),
+      // home: const ParallaxScrollingEffectExampleView(),
       // home: ExpandableFabExample(),
       // home: AnimatedDownloadButtonExample(),
       // home: StaggeredMenuAnimationExampleView(),
