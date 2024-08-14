@@ -65,7 +65,7 @@ class ParallaxFlowDelegate extends FlowDelegate {
 }
 
 
-// FlowDelegate
+// Flow && FlowDelegate (Custom Layout Behavior)
 
 //   - used with a Flow widget to take control of a child widget immediately before it is painted
 
