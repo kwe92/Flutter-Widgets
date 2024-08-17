@@ -34,16 +34,15 @@ void main() async {
   runApp(
     MaterialApp(
       // theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
-      theme: ThemeData.dark(useMaterial3: true).copyWith(primaryColor: const Color(0xFF4F4F4F)),
-      home: const GradientChatBubblesExample(),
-      // home: AnimatedContainerExample(),
+      // theme: ThemeData.dark(useMaterial3: true).copyWith(primaryColor: const Color(0xFF4F4F4F)),
+      // home: const GradientChatBubblesExample(),
+      // home: const AnimatedContainerExample(),
       // home: const ParallaxScrollingEffectExampleView(),
       // home: ExpandableFabExample(),
       // home: AnimatedDownloadButtonExample(),
       // home: StaggeredMenuAnimationExampleView(),
       // home: DragUiElementExampleView(),
       // home: AnimatedPageRouteTransitionView(),
-
       // home: DragPhysicsExample(),
       // home: ExampleShimmerLoading(),
       // home: ChangeNotifierProvider(
@@ -52,6 +51,7 @@ void main() async {
       // ),
       // home: ExampleShimmerAnimation(),
       // home: DestinationSelectionView(),
+      home: CustomSliverLayout02(),
     ),
   );
   // WidgetsFlutterBinding.ensureInitialized();
@@ -61,11 +61,6 @@ void main() async {
   //   routerConfig: appRouter.config(),
   // ));
 
-  // runApp(
-  //   const MaterialApp(
-  //     home: CustomSliverLayout02(),
-  //   ),
-  // );
   // runApp(
   //   MaterialApp(
   // navigatorKey: WidgetKey.navigatorKey,

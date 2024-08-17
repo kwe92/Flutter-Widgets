@@ -18,7 +18,9 @@ class CustomSliverLayout02 extends StatelessWidget {
             child: CustomScrollView(
               center: centerWidgetKey,
               slivers: [
-                const CustomSliver(child: TopSection()),
+                const CustomSliver(
+                  child: TopSection(),
+                ),
                 MiddleSection(
                   key: centerWidgetKey,
                 ),
@@ -29,7 +31,7 @@ class CustomSliverLayout02 extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 6.0),
                       child: GestureDetector(
                         onTap: () {
-                          print("container: $index");
+                          // print("container: $index");
                         },
                         child: Container(
                           height: 120,
@@ -75,35 +77,39 @@ class MiddleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // pinned: true,
+      pinned: true,
       // floating: true,
+
+      // static height, min height
       toolbarHeight: 300,
 
       // flexibleSpace: widget behind title widget
-      // flexibleSpace: SizedBox(
-      //   height: double.maxFinite,
-      //   width: double.maxFinite,
-      //   child: Image.asset(
-      //     "assets/seinen.webp",
-      //     fit: BoxFit.fill,
-      //   ),
-      // ),
-      // expandedHeight: retractable height
-      // expandedHeight: 300,
+      flexibleSpace: SizedBox(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        child: Image.asset(
+          "assets/seinen.webp",
+          fit: BoxFit.fill,
+        ),
+      ),
+      // dynamic height, max height, starting height
+      expandedHeight: 300,
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
       titleSpacing: 0,
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       title: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 0,
         ),
         // SEARCH BAR
-        child: Container(
-          height: 500,
-          color: Colors.blue,
-          child: const Center(
-            child: Text("Middle Section"),
+        child: const Center(
+          child: Text(
+            "Middle Section",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -133,8 +139,7 @@ class RenderSliverCustom extends RenderSliverSingleBoxAdapter {
     child!.layout(constraints.asBoxConstraints(), parentUsesSize: true);
     final double childExtent;
 
-    // TODO: play with the SliverConstraints properties
-    debugPrint("constraints.scrollOffset: ${constraints.scrollOffset}");
+    // debugPrint("constraints.scrollOffset: ${constraints.scrollOffset}");
 
     switch (constraints.axis) {
       case Axis.horizontal:
@@ -147,7 +152,6 @@ class RenderSliverCustom extends RenderSliverSingleBoxAdapter {
 
     assert(paintedChildSize.isFinite);
     assert(paintedChildSize >= 0.0);
-    // TODO: play with some of the SliverGeometry parameters
     geometry = SliverGeometry(
       scrollExtent: childExtent,
       paintExtent: paintedChildSize,
