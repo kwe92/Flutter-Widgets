@@ -28,7 +28,7 @@ class AnimatedPageRouteTransitionView extends StatelessWidget {
                     await Navigator.push(
                       context,
                       CustomPageRouteBuilder(
-                        const Page02(),
+                        pageBuilder: (context, animation, secondaryAnimation) => const Page02(),
                       ),
                     );
 
