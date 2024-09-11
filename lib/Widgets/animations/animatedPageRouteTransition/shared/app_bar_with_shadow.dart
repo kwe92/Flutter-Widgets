@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 
-class AppBarWithDropShadow extends StatelessWidget implements PreferredSizeWidget {
+// Seems to be the simplest implementation
+class AppBarWithDropShadow extends AppBar {
+  AppBarWithDropShadow({
+    required super.title,
+    super.elevation = 2,
+    super.backgroundColor = Colors.white,
+    super.actions,
+    super.surfaceTintColor = Colors.transparent,
+    Color? shadowColor,
+    super.key,
+  }) : super(
+          shadowColor: shadowColor ?? Colors.black.withOpacity(0.25),
+        );
+}
+
+//------------------------------------------------------------------------------------------------------------------------------//
+
+class AppBarWithDropShadow2 extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
 
   final Color? shadowColor;
@@ -11,7 +28,7 @@ class AppBarWithDropShadow extends StatelessWidget implements PreferredSizeWidge
 
   final List<Widget>? actions;
 
-  const AppBarWithDropShadow({
+  const AppBarWithDropShadow2({
     required this.title,
     this.shadowColor,
     this.spreadRadius = 2,
@@ -36,8 +53,10 @@ class AppBarWithDropShadow extends StatelessWidget implements PreferredSizeWidge
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class AppBarWithDropShadow2 extends AppBar {
-  AppBarWithDropShadow2._internal({
+//------------------------------------------------------------------------------------------------------------------------------//
+
+class AppBarWithDropShadow3 extends AppBar {
+  AppBarWithDropShadow3._internal({
     super.elevation,
     super.backgroundColor,
     super.surfaceTintColor,
@@ -46,7 +65,7 @@ class AppBarWithDropShadow2 extends AppBar {
     super.actions,
   });
 
-  factory AppBarWithDropShadow2({
+  factory AppBarWithDropShadow3({
     required Widget title,
     double elevation = 3,
     Color backgroundColor = Colors.white,
@@ -54,7 +73,7 @@ class AppBarWithDropShadow2 extends AppBar {
     Color? shadowColor,
     List<Widget>? actions,
   }) =>
-      AppBarWithDropShadow2._internal(
+      AppBarWithDropShadow3._internal(
         title: title,
         elevation: elevation,
         backgroundColor: backgroundColor,
