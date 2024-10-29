@@ -3,7 +3,7 @@ import 'package:flutter_widgets/Widgets/healthCoachCard/reusables/reusables.dart
 import 'package:flutter_widgets/Widgets/table_calendar/events_example/calendar_event_example_view_model.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/shared/journal_date_service.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/widgets/journal_content.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
+import 'package:flutter_widgets/mvvm_architectural_design_pattern/shared/models/base_journal_entry.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';

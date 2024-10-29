@@ -974,7 +974,7 @@ PODS:
   - Firebase/Firestore (10.25.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.25.0)
-  - firebase_auth (4.20.0):
+  - firebase_auth (4.16.0):
     - Firebase/Auth (= 10.25.0)
     - firebase_core
     - Flutter
@@ -1152,7 +1152,7 @@ PODS:
   - RecaptchaInterop (100.0.0)
   - share_plus (0.0.1):
     - Flutter
-  - sqflite (0.0.3):
+  - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
 
@@ -1172,7 +1172,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - plaid_flutter (from `.symlinks/plugins/plaid_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
-  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
 
 SPEC REPOS:
   trunk:
@@ -1230,18 +1230,18 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/plaid_flutter/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
-  sqflite:
-    :path: ".symlinks/plugins/sqflite/darwin"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
 
 SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   awesome_notifications: db394d2e061e4583ba0f738ddea611e3986cc3fb
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
-  camera_avfoundation: 759172d1a77ae7be0de08fc104cfb79738b8a59e
+  camera_avfoundation: dd002b0330f4981e1bbcb46ae9b62829237459a4
   cloud_firestore: 003d53b6b8b392600b7769acf9421cc4f23e5911
   desktop_webview_auth: d645139460ef203d50bd0cdb33356785dd939cce
   Firebase: 0312a2352584f782ea56f66d91606891d4607f06
-  firebase_auth: 5719ddc9f654b813405899480e84971bd8e61235
+  firebase_auth: 9826d36bb6831d560d7aaf274ea280e9fe91a8ad
   firebase_core: a626d00494efa398e7c54f25f1454a64c8abf197
   firebase_dynamic_links: 525e9c1b702d2ed2d9b0dbd342eee1e15a75e62d
   FirebaseAppCheckInterop: 5315f40293191bfec04b2cfab0215760e441540a
@@ -1271,8 +1271,8 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
-  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  sqflite_darwin: a553b1fd6fe66f53bbb0fe5b4f5bab93f08d7a13
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

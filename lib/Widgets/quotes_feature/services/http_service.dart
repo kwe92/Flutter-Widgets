@@ -118,7 +118,7 @@ class ResponseHandler {
   static http.Response parseStatusCode(http.Response response, String endpoint) {
     debugPrint('\nEndpoint: \n$endpoint');
     debugPrint('\nStatus Code:\n${response.statusCode}');
-    debugPrint('\nResponse Body:\n${utf8.decode(response.bodyBytes)}');
+    // debugPrint('\nResponse Body:\n${utf8.decode(response.bodyBytes)}');
 
     return response;
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/widgets/date_tile.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/widgets/journal_content.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
+import 'package:flutter_widgets/mvvm_architectural_design_pattern/shared/models/base_journal_entry.dart';
 
 class JournalEntryCard extends StatelessWidget {
   final int index;

@@ -15,7 +15,7 @@ import flutter_app_badger
 import flutter_local_notifications
 import path_provider_foundation
 import share_plus
-import sqflite
+import sqflite_darwin
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AwesomeNotificationsPlugin.register(with: registry.registrar(forPlugin: "AwesomeNotificationsPlugin"))

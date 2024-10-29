@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/factory/factory.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
+import 'package:flutter_widgets/mvvm_architectural_design_pattern/shared/factory/factory.dart';
+import 'package:flutter_widgets/mvvm_architectural_design_pattern/shared/models/base_journal_entry.dart';
 
 final journalDateService = JournalDateService();
 

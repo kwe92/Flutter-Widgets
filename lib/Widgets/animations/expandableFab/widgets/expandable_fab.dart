@@ -23,7 +23,7 @@ class ExpandableFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ExpandableFabController(initialOpen: true),
+      create: (BuildContext context) => ExpandableFabController(initialOpen: false),
       builder: (BuildContext context, Widget? _) {
         final controller = context.read<ExpandableFabController>();
         return SizedBox.expand(

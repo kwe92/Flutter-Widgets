@@ -18,6 +18,7 @@ import 'package:flutter_widgets/offline_database_example_notes_app/features/note
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/services/database_service.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/features/shared/widget_keys.dart';
 import 'package:flutter_widgets/offline_database_example_notes_app/app/theme/theme.dart';
+import 'package:flutter_widgets/parseJsonInTheBackground/parsing_json_in_background_example.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/home/destination_selection_view.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/locationDetails/ui/location_detail_view.dart';
 import 'package:flutter_widgets/ui_examples/travel_app/features/navigation/navigation_view.dart';
@@ -32,7 +33,8 @@ const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
 void main() async {
   runApp(
-    MaterialApp(
+    const MaterialApp(
+      home: ParsingJsonInBackgroundExample(),
       // theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
       // theme: ThemeData.dark(useMaterial3: true).copyWith(primaryColor: const Color(0xFF4F4F4F)),
       // home: const GradientChatBubblesExample(),
@@ -51,7 +53,7 @@ void main() async {
       // ),
       // home: ExampleShimmerAnimation(),
       // home: DestinationSelectionView(),
-      home: CustomSliverLayout02(),
+      // home: CustomSliverLayout02(),
     ),
   );
   // WidgetsFlutterBinding.ensureInitialized();

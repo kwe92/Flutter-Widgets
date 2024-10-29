@@ -3,7 +3,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/shared/event_utils.dart';
 import 'package:flutter_widgets/Widgets/table_calendar/shared/journal_date_service.dart';
-import 'package:flutter_widgets/mvvm_architectural_dsign_pattern/shared/models/base_journal_entry.dart';
+import 'package:flutter_widgets/mvvm_architectural_design_pattern/shared/models/base_journal_entry.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class TableEventsExampleViewModel extends ChangeNotifier {
