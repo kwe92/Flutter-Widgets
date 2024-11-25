@@ -100,3 +100,10 @@ class BeamClipper extends CustomClipper<Path> {
 //       - AnimatedBuilder
 
 //       - AnimatedWidget
+
+// SingleTickerProviderStateMixin
+
+//   - takes care of managing a Ticker
+
+//   - turns your widget into a TickerProvider which then can be passed as an
+//     argument to an AnimationController's vsyc property as 'this'
