@@ -3,6 +3,7 @@ import 'package:flutter_widgets/Widgets/animations/animatedCrossFade/animated_cr
 import 'package:flutter_widgets/Widgets/animations/animatedDownloadButton/animated_download_button.dart';
 import 'package:flutter_widgets/Widgets/animations/animatedPageRouteTransition/animated_page_route_transition_view.dart';
 import 'package:flutter_widgets/Widgets/animations/animatingContainerProperties/container_animation_example.dart';
+import 'package:flutter_widgets/Widgets/animations/animationDeepDive/animation_deep_dive.dart';
 import 'package:flutter_widgets/Widgets/animations/dragUiElement/drag_ui_element_example.dart';
 import 'package:flutter_widgets/Widgets/animations/expandableFab/expandable_fab_example.dart';
 import 'package:flutter_widgets/Widgets/animations/explicitAnimations/using_explicit_animations.dart';
@@ -40,8 +41,8 @@ const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 void main() async {
   runApp(
     const MaterialApp(
-      home: UsingExplicitAnimations3(),
-
+      home: AnimationDeepDive(),
+      // home: UsingExplicitAnimations3(),
       // home: UsingExplicitAnimations2(),
       // home: UsingExplicitAnimations(),
       // home: DynamicallyChangingTweenValues(),
