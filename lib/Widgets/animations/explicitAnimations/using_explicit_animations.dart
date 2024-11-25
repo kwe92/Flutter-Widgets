@@ -133,6 +133,10 @@ class _UsingExplicitAnimationsState extends State<UsingExplicitAnimations> with 
 
 //   - can control multiple animations with a single controller
 
+//   - requires a ticker to function (thats why SingleTickerProviderStateMixin is required)
+
+//   - play, pause, and reverse animations
+
 // TweenAnimationBuilder onEnd Parameter
 
 //   - called once the animation is complete
